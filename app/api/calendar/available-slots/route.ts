@@ -2,67 +2,93 @@ import { NextRequest, NextResponse } from 'next/server';
 import { getAvailableSlots, getBookingDateRange } from '@/lib/google-calendar';
 import { AvailableSlotsResponse } from '@/types/booking';
 
+const MAX_WINDOW_DAYS = 31;
+
 export async function GET(request: NextRequest) {
-    try {
-        const { startDate, endDate } = getBookingDateRange();
+  const { searchParams } = new URL(request.url);
+  const windowDays = parseNumberParam(searchParams.get('days'), 1, MAX_WINDOW_DAYS);
+  const startOffsetDays = parseNumberParam(searchParams.get('startOffsetDays'), 0, 30);
+  const allowWeekendsParam = searchParams.get('includeWeekends');
+  const allowWeekends = allowWeekendsParam ? allowWeekendsParam === 'true' : undefined;
 
-        const slots = await getAvailableSlots(startDate, endDate);
+  try {
+    const range = getBookingDateRange({
+      windowDays: windowDays ?? undefined,
+      startOffsetDays: startOffsetDays ?? undefined,
+    });
 
-        const response: AvailableSlotsResponse & { source?: string } = {
-            slots,
-            generatedAt: new Date().toISOString(),
-            source: 'live'
-        };
+    const slots = await getAvailableSlots({
+      startDate: range.startDate,
+      endDate: range.endDate,
+      allowWeekends,
+    });
 
-        return NextResponse.json(response);
-    } catch (error) {
-        console.error('Error fetching available slots:', error);
+    const response: AvailableSlotsResponse & { source?: string; range?: { startDate: string; endDate: string } } = {
+      slots,
+      generatedAt: new Date().toISOString(),
+      source: 'live',
+      range: {
+        startDate: range.startDate.toISOString(),
+        endDate: range.endDate.toISOString(),
+      },
+    };
 
-        // 開発環境用のモックデータ
-        const isDev = process.env.NODE_ENV === 'development';
-        const hasCredentials = process.env.GOOGLE_SERVICE_ACCOUNT_EMAIL && process.env.GOOGLE_PRIVATE_KEY;
+    return NextResponse.json(response);
+  } catch (error) {
+    console.error('Error fetching available slots:', error);
 
-        if (isDev && !hasCredentials) {
-            return NextResponse.json({
-                slots: generateMockSlots(),
-                generatedAt: new Date().toISOString(),
-                source: 'mock'
-            });
-        }
+    const isDev = process.env.NODE_ENV === 'development';
+    const hasCredentials = process.env.GOOGLE_SERVICE_ACCOUNT_EMAIL && process.env.GOOGLE_PRIVATE_KEY;
 
-        return NextResponse.json(
-            { error: 'Failed to fetch available slots', details: error instanceof Error ? error.message : String(error) },
-            { status: 500 }
-        );
+    if (isDev && !hasCredentials) {
+      return NextResponse.json({
+        slots: generateMockSlots(windowDays ?? 14, allowWeekends ?? false),
+        generatedAt: new Date().toISOString(),
+        source: 'mock',
+      });
     }
+
+    return NextResponse.json(
+      {
+        error: 'Failed to fetch available slots',
+        details: error instanceof Error ? error.message : String(error),
+      },
+      { status: 500 }
+    );
+  }
 }
 
-// 開発用モックスロット生成
-function generateMockSlots() {
-    const slots = [];
-    const today = new Date();
+function parseNumberParam(value: string | null, min: number, max: number): number | undefined {
+  if (!value) return undefined;
+  const parsed = Number(value);
+  if (Number.isNaN(parsed)) return undefined;
+  return Math.min(max, Math.max(min, Math.floor(parsed)));
+}
 
-    for (let day = 1; day <= 14; day++) {
-        const date = new Date(today);
-        date.setDate(date.getDate() + day);
+function generateMockSlots(days: number, includeWeekends: boolean) {
+  const slots = [] as { date: string; startTime: string; endTime: string }[];
+  const today = new Date();
 
-        // 週末をスキップ
-        if (date.getDay() === 0 || date.getDay() === 6) continue;
+  for (let day = 1; day <= days; day++) {
+    const date = new Date(today);
+    date.setDate(date.getDate() + day);
 
-        const dateStr = date.toISOString().split('T')[0];
-
-        // 10:00〜18:00 の1時間スロット
-        for (let hour = 10; hour < 18; hour++) {
-            // ランダムに一部のスロットを除外（予約済みをシミュレート）
-            if (Math.random() > 0.7) continue;
-
-            slots.push({
-                date: dateStr,
-                startTime: `${hour.toString().padStart(2, '0')}:00`,
-                endTime: `${(hour + 1).toString().padStart(2, '0')}:00`,
-            });
-        }
+    if (!includeWeekends && (date.getDay() === 0 || date.getDay() === 6)) {
+      continue;
     }
 
-    return slots;
+    const dateStr = date.toISOString().split('T')[0];
+
+    for (let hour = 10; hour < 18; hour++) {
+      if (Math.random() > 0.7) continue;
+
+      slots.push({
+        date: dateStr,
+        startTime: `${hour.toString().padStart(2, '0')}:00`,
+        endTime: `${(hour + 1).toString().padStart(2, '0')}:00`,
+      });
+    }
+  }
+
+  return slots;
 }

@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { getBookingById, updateBooking } from '@/lib/booking-store';
-import { createCalendarEvent } from '@/lib/google-calendar';
+import { createCalendarEvent, SlotUnavailableError } from '@/lib/google-calendar';
 import { notifyUserBookingApproved } from '@/lib/notifications';
 import { ApproveBookingRequest } from '@/types/booking';
 import {
@@ -55,12 +55,19 @@ export async function POST(
         // Google Calendarにイベントを作成
         try {
             const result = await createCalendarEvent(selectedSlot, {
+                bookingId: booking.id,
                 companyName: booking.companyName,
                 contactName: booking.contactName,
                 email: booking.email,
             });
-            meetLink = result.meetLink;
+            meetLink = result.meetLink || result.htmlLink || '';
         } catch (calendarError) {
+            if (calendarError instanceof SlotUnavailableError) {
+                return NextResponse.json(
+                    { error: '選択した時間枠は既に埋まっています。別の候補を選択してください。', code: 'slot_unavailable', success: false },
+                    { status: 409 }
+                );
+            }
             console.error('Calendar event creation failed:', calendarError);
             // カレンダー連携が失敗しても承認は続行（開発環境対応）
             if (process.env.NODE_ENV === 'development') {
