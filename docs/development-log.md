@@ -18,6 +18,16 @@
 
 ## 実績ログ
 
+### 2026-01-22: ドキュメント最新化（LP実装反映）
+- 目的: 直近のLP実装に合わせてドキュメントの矛盾・重複を解消。
+- 実装内容: `content-structure.md`/`design-overview.md` を現行構成に刷新、公式スポンサーセクションの仕様を `official-sponsor.md` に整理。旧バリアント資料を削除し、READMEの索引を更新。
+- 追加資料: `docs/content-structure.md`, `docs/design-overview.md`, `docs/official-sponsor.md`, `docs/README.md`。
+
+### 2026-01-22: セッション運用ルールと自動コミット整備
+- 目的: セッション開始時の参照ルールと自動コミット方針を明文化。
+- 実装内容: `docs/development-guidelines.md` を新設し、日本語運用/肯定的プロンプトでの自動コミット/実行コマンドを整理。`docs/README.md` に索引追記、`scripts/auto-commit.sh` と `npm run commit:auto` を追加。
+- 追加資料: `docs/development-guidelines.md`, `docs/README.md`, `scripts/auto-commit.sh`, `package.json`。
+
 ### 2026-01-09: リポジトリ初期化とGitHub登録
 - 目的: ローカルで構築していたLPを独立したGit履歴で管理し、GitHubへバックアップ。
 - 実装内容: `git init -b main` → 初回コミット → `origin` を `https://github.com/FUFU222/LIVAPON_Bender_LP.git` に設定し `git push -u origin main`。
@@ -45,5 +55,5 @@
 
 ### 2026-01-15: docs整理（命名統一・重複整理）
 - 目的: ドキュメントの命名揺れ/重複/実装との不整合を解消。
-- 実装内容: 設計資料を `design-overview.md` に統合、Design 02 を `design-variant-b.md` に整理、Problem/Solution セクションを実装準拠で再記述。セキュリティ資料と改善レポートも現行実装に合わせて更新。
-- 追加資料: `docs/design-overview.md`, `docs/design-variant-b.md`, `docs/content-structure.md`, `docs/security.md`, `docs/walkthrough.md`。
+- 実装内容: 設計資料を `design-overview.md` に統合し、Problem/Solution セクションを実装準拠で再記述。セキュリティ資料と改善レポートも現行実装に合わせて更新。
+- 追加資料: `docs/design-overview.md`, `docs/content-structure.md`, `docs/security.md`, `docs/walkthrough.md`。

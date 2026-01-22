@@ -5,6 +5,7 @@ LIVAPON のクロスボーダー DX 支援サービスを紹介するための N
 ## コミュニケーション方針
 
 - このリポジトリに関する会話・Issue・Pull Request・ドキュメントは **すべて日本語** で行ってください。
+- **本セッションのやりとりも日本語で統一**します（英語での回答は行いません）。
 - Codex を含む開発メンバーも日本語でのやり取りを前提とするため、報告や質問、コメントも日本語で記載しましょう。
 - 英語が必要な場合は併記で構いませんが、日本語訳を必ず添えてください。
 
@@ -19,8 +20,9 @@ LIVAPON のクロスボーダー DX 支援サービスを紹介するための N
 
 - `docs/development-log.md` — 機能単位の実装ログとテンプレート
 - `docs/design-overview.md` — デザイン/体験設計の概要（現行実装準拠）
-- `docs/design-variant-b.md` — Design 02（Editorial Drive）の詳細
 - `docs/content-structure.md` — 掲載内容の構成設計（Design 01）
+- `docs/official-sponsor.md` — Japan Festival CANADA 公式スポンサー セクション仕様
+- `docs/development-guidelines.md` — セッション運用/自動コミットのルール
 - `docs/security.md` — セキュリティ状況（現行実装準拠）
 - `docs/env-template.md` — `.env.local` 作成用テンプレート
 - `docs/walkthrough.md` — 改善レポート（実装メモ）
@@ -29,7 +31,7 @@ LIVAPON のクロスボーダー DX 支援サービスを紹介するための N
 
 - お問い合わせ・商談予約フォーム：顧客情報を受け取り、メール通知と暫定的なインメモリ保存を行います。
 - 管理者 API：`/api/bookings` 系ルートで予約一覧取得・承認・拒否が可能。API キー検証と入力バリデーションを実装済み。
-- 現在の開発対象：Design 01（VariantA）。Design 02/03 は比較用の参考実装として保持。
+- 現在の開発対象：Design 01（VariantA）のみ。他バリアントは削除済み。
 - 先進表現：Canvas/WebGL ベースのロゴ演出やスクロール連動アニメーションを実装し、ブランドメッセージを印象的に提示します。
 - セキュリティ強化：XSS 対策、レートリミット、機密値のサニタイズ方針を `docs/security.md` に整理しています。
 
