@@ -16,8 +16,9 @@
   --color-accent: var(--accent);
   --color-gray-light: var(--gray-light);
   --color-gray-dark: var(--gray-dark);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --font-sans: var(--font-noto-sans);
+  --font-serif: var(--font-noto-serif);
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
 }
 
 html {
@@ -27,7 +28,7 @@ html {
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: "Helvetica Neue", Arial, "Hiragino Kaku Gothic ProN", "Hiragino Sans", Meiryo, sans-serif;
+  font-family: var(--font-noto-sans), "Hiragino Kaku Gothic ProN", "Hiragino Sans", Meiryo, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }

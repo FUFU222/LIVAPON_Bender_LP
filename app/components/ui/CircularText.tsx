@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { motion, useAnimation, useMotionValue, MotionValue, Transition } from 'framer-motion';
 
 interface CircularTextProps {
@@ -43,7 +43,7 @@ const CircularText: React.FC<CircularTextProps> = ({
             scale: 1,
             transition: getTransition(spinDuration, start)
         });
-    }, [spinDuration, text, onHover, controls]);
+    }, [spinDuration, controls, rotation]);
 
     const handleHoverStart = () => {
         const start = rotation.get();
@@ -101,8 +101,6 @@ const CircularText: React.FC<CircularTextProps> = ({
         >
             {letters.map((letter, i) => {
                 const rotationDeg = (360 / letters.length) * i;
-                const transform = `rotate(${rotationDeg}deg) translateY(-50%)`; // ユーザーのコードだと変な配置になる可能性が高いので、一般的な円形配置ロジックに修正
-
                 return (
                     <span
                         key={i}

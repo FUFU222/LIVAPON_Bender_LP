@@ -1,23 +1,50 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import {
+  Noto_Sans_JP,
+  Noto_Serif_JP,
+  Shippori_Mincho,
+  Zen_Kaku_Gothic_New,
+  Oswald,
+} from "next/font/google";
 import "./globals.css";
 import { SmoothScrollProvider } from "./components/SmoothScrollProvider";
 import { FloatingCTA } from "./components/layout/FloatingCTA";
+import BlobCursor from "./components/ui/BlobCursor";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+const notoSans = Noto_Sans_JP({
+  variable: "--font-noto-sans",
   subsets: ["latin"],
+  weight: ["400", "500", "700", "900"],
 });
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
+const notoSerif = Noto_Serif_JP({
+  variable: "--font-noto-serif",
   subsets: ["latin"],
+  weight: ["400", "500", "700"],
+});
+
+const shipporiMincho = Shippori_Mincho({
+  variable: "--font-shippori-mincho",
+  subsets: ["latin"],
+  weight: ["400", "600", "700"],
+});
+
+const zenKaku = Zen_Kaku_Gothic_New({
+  variable: "--font-zen-kaku",
+  subsets: ["latin"],
+  weight: ["300", "400", "500", "700"],
+});
+
+const oswald = Oswald({
+  variable: "--font-oswald",
+  subsets: ["latin"],
+  weight: ["500", "600", "700"],
 });
 
 export const metadata: Metadata = {
-  title: "LIVAPON | 日本の『最高』を、世界の『熱狂』へ。",
+  title: "LIVAPON | 世界進出を、もっとシンプルに。",
   description:
-    "待っているのは80億人。言葉も国境も超える、0.1秒のライブ革命。LIVAPONは日本の越境ライブコマースプラットフォームです。",
+    "「LIVEで語る」越境プラットフォーム。複雑な海外展開を、一本の流れへ。",
   keywords: [
     "ライブコマース",
     "越境EC",
@@ -28,17 +55,15 @@ export const metadata: Metadata = {
     "海外販売",
   ],
   openGraph: {
-    title: "LIVAPON | 日本の『最高』を、世界の『熱狂』へ。",
-    description:
-      "待っているのは80億人。言葉も国境も超える、0.1秒のライブ革命。",
+    title: "LIVAPON | 世界進出を、もっとシンプルに。",
+    description: "「LIVEで語る」越境プラットフォーム。",
     type: "website",
     locale: "ja_JP",
   },
   twitter: {
     card: "summary_large_image",
-    title: "LIVAPON | 日本の『最高』を、世界の『熱狂』へ。",
-    description:
-      "待っているのは80億人。言葉も国境も超える、0.1秒のライブ革命。",
+    title: "LIVAPON | 世界進出を、もっとシンプルに。",
+    description: "「LIVEで語る」越境プラットフォーム。",
   },
 };
 
@@ -48,12 +73,31 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="ja">
+    <html lang="ja" className="overflow-x-hidden">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${notoSans.variable} ${notoSerif.variable} ${shipporiMincho.variable} ${zenKaku.variable} ${oswald.variable} antialiased overflow-x-hidden`}
       >
         <SmoothScrollProvider>{children}</SmoothScrollProvider>
         <FloatingCTA />
+        <BlobCursor
+          blobType="circle"
+          fillColor="var(--accent)"
+          trailCount={3}
+          sizes={[22, 40, 28]}
+          innerSizes={[7, 12, 9]}
+          innerColor="rgba(255,255,255,0.7)"
+          opacities={[0.45, 0.35, 0.4]}
+          shadowColor="rgba(0,0,0,0.35)"
+          shadowBlur={4}
+          shadowOffsetX={6}
+          shadowOffsetY={6}
+          filterStdDeviation={12}
+          useFilter={true}
+          fastDuration={0.1}
+          slowDuration={0.5}
+          zIndex={10000}
+          hideCursor={false}
+        />
       </body>
     </html>
   );

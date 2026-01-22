@@ -1,6 +1,7 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
+import Link from "next/link";
 import { format, parse } from "date-fns";
 import { ja } from "date-fns/locale";
 import { Booking, DateTimeSlot } from "@/types/booking";
@@ -12,11 +13,7 @@ export default function AdminBookingsPage() {
     const [processingId, setProcessingId] = useState<string | null>(null);
     const [statusFilter, setStatusFilter] = useState<string>("all");
 
-    useEffect(() => {
-        fetchBookings();
-    }, [statusFilter]);
-
-    const fetchBookings = async () => {
+    const fetchBookings = useCallback(async () => {
         setIsLoading(true);
         try {
             const url = statusFilter === "all"
@@ -31,7 +28,11 @@ export default function AdminBookingsPage() {
         } finally {
             setIsLoading(false);
         }
-    };
+    }, [statusFilter]);
+
+    useEffect(() => {
+        fetchBookings();
+    }, [fetchBookings]);
 
     const handleApprove = async (bookingId: string, slotIndex: number) => {
         if (!confirm("この日時で承認しますか？")) return;
@@ -110,9 +111,9 @@ export default function AdminBookingsPage() {
             <header className="bg-white shadow-sm border-b">
                 <div className="max-w-7xl mx-auto px-4 py-4 flex items-center justify-between">
                     <h1 className="text-xl font-bold text-gray-900">予約管理</h1>
-                    <a href="/" className="text-sm text-gray-600 hover:text-gray-900">
+                    <Link href="/" className="text-sm text-gray-600 hover:text-gray-900">
                         ← サイトに戻る
-                    </a>
+                    </Link>
                 </div>
             </header>
 

@@ -1,3 +1,5 @@
+"use client";
+
 import { Threads } from "../canvas/Threads";
 import { ShinyText } from "../ui/ShinyText";
 import { SplitText } from "../ui/SplitText";
@@ -5,7 +7,8 @@ import { ScrollReveal } from "../ui/ScrollReveal";
 
 export function HeroSection() {
     return (
-        <section className="relative min-h-screen flex flex-col items-center justify-center overflow-hidden bg-white">
+        <>
+            <section className="relative min-h-screen flex flex-col items-center justify-center overflow-hidden bg-white">
             <div className="absolute inset-0 z-0">
                 <Threads
                     amplitude={0.7}
@@ -41,12 +44,37 @@ export function HeroSection() {
                 </ScrollReveal>
             </div>
 
-            {/* Scroll Indicator - Keep as simple CSS/Client animation if needed, or static for RSC */}
+            {/* Scroll Indicator */}
             <ScrollReveal delay={2} y={0} duration={1} className="absolute bottom-12 left-1/2 -translate-x-1/2 z-10">
-                <div className="w-6 h-10 border-2 border-foreground/30 rounded-full flex items-start justify-center p-2">
-                    <div className="w-1 bg-foreground/50 rounded-full animate-bounce h-2" />
+                <div className="scroll-indicator w-6 h-16 border-2 border-foreground/30 rounded-full flex items-start justify-center px-2 pt-3 pb-4 overflow-hidden">
+                    <span className="scroll-indicator__dot h-3 w-1 bg-foreground/60 rounded-full" />
                 </div>
             </ScrollReveal>
         </section>
+
+            <style jsx>{`
+                .scroll-indicator__dot {
+                    animation: scrollIndicator 1.6s ease-in-out infinite;
+                }
+
+                @keyframes scrollIndicator {
+                    0% {
+                        transform: translateY(-6px);
+                        opacity: 0;
+                    }
+                    20% {
+                        opacity: 1;
+                    }
+                    60% {
+                        transform: translateY(18px);
+                        opacity: 1;
+                    }
+                    100% {
+                        transform: translateY(36px);
+                        opacity: 0;
+                    }
+                }
+            `}</style>
+        </>
     );
 }

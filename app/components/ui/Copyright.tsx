@@ -1,9 +1,12 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
 
-export function Copyright() {
-    // プリレンダリング時はnullにしておき、マウント後に現在の年を設定する
+interface CopyrightProps {
+    className?: string;
+}
+
+export function Copyright({ className = "text-gray-dark text-sm" }: CopyrightProps) {
     const [year, setYear] = useState<number | null>(null);
 
     useEffect(() => {
@@ -11,8 +14,8 @@ export function Copyright() {
     }, []);
 
     return (
-        <span className="text-gray-dark text-sm">
-            © {year || "2026"} LIVAPON. All Rights Reserved.
+        <span className={className}>
+            © {year ?? "----"} LIVAPON. All Rights Reserved.
         </span>
     );
 }

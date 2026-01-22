@@ -11,22 +11,27 @@ LIVAPON のクロスボーダー DX 支援サービスを紹介するための N
 ## ドキュメント運用ルール
 
 - Markdown はすべて `docs/` ディレクトリに格納し、開発工程や機能のまとまり単位で適宜ファイルを追加します。
+- ファイル名は **英小文字のkebab-case** を基本とし、内容が想像できる短い名前にします。
 - 新しい機能を実装したら `docs/development-log.md` に日付・担当者・概要・関連ファイルを追記し、必要に応じて専用ドキュメントを作成してリンクしてください。
 - 設計や要件の補足資料を増やす際もまず `docs/` に配置し、この README から参照できるよう更新します。
 
 ## ドキュメント索引
 
 - `docs/development-log.md` — 機能単位の実装ログとテンプレート
-- `docs/SECURITY_REINFORCEMENT.md` — 脆弱性診断と強化策
+- `docs/design-overview.md` — デザイン/体験設計の概要（現行実装準拠）
+- `docs/design-variant-b.md` — Design 02（Editorial Drive）の詳細
+- `docs/content-structure.md` — 掲載内容の構成設計（Design 01）
+- `docs/security.md` — セキュリティ状況（現行実装準拠）
 - `docs/env-template.md` — `.env.local` 作成用テンプレート
-- `docs/walkthrough.md` — セキュリティ/アニメーション改善の詳細レポート
+- `docs/walkthrough.md` — 改善レポート（実装メモ）
 
 ## 主な機能
 
 - お問い合わせ・商談予約フォーム：顧客情報を受け取り、メール通知と暫定的なインメモリ保存を行います。
 - 管理者 API：`/api/bookings` 系ルートで予約一覧取得・承認・拒否が可能。API キー検証と入力バリデーションを実装済み。
+- 現在の開発対象：Design 01（VariantA）。Design 02/03 は比較用の参考実装として保持。
 - 先進表現：Canvas/WebGL ベースのロゴ演出やスクロール連動アニメーションを実装し、ブランドメッセージを印象的に提示します。
-- セキュリティ強化：XSS 対策、レートリミット、機密値のサニタイズ方針を `docs/SECURITY_REINFORCEMENT.md` に整理しています。
+- セキュリティ強化：XSS 対策、レートリミット、機密値のサニタイズ方針を `docs/security.md` に整理しています。
 
 ## 開発環境セットアップ
 
@@ -48,11 +53,9 @@ LIVAPON のクロスボーダー DX 支援サービスを紹介するための N
 5. `http://localhost:3000` を開いて動作を確認します。
 
 ## Google カレンダー連携のセットアップ
-1. Google Cloud Console で Calendar API を有効化し、サービスアカウントを作成して秘密鍵 (JSON) を取得します。
-2. 予約を登録したいカレンダーに対して、サービスアカウントのメールアドレスを共有し、「変更および共有の管理」権限を付与します。
-3. `.env.local` に `GOOGLE_SERVICE_ACCOUNT_EMAIL`, `GOOGLE_PRIVATE_KEY`, `GOOGLE_CALENDAR_ID` などを設定します（テンプレート参照）。
-4. `GOOGLE_BOOKING_WINDOW_DAYS` や `GOOGLE_SLOT_DURATION_MINUTES`、`GOOGLE_ALLOW_WEEKEND_BOOKINGS` を調整し、営業ルールに沿った空き枠生成を行います。
-5. 本番環境でも同じ環境変数を安全に注入し、サービスアカウントが対象カレンダーと共有されていることを確認してください。
+1. Google Cloud Console で Calendar API を有効化し、サービスアカウントと秘密鍵(JSON)を作成します。
+2. 予約を登録したいカレンダーにサービスアカウントを共有し、「変更および共有の管理」権限を付与します。
+3. 詳細な環境変数は `docs/env-template.md` を参照してください。
 
 ### 利用可能なスクリプト
 

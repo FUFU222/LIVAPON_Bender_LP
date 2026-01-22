@@ -1,8 +1,9 @@
 import { NextRequest, NextResponse } from 'next/server';
+import { addMonths, differenceInCalendarDays, endOfMonth } from 'date-fns';
 import { getAvailableSlots, getBookingDateRange } from '@/lib/google-calendar';
 import { AvailableSlotsResponse } from '@/types/booking';
 
-const MAX_WINDOW_DAYS = 31;
+const MAX_WINDOW_DAYS = 62;
 
 export async function GET(request: NextRequest) {
   const { searchParams } = new URL(request.url);
@@ -10,10 +11,23 @@ export async function GET(request: NextRequest) {
   const startOffsetDays = parseNumberParam(searchParams.get('startOffsetDays'), 0, 30);
   const allowWeekendsParam = searchParams.get('includeWeekends');
   const allowWeekends = allowWeekendsParam ? allowWeekendsParam === 'true' : undefined;
+  const referenceDate = new Date();
+  const baseRange = getBookingDateRange({
+    referenceDate,
+    startOffsetDays: startOffsetDays ?? undefined,
+    windowDays: 1,
+  });
+  const endOfNextMonth = endOfMonth(addMonths(referenceDate, 1));
+  const computedWindowDays = Math.max(
+    1,
+    differenceInCalendarDays(endOfNextMonth, baseRange.startDate) + 1
+  );
+  const effectiveWindowDays = windowDays ?? computedWindowDays;
 
   try {
     const range = getBookingDateRange({
-      windowDays: windowDays ?? undefined,
+      referenceDate,
+      windowDays: effectiveWindowDays,
       startOffsetDays: startOffsetDays ?? undefined,
     });
 
@@ -42,7 +56,7 @@ export async function GET(request: NextRequest) {
 
     if (isDev && !hasCredentials) {
       return NextResponse.json({
-        slots: generateMockSlots(windowDays ?? 14, allowWeekends ?? false),
+        slots: generateMockSlots(effectiveWindowDays, allowWeekends ?? false),
         generatedAt: new Date().toISOString(),
         source: 'mock',
       });

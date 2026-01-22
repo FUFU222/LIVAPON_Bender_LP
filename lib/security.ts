@@ -40,7 +40,7 @@ export function checkRateLimit(request: NextRequest): boolean {
     // 開発環境ではスキップ（任意）
     if (process.env.NODE_ENV === 'development') return true;
 
-    const ip = (request as any).ip || request.headers.get('x-forwarded-for') || 'unknown';
+    const ip = request.ip || request.headers.get('x-forwarded-for') || 'unknown';
     const now = Date.now();
     const windowData = rateLimitMap.get(ip);
 

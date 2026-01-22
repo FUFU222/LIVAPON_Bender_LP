@@ -22,6 +22,8 @@ export function SmoothScrollProvider({ children }: SmoothScrollProviderProps) {
         });
 
         lenisRef.current = lenis;
+        // Expose for programmatic scroll triggers (e.g., CTA to contact section).
+        (window as { lenis?: Lenis }).lenis = lenis;
 
         function raf(time: number) {
             lenis.raf(time);
@@ -36,6 +38,9 @@ export function SmoothScrollProvider({ children }: SmoothScrollProviderProps) {
         return () => {
             lenis.destroy();
             document.documentElement.classList.remove("lenis", "lenis-smooth");
+            if ((window as { lenis?: Lenis }).lenis === lenis) {
+                delete (window as { lenis?: Lenis }).lenis;
+            }
         };
     }, []);
 

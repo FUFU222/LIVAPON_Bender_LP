@@ -1,3 +1,5 @@
+"use client";
+
 import { Copyright } from "../ui/Copyright";
 import Image from "next/image";
 import Link from "next/link";
@@ -18,6 +20,9 @@ export function Footer() {
 
                 {/* Legal Links */}
                 <div className="flex flex-wrap justify-center gap-4 md:gap-8 mb-8 text-xs text-gray-light/70">
+                    <Link href="/legal" className="hover:text-white transition-colors">
+                        会社情報
+                    </Link>
                     <Link href="/privacy" className="hover:text-white transition-colors">
                         プライバシーポリシー
                     </Link>
@@ -30,10 +35,10 @@ export function Footer() {
                 </div>
 
                 <p className="text-sm text-gray-light/70 mb-4">
-                    日本の『最高』を、<br className="md:hidden" />世界の『熱狂』へ。
+                    世界進出を、もっとシンプルに。
                 </p>
-                <p className="text-xs text-gray-light/50">
-                    © <Copyright /> LIVAPON. All rights reserved.
+                <p>
+                    <Copyright className="text-xs text-gray-light/50" />
                 </p>
             </div>
         </footer>

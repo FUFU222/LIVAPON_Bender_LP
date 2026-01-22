@@ -15,12 +15,10 @@ export function CTASection() {
                 <ScrollReveal delay={0} y={30}>
                     <div className="text-center mb-12">
                         <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-6">
-                            導入・提携に関するご相談
+                            お問い合わせ
                         </h2>
                         <p className="text-lg md:text-xl text-gray-dark max-w-2xl mx-auto leading-relaxed">
-                            世界への挑戦、その第一歩をここから。
-                            <br className="hidden md:block" />
-                            些細な疑問でもお気軽にご相談ください。
+                            導入・提携に関するご相談はこちらから
                         </p>
                     </div>
                 </ScrollReveal>

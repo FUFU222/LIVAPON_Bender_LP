@@ -15,7 +15,7 @@ export function ShinyText({ children, className = "" }: ShinyTextProps) {
             animate={{ opacity: 1 }}
             transition={{ duration: 0.8 }}
         >
-            <span className="relative z-10 bg-gradient-to-r from-gray-dark via-gray-light to-gray-dark bg-[length:200%_100%] bg-clip-text text-transparent animate-[shimmer_3s_ease-in-out_infinite]">
+            <span className="relative z-10 bg-gradient-to-r from-gray-dark via-gray-light to-gray-dark bg-[length:200%_100%] bg-clip-text text-transparent animate-[shimmer_12s_ease-in-out_infinite]">
                 {children}
             </span>
             <style jsx>{`

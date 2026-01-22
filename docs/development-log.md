@@ -25,8 +25,8 @@
 
 ### 2026-01-09: ドキュメント日本語化 & Markdown整理
 - 目的: コミュニケーションを日本語に統一し、READMEやセキュリティ資料を国内メンバー向けに最適化。
-- 実装内容: README/SECURITY_REINFORCEMENT/env-template/walkthroughを日本語で書き直し、コミュニケーション方針を明文化。
-- 追加資料: `docs/README.md`, `docs/SECURITY_REINFORCEMENT.md`, `docs/env-template.md`, `docs/walkthrough.md`。
+- 実装内容: README/security/env-template/walkthroughを日本語で書き直し、コミュニケーション方針を明文化。
+- 追加資料: `docs/README.md`, `docs/security.md`（旧: SECURITY_REINFORCEMENT.md）, `docs/env-template.md`, `docs/walkthrough.md`。
 
 ### 2026-01-09: ドキュメント階層の統一
 - 目的: Markdownファイルを `docs/` に集約し、開発ログ運用をスタート。
@@ -42,3 +42,8 @@
 - 目的: サービスアカウント連携や空き枠生成ロジックの脆弱さを解消し、本番運用でも正しい候補提示/予約登録ができるようにする。
 - 実装内容: `lib/google-calendar.ts` を再構成し、環境変数の検証、タイムゾーン考慮、FreeBusy API の重複チェック、週末制御、スロット長の可変化、予約承認時の空き枠再検証を追加。`/api/calendar/available-slots` はクエリパラメータで日数/週末フラグを切り替えられるようにし、承認 API ではスロット競合を409で返すように変更。
 - 追加資料: `docs/env-template.md`（サービスアカウント手順を追記）、`docs/README.md`（カレンダー連携セットアップ手順）。
+
+### 2026-01-15: docs整理（命名統一・重複整理）
+- 目的: ドキュメントの命名揺れ/重複/実装との不整合を解消。
+- 実装内容: 設計資料を `design-overview.md` に統合、Design 02 を `design-variant-b.md` に整理、Problem/Solution セクションを実装準拠で再記述。セキュリティ資料と改善レポートも現行実装に合わせて更新。
+- 追加資料: `docs/design-overview.md`, `docs/design-variant-b.md`, `docs/content-structure.md`, `docs/security.md`, `docs/walkthrough.md`。

@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect, useMemo, useRef } from "react";
+import { useEffect, useRef } from "react";
 
 type Point = { x: number; y: number; t: number };
 
@@ -120,11 +120,10 @@ export function InkTrail({
 
     const rafRef = useRef<number | null>(null);
 
-    const brushVariants = useMemo(() => {
-        // mount後にdocumentがある環境で生成される想定
-        return { ready: false as const, variants: [] as HTMLCanvasElement[] };
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, []);
+    const brushVariants = useRef<{ ready: boolean; variants: HTMLCanvasElement[] }>({
+        ready: false,
+        variants: [],
+    });
 
     useEffect(() => {
         if (prefersReducedMotion()) return;
@@ -144,8 +143,8 @@ export function InkTrail({
         const mask = createBrushMask(128);
         const baseColors = colors.slice(0, Math.max(1, colors.length));
         const variants = baseColors.map((c) => tintMask(mask, c));
-        (brushVariants as any).ready = true;
-        (brushVariants as any).variants = variants;
+        brushVariants.current.ready = true;
+        brushVariants.current.variants = variants;
 
         const resize = () => {
             rectRef.current = canvas.getBoundingClientRect();
@@ -223,7 +222,7 @@ export function InkTrail({
             widthCss: number,
             speed: number
         ) => {
-            const variants: HTMLCanvasElement[] = (brushVariants as any).variants ?? [];
+            const variants = brushVariants.current.variants;
             if (!variants.length) return;
 
             // 色選択：ほぼ墨、たまに差し色
@@ -350,9 +349,8 @@ export function InkTrail({
             canvas.removeEventListener("pointerdown", onPointerDown);
             window.removeEventListener("pointerup", onPointerUp);
             window.removeEventListener("pointercancel", onPointerUp);
-            window.removeEventListener("pointermove", onPointerMove as any);
+            window.removeEventListener("pointermove", onPointerMove);
         };
-        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [
         colors,
         accentProbability,

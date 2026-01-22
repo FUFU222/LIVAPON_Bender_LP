@@ -1,6 +1,5 @@
 "use client";
 
-import Image from "next/image";
 import Link from "next/link";
 import CircularText from "../ui/CircularText";
 
@@ -9,42 +8,24 @@ export function FloatingCTA() {
         <Link
             href="/#contact" // アンカーリンクまたは別ページ
             className="fixed bottom-8 right-8 z-[9999] group cursor-pointer block"
-            aria-label="Contact Us"
+            aria-label="エントリーはこちらから"
         >
-            <div className="relative w-32 h-32 flex items-center justify-center">
-                {/* 背景のぼかしや装飾（オプション） */}
+            <div className="relative w-32 h-32 md:w-40 md:h-40 flex items-center justify-center">
                 <div className="absolute inset-0 bg-black/10 rounded-full blur-xl scale-75 group-hover:scale-90 transition-transform duration-500" />
-
-                {/* 回転するテキストリング */}
                 <div className="absolute inset-0 pointer-events-none">
                     <CircularText
-                        text="LIVAPON * LIVAPON * LIVAPON * "
+                        text="LIVAPON ENTRY • LIVAPON ENTRY • LIVAPON ENTRY • "
                         spinDuration={20}
                         onHover="speedUp"
-                        className="w-full h-full text-foreground text-[10px]"
+                        className="w-full h-full text-white text-[10px] [-webkit-text-stroke:0.6px_rgba(0,0,0,0.45)]"
                     />
                 </div>
-
-                {/* 中央のシンボルとテキスト */}
-                <div className="relative w-20 h-20 flex items-center justify-center rounded-full shadow-lg group-hover:scale-110 transition-transform duration-300 overflow-hidden">
-                    {/* シンボル画像 */}
-                    <div className="absolute inset-0 opacity-90">
-                        <Image
-                            src="/livapon_symbol_new.png"
-                            alt="Logo"
-                            fill
-                            className="object-cover"
-                        />
-                    </div>
-                    {/* 重ねるCONTACTテキスト */}
-                    <span
-                        className="relative z-10 text-[12px] font-black text-white tracking-widest"
-                        style={{
-                            // 参考画像のような、下に落ちるハードな影
-                            textShadow: "0px 2px 0px rgba(0,0,0,0.5)"
-                        }}
-                    >
-                        CONTACT
+                <div className="relative w-[104px] h-[104px] md:w-[120px] md:h-[120px] flex flex-col items-center justify-center rounded-full bg-gradient-to-br from-[#8d001f] via-[#c9153a] to-[#ff6b6b] shadow-[0_12px_24px_rgba(188,0,45,0.25)] ring-1 ring-white/30 transition-transform duration-300 group-hover:scale-105">
+                    <span className="text-[10px] md:text-[11px] font-semibold tracking-[0.28em] text-white/85 whitespace-nowrap leading-none">
+                        ENTRY
+                    </span>
+                    <span className="mt-0.5 text-[14px] md:text-[16px] font-bold tracking-tight text-white whitespace-nowrap">
+                        エントリー
                     </span>
                 </div>
             </div>

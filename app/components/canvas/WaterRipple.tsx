@@ -24,13 +24,12 @@ export function WaterRipple({
     className,
     rippleSpeed = 2.5,
     maxRadiusMultiplier = 80,
-    baseOpacity = 0.08,
-    color = "#000000",
+    baseOpacity = 0.05,
+    color = "#111111",
 }: WaterRippleProps) {
     const canvasRef = useRef<HTMLCanvasElement | null>(null);
     const ripplesRef = useRef<Ripple[]>([]);
     const lastPosRef = useRef<{ x: number; y: number } | null>(null);
-    const lastTimeRef = useRef<number>(0);
     const isMovingRef = useRef<boolean>(false);
     const stopTimerRef = useRef<NodeJS.Timeout | null>(null);
 
@@ -59,14 +58,26 @@ export function WaterRipple({
         resize();
 
         const addRipple = (x: number, y: number, isStopRipple: boolean = false) => {
+            const rect = canvas.getBoundingClientRect();
+            const edgeMargin = 12; // shadow/blur 分の余白
+            const edgeLimit = Math.min(
+                x - edgeMargin,
+                y - edgeMargin,
+                rect.width - x - edgeMargin,
+                rect.height - y - edgeMargin
+            );
+            if (edgeLimit <= 8) return;
+
             // 停止時の波紋は大きく、ゆっくり消える
             const sizeScale = isStopRipple ? 2.5 : 1.0;
+            const desiredMaxRadius = Math.random() * maxRadiusMultiplier * sizeScale + 50;
+            const boundedMaxRadius = Math.min(desiredMaxRadius, edgeLimit);
 
             ripplesRef.current.push({
                 x,
                 y,
                 radius: 0,
-                maxRadius: Math.random() * maxRadiusMultiplier * sizeScale + 50,
+                maxRadius: boundedMaxRadius,
                 opacity: isStopRipple ? baseOpacity * 1.5 : baseOpacity,
                 speed: rippleSpeed * (isStopRipple ? 0.8 : 1.0 + Math.random() * 0.5),
                 width: isStopRipple ? 4 : 2,
@@ -82,7 +93,6 @@ export function WaterRipple({
             const rect = canvas.getBoundingClientRect();
             const x = e.clientX - rect.left;
             const y = e.clientY - rect.top;
-            const now = Date.now();
 
             isMovingRef.current = true;
 
@@ -100,17 +110,14 @@ export function WaterRipple({
                 const dx = x - lastPosRef.current.x;
                 const dy = y - lastPosRef.current.y;
                 const dist = Math.hypot(dx, dy);
-                const timeDiff = now - lastTimeRef.current;
 
-                // あまり頻繁に出しすぎない (距離20px以上 または 時間50ms以上)
-                if (dist > 20 || timeDiff > 50) {
+                // 一定距離以上の移動があった場合のみ波紋を生成
+                if (dist > 100) {
                     addRipple(x, y, false);
                     lastPosRef.current = { x, y };
-                    lastTimeRef.current = now;
                 }
             } else {
                 lastPosRef.current = { x, y };
-                lastTimeRef.current = now;
             }
         };
 
@@ -119,7 +126,7 @@ export function WaterRipple({
             ctx.clearRect(0, 0, rect.width, rect.height);
 
             // 波紋の描画
-            ripplesRef.current.forEach((ripple, index) => {
+            ripplesRef.current.forEach((ripple) => {
                 ripple.radius += ripple.speed;
                 ripple.opacity -= 0.0005 * ripple.speed; // 半径が広がるにつれて薄くなる
                 ripple.width += 0.05; // 広がるにつれて少し太くなる
@@ -129,13 +136,30 @@ export function WaterRipple({
                     return;
                 }
 
+                const t = ripple.radius / ripple.maxRadius;
+                const fade = Math.max(0, 1 - t);
+                const alpha = ripple.opacity * fade * fade;
+                const width = Math.max(0.6, ripple.width * (1 - t * 0.4));
+
+                // 影（Shadow）とハイライトで水面の立体感を表現
+                ctx.save();
+                ctx.globalAlpha = alpha;
+                ctx.strokeStyle = color;
+                ctx.lineWidth = width;
+                ctx.shadowBlur = 6;
+                ctx.shadowColor = color;
                 ctx.beginPath();
                 ctx.arc(ripple.x, ripple.y, ripple.radius, 0, Math.PI * 2);
-
-                // 影（Shadow）を描画して立体感を出す
-                ctx.strokeStyle = `rgba(0, 0, 0, ${ripple.opacity})`;
-                ctx.lineWidth = ripple.width;
                 ctx.stroke();
+
+                ctx.shadowBlur = 0;
+                ctx.globalAlpha = alpha * 0.5;
+                ctx.strokeStyle = "rgba(255, 255, 255, 0.9)";
+                ctx.lineWidth = Math.max(0.4, width * 0.6);
+                ctx.beginPath();
+                ctx.arc(ripple.x, ripple.y, ripple.radius + width * 0.6, 0, Math.PI * 2);
+                ctx.stroke();
+                ctx.restore();
 
                 // ハイライト（Highlight）を少しずらして描画（任意：白背景だと効果薄いが、重ねると立体感が出る）
                 // 白背景なので、ハイライトは描かずに影だけで「凹み」を表現するか、

@@ -128,6 +128,10 @@ export function Threads({
     const animationFrameId = useRef<number>(undefined);
     const programRef = useRef<Program>(undefined);
     const rendererRef = useRef<Renderer>(undefined);
+    const colorRef = useRef(color);
+    const amplitudeRef = useRef(amplitude);
+    const distanceRef = useRef(distance);
+    const speedRef = useRef(speed);
     const [isVisible, setIsVisible] = useState(false);
 
     // Intersection Observer to pause when not in view
@@ -165,10 +169,10 @@ export function Threads({
                 iResolution: {
                     value: new Color(gl.canvas.width, gl.canvas.height, gl.canvas.width / gl.canvas.height),
                 },
-                uColor: { value: new Color(...color) },
-                uAmplitude: { value: amplitude },
-                uDistance: { value: distance },
-                uSpeed: { value: speed },
+                uColor: { value: new Color(...colorRef.current) },
+                uAmplitude: { value: amplitudeRef.current },
+                uDistance: { value: distanceRef.current },
+                uSpeed: { value: speedRef.current },
                 uMouse: { value: new Float32Array([0.5, 0.5]) },
             },
         });
@@ -188,7 +192,7 @@ export function Threads({
         window.addEventListener("resize", resize);
         resize();
 
-        let currentMouse = [0.5, 0.5];
+        const currentMouse = [0.5, 0.5];
         let targetMouse = [0.5, 0.5];
 
         function handleMouseMove(e: MouseEvent) {
@@ -237,6 +241,10 @@ export function Threads({
     }, [enableMouseInteraction, isVisible]); // Re-run update loop if visibility changes
 
     useEffect(() => {
+        colorRef.current = color;
+        amplitudeRef.current = amplitude;
+        distanceRef.current = distance;
+        speedRef.current = speed;
         if (programRef.current) {
             programRef.current.uniforms.uColor.value.set(...color);
             programRef.current.uniforms.uAmplitude.value = amplitude;
