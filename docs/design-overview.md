@@ -46,7 +46,9 @@
 
 - `app/components/variants/VariantA.tsx`
 - `app/components/variants/content.ts`
+- `app/components/variants/variant-a/sections/IntroProblemsSection.tsx`
+- `app/components/variants/variant-a/sections/CommonRecognitionSection.tsx`
+- `app/components/variants/variant-a/sections/SupportSection.tsx`
 - `app/components/ui/ScrollFloat.tsx`
 - `app/components/ui/BlurText.tsx`
 - `app/components/layout/FloatingCTA.tsx`
-

@@ -28,6 +28,16 @@
 - 実装内容: `docs/development-guidelines.md` を新設し、日本語運用/肯定的プロンプトでの自動コミット/実行コマンドを整理。`docs/README.md` に索引追記、`scripts/auto-commit.sh` と `npm run commit:auto` を追加。
 - 追加資料: `docs/development-guidelines.md`, `docs/README.md`, `scripts/auto-commit.sh`, `package.json`。
 
+### 2026-01-22: VariantAのセクション分割（導入〜共通知覚）
+- 目的: VariantAの保守性向上のため、セクション単位でコンポーネントを分割。
+- 実装内容: 課題提示と共通認識セクションを `variant-a/sections` に切り出し、`VariantA.tsx` から参照する構成に整理。
+- 追加資料: `app/components/variants/variant-a/sections/IntroProblemsSection.tsx`, `app/components/variants/variant-a/sections/CommonRecognitionSection.tsx`, `docs/content-structure.md`, `docs/design-overview.md`。
+
+### 2026-01-22: VariantAのセクション分割（Support）
+- 目的: Supportセクションの責務を独立させ、保守性を向上。
+- 実装内容: Supportセクションを `variant-a/sections/SupportSection.tsx` に切り出し、`VariantA.tsx` から参照する構成に整理。
+- 追加資料: `app/components/variants/variant-a/sections/SupportSection.tsx`, `docs/content-structure.md`, `docs/design-overview.md`。
+
 ### 2026-01-09: リポジトリ初期化とGitHub登録
 - 目的: ローカルで構築していたLPを独立したGit履歴で管理し、GitHubへバックアップ。
 - 実装内容: `git init -b main` → 初回コミット → `origin` を `https://github.com/FUFU222/LIVAPON_Bender_LP.git` に設定し `git push -u origin main`。
