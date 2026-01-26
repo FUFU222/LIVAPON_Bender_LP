@@ -70,15 +70,19 @@ export function DividerSection({ children, className = "" }: DividerSectionProps
     }, [scrollYProgress]);
 
     // 0.8倍からスタートし、急拡大する前にフェードアウトさせて荒さを隠す
-    const scale = useTransform(scrollYProgress, [0, 0.3, 0.65, 0.9], [1.05, 1.5, 5, 10]);
+    const scale = useTransform(scrollYProgress, [0, 0.4, 0.8, 1], [1.05, 1.8, 4.5, 6]);
 
-    // 透明度調整：スクロール中盤でフェードアウトし、過度な拡大をユーザーに見せない
-    const opacity = useTransform(scrollYProgress, [0, 0.55, 0.68, 0.78], [1, 1, 0.2, 0]);
-    const contentOpacity = useTransform(scrollYProgress, [0.78, 0.88, 0.98, 1], [0, 1, 1, 0]);
-    const contentScale = useTransform(scrollYProgress, [0.78, 0.88, 0.98, 1], [0.97, 1, 1, 0.99]);
+    // 透明度調整：ロゴは後半まで維持、説明会は中盤から長めに表示
+    const opacity = useTransform(scrollYProgress, [0, 0.7, 0.9, 1], [1, 1, 0.3, 0]);
+    const contentOpacity = useTransform(scrollYProgress, [0.35, 0.55, 1], [0, 1, 1]);
+    const contentScale = useTransform(scrollYProgress, [0.35, 0.55, 1], [0.98, 1, 1]);
 
     return (
-        <section ref={containerRef} className={`relative h-[520vh] bg-white ${className}`.trim()}>
+        <section
+            ref={containerRef}
+            className={`relative bg-white ${className}`.trim()}
+            style={{ height: "260vh" }}
+        >
             <div className="sticky top-0 h-screen flex items-center justify-center overflow-hidden">
                 <motion.div style={{ scale, opacity }} className="relative z-10 w-[80vw] max-w-[820px]">
                     <Image

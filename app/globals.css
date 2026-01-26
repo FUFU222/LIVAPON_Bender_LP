@@ -33,6 +33,11 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+.marker {
+  background: linear-gradient(transparent 65%, var(--accent) 95%);
+  padding-bottom: 0.1em;
+}
+
 /* Selection color */
 ::selection {
   background: var(--accent);

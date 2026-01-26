@@ -1,12 +1,12 @@
 "use client";
 
-import { VariantA } from "./VariantA";
+import { LandingContent } from "./LandingContent";
 import { Footer } from "../layout/Footer";
 
 export function LandingShowcase() {
     return (
         <main className="min-h-screen bg-white">
-            <VariantA />
+            <LandingContent />
 
             <Footer />
         </main>

@@ -35,5 +35,5 @@ LIVAPON が **Japan Festival CANADA の公式スポンサー** であること�
 
 ## 実装参照
 
-- セクション本体: `app/components/variants/VariantA.tsx`
-- 文言定義: `app/components/variants/content.ts`
+- セクション本体: `app/components/landing/sections/OfficialSponsorSection.tsx`
+- 文言定義: `app/components/landing/content.ts`

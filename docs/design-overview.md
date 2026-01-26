@@ -1,7 +1,7 @@
 # デザイン/体験設計 概要（現行）
 
-本ドキュメントは、現在の実装（Design 01 / VariantA）に合わせたデザイン方針の要点をまとめたものです。
-他バリアントは削除済みで、**VariantA が唯一の正準**です。
+本ドキュメントは、現在の実装（Design 01 / Landing）に合わせたデザイン方針の要点をまとめたものです。
+他バリアントは削除済みで、**Landing が唯一の正準**です。
 
 ## 1. 方向性
 
@@ -44,11 +44,13 @@
 
 ## 5. 主要実装ファイル
 
-- `app/components/variants/VariantA.tsx`
-- `app/components/variants/content.ts`
-- `app/components/variants/variant-a/sections/IntroProblemsSection.tsx`
-- `app/components/variants/variant-a/sections/CommonRecognitionSection.tsx`
-- `app/components/variants/variant-a/sections/SupportSection.tsx`
+- `app/components/landing/LandingContent.tsx`
+- `app/components/landing/content.ts`
+- `app/components/landing/sections/IntroProblemsSection.tsx`
+- `app/components/landing/sections/CommonRecognitionSection.tsx`
+- `app/components/landing/sections/SupportSection.tsx`
+- `app/components/landing/sections/OfficialSponsorSection.tsx`
+- `app/components/landing/sections/FaqSection.tsx`
 - `app/components/ui/ScrollFloat.tsx`
 - `app/components/ui/BlurText.tsx`
 - `app/components/layout/FloatingCTA.tsx`

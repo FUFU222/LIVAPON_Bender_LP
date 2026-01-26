@@ -4,8 +4,8 @@ import type { ReactNode } from "react";
 import { useRef } from "react";
 import Image from "next/image";
 import { motion, useInView } from "framer-motion";
-import { ScrollReveal } from "../../../ui/ScrollReveal";
-import { CountUp } from "../../../ui/CountUp";
+import { ScrollReveal } from "../../ui/ScrollReveal";
+import { CountUp } from "../../ui/CountUp";
 
 type SupportFeature = {
     title: string;
@@ -16,7 +16,10 @@ type SupportNotes = {
     heading: string;
     description: string;
     fact: string;
-    note: string;
+    note: {
+        emphasis: string;
+        detail: string;
+    }[];
 };
 
 interface SupportSectionProps {
@@ -185,9 +188,28 @@ export function SupportSection({ features, notes }: SupportSectionProps) {
                     </ScrollReveal>
                     <ScrollReveal delay={0.2} y={20}>
                         <div className="rounded-3xl border border-gray-light/60 bg-gray-light/20 p-7 md:p-8">
-                            <p className="text-sm md:text-base text-gray-dark leading-relaxed">
-                                {notes.note}
-                            </p>
+                            <div className="flex flex-wrap gap-4 justify-center md:justify-start">
+                                {notes.note.map((item) => (
+                                    <div
+                                        key={item.emphasis}
+                                        className="relative h-36 w-36 md:h-40 md:w-40 rounded-full border border-amber-200/70 bg-gradient-to-br from-amber-50 via-white to-rose-100 shadow-[0_22px_50px_rgba(0,0,0,0.14)]"
+                                    >
+                                        <div className="absolute inset-0 rounded-full bg-[radial-gradient(circle_at_35%_35%,_rgba(255,255,255,0.95),_rgba(255,255,255,0.2)_60%,_rgba(193,39,45,0.08)_100%)]" />
+                                        <div className="absolute inset-3 rounded-full border border-amber-300/60 bg-white/85" />
+                                        <div className="absolute inset-4 rounded-full border border-dashed border-amber-300/60" />
+                                        <div className="relative z-10 flex h-full w-full items-center justify-center px-5 text-center">
+                                            <div className="flex flex-col items-center gap-1">
+                                                <span className="text-sm md:text-base font-semibold text-gray-900 leading-tight tracking-[0.08em]">
+                                                    {item.emphasis}
+                                                </span>
+                                                <span className="text-[11px] md:text-xs font-medium text-gray-dark leading-snug">
+                                                    {item.detail}
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                ))}
+                            </div>
                         </div>
                     </ScrollReveal>
                 </div>

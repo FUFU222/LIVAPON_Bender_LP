@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { ScrollReveal } from "../../../ui/ScrollReveal";
+import { ScrollReveal } from "../../ui/ScrollReveal";
 
 type IntroItem = {
     title: string;

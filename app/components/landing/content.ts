@@ -68,7 +68,16 @@ export const supportNotes = {
     heading: "LIVAPONが叶える海外進出",
     description: "“売る”より先に、“伝わる”体験を",
     fact: "LIVAPONの公式Instagramには、日本に関心を持つ海外ユーザーが集まっています。",
-    note: "（シンプルに越境ECに掲載したい事業者ももちろん歓迎です。）",
+    note: [
+        {
+            emphasis: "越境EC掲載",
+            detail: "ライト導入も歓迎",
+        },
+        {
+            emphasis: "禁制品チェック",
+            detail: "国別基準で事前判定",
+        },
+    ],
 };
 
 export const officialSponsor = {

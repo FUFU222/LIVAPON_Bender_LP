@@ -18,6 +18,11 @@
 
 ## 実績ログ
 
+### 2026-01-23: Landing構成の参照統一
+- 目的: Landing ディレクトリ移行後の参照切れを解消し、ドキュメントの整合性を回復。
+- 実装内容: `LandingPage` に `LandingContent` を接続、`landing/sections` の `ui` 参照を更新。`design-overview.md`/`content-structure.md`/`official-sponsor.md`/`README.md` を Landing 構成に合わせて修正。
+- 追加資料: `app/components/landing/LandingPage.tsx`, `app/components/landing/sections/CommonRecognitionSection.tsx`, `app/components/landing/sections/IntroProblemsSection.tsx`, `app/components/landing/sections/SupportSection.tsx`, `app/components/landing/sections/OfficialSponsorSection.tsx`, `app/components/landing/sections/FaqSection.tsx`, `docs/design-overview.md`, `docs/content-structure.md`, `docs/official-sponsor.md`, `docs/README.md`。
+
 ### 2026-01-22: ドキュメント最新化（LP実装反映）
 - 目的: 直近のLP実装に合わせてドキュメントの矛盾・重複を解消。
 - 実装内容: `content-structure.md`/`design-overview.md` を現行構成に刷新、公式スポンサーセクションの仕様を `official-sponsor.md` に整理。旧バリアント資料を削除し、READMEの索引を更新。
@@ -37,6 +42,11 @@
 - 目的: Supportセクションの責務を独立させ、保守性を向上。
 - 実装内容: Supportセクションを `variant-a/sections/SupportSection.tsx` に切り出し、`VariantA.tsx` から参照する構成に整理。
 - 追加資料: `app/components/variants/variant-a/sections/SupportSection.tsx`, `docs/content-structure.md`, `docs/design-overview.md`。
+
+### 2026-01-22: VariantAのセクション分割（FAQ / Official Sponsor）
+- 目的: FAQと公式スポンサーの保守性向上のため、セクション単位で切り出し。
+- 実装内容: 公式スポンサーセクションを `variant-a/sections/OfficialSponsorSection.tsx`、FAQセクションを `variant-a/sections/FaqSection.tsx` に切り出し、`VariantA.tsx` から参照する構成に整理。
+- 追加資料: `app/components/variants/variant-a/sections/OfficialSponsorSection.tsx`, `app/components/variants/variant-a/sections/FaqSection.tsx`, `docs/content-structure.md`, `docs/design-overview.md`。
 
 ### 2026-01-09: リポジトリ初期化とGitHub登録
 - 目的: ローカルで構築していたLPを独立したGit履歴で管理し、GitHubへバックアップ。

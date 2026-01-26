@@ -32,36 +32,31 @@ export default function Legal() {
                                 <tbody>
                                     <tr className="border-b border-gray-200">
                                         <th className="py-4 font-bold w-1/3 md:w-1/4 align-top">販売業者</th>
-                                        <td className="py-4">LIVAPON</td>
+                                        <td className="py-4">株式会社CHAIRAMAN</td>
                                     </tr>
                                     <tr className="border-b border-gray-200">
                                         <th className="py-4 font-bold align-top">代表責任者</th>
                                         <td className="py-4">
-                                            {/* TODO: 実際の代表者名を入力してください */}
-                                            [代表者氏名]
+                                            田中透
                                         </td>
                                     </tr>
                                     <tr className="border-b border-gray-200">
                                         <th className="py-4 font-bold align-top">所在地</th>
                                         <td className="py-4">
-                                            {/* TODO: 実際の住所を入力してください */}
-                                            〒000-0000<br />
-                                            [都道府県市区町村番地 建物名など]
+                                            〒107-0062<br />
+                                            東京都港区南青山2-2-15
                                         </td>
                                     </tr>
                                     <tr className="border-b border-gray-200">
                                         <th className="py-4 font-bold align-top">電話番号</th>
                                         <td className="py-4">
-                                            {/* TODO: 実際の電話番号を入力してください */}
-                                            [電話番号]<br />
-                                            <span className="text-sm text-gray-500">※受付時間: 平日 10:00〜18:00</span>
+                                            請求があった場合に遅滞なく開示します。
                                         </td>
                                     </tr>
                                     <tr className="border-b border-gray-200">
                                         <th className="py-4 font-bold align-top">メールアドレス</th>
                                         <td className="py-4">
-                                            {/* TODO: 実際のメールアドレスを入力してください */}
-                                            support@livapon.jp
+                                            information@chairman.jp
                                         </td>
                                     </tr>
                                     <tr className="border-b border-gray-200">

@@ -1,7 +1,7 @@
 # LIVAPON LP｜構成設計（現行）
 
-本ドキュメントは **Design 01（VariantA）** の現行実装に合わせた構成です。
-文言は `app/components/variants/content.ts` の実装を正とします。
+本ドキュメントは **Design 01（Landing）** の現行実装に合わせた構成です。
+文言は `app/components/landing/content.ts` の実装を正とします。
 
 ## 01_FV（Hero）
 
@@ -84,10 +84,12 @@
 
 ## 実装参照
 
-- `app/components/variants/VariantA.tsx`
-- `app/components/variants/content.ts`
-- `app/components/variants/variant-a/sections/IntroProblemsSection.tsx`
-- `app/components/variants/variant-a/sections/CommonRecognitionSection.tsx`
-- `app/components/variants/variant-a/sections/SupportSection.tsx`
+- `app/components/landing/LandingContent.tsx`
+- `app/components/landing/content.ts`
+- `app/components/landing/sections/IntroProblemsSection.tsx`
+- `app/components/landing/sections/CommonRecognitionSection.tsx`
+- `app/components/landing/sections/SupportSection.tsx`
+- `app/components/landing/sections/OfficialSponsorSection.tsx`
+- `app/components/landing/sections/FaqSection.tsx`
 - `app/components/forms/CTAForm.tsx`
 - `app/components/sections/DividerSection.tsx`
