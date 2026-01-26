@@ -118,7 +118,7 @@ const renderBadgeEmphasis = (text: string) => {
 
 export function SupportSection({ features, notes }: SupportSectionProps) {
     return (
-        <section className="relative py-24 md:py-32 bg-gradient-to-b from-white via-white to-[#fbf2f2]">
+        <section className="relative z-10 py-24 md:py-32 bg-gradient-to-b from-white via-white to-[#fbf2f2] md:-mt-[35vh]">
             <div className="absolute inset-0 pointer-events-none">
                 <div className="absolute -top-20 right-8 h-52 w-52 rounded-full bg-accent/10 blur-[90px]" />
                 <div className="absolute left-10 bottom-10 h-px w-[70%] bg-black/10" />

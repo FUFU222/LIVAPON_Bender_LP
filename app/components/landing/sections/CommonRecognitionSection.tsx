@@ -58,7 +58,7 @@ export function CommonRecognitionSection() {
             const pinTrigger = ScrollTrigger.create({
                 trigger: section,
                 start: "top top",
-                end: "+=80%",
+                end: "+=120%",
                 pin: contentRef.current,
                 pinSpacing: true,
                 anticipatePin: 1,
@@ -113,70 +113,58 @@ export function CommonRecognitionSection() {
             </div>
             <div
                 ref={contentRef}
-                className="relative max-w-5xl mx-auto px-6 w-full py-0 text-left md:text-center"
+                className="relative w-full min-h-screen flex items-center"
             >
-                <ScrollReveal delay={0} y={16}>
-                    <div className="mt-4 md:mt-8">
-                        <div className="md:hidden space-y-0 text-left">
-                            {introMobileLines.map((line, lineIndex) => (
-                                <div
-                                    key={`intro-line-${lineIndex}`}
-                                    className={lineIndex === 0 ? "" : "-mt-1"}
-                                >
-                                    <div className="relative w-fit">
-                                        <div className="flex flex-wrap items-baseline gap-x-1 pb-1">
-                                            {line.map((segment, segmentIndex) => (
-                                                <ScrollFloat
-                                                    key={`intro-seg-${lineIndex}-${segmentIndex}`}
-                                                    as="span"
-                                                    containerClassName="my-0 inline-flex relative"
-                                                    textClassName={`${
-                                                        segment.emphasis
-                                                            ? "text-[48px] font-semibold"
-                                                            : "text-[40px] font-medium"
-                                                    } leading-[1] tracking-tight text-foreground`}
-                                                    animationDuration={1}
-                                                    ease="back.inOut(2)"
-                                                    scrollStart="center bottom+=50%"
-                                                    scrollEnd="bottom bottom-=40%"
-                                                    stagger={0.03}
-                                                >
-                                                    {segment.text}
-                                                </ScrollFloat>
-                                            ))}
+                <div className="max-w-5xl mx-auto px-6 w-full py-0 text-left md:text-center">
+                    <ScrollReveal delay={0} y={16}>
+                        <div>
+                            <div className="md:hidden space-y-0 text-left">
+                                {introMobileLines.map((line, lineIndex) => (
+                                    <div
+                                        key={`intro-line-${lineIndex}`}
+                                        className={lineIndex === 0 ? "" : "-mt-1"}
+                                    >
+                                        <div className="relative w-fit">
+                                            <div className="flex flex-wrap items-baseline gap-x-1 pb-1">
+                                                {line.map((segment, segmentIndex) => (
+                                                    <ScrollFloat
+                                                        key={`intro-seg-${lineIndex}-${segmentIndex}`}
+                                                        as="span"
+                                                        containerClassName="my-0 inline-flex relative"
+                                                        textClassName={`${
+                                                            segment.emphasis
+                                                                ? "text-[48px] font-semibold"
+                                                                : "text-[40px] font-medium"
+                                                        } leading-[1] tracking-tight text-foreground`}
+                                                        animationDuration={1}
+                                                        ease="back.inOut(2)"
+                                                        scrollStart="center bottom+=50%"
+                                                        scrollEnd="bottom bottom-=40%"
+                                                        stagger={0.03}
+                                                    >
+                                                        {segment.text}
+                                                    </ScrollFloat>
+                                                ))}
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                            ))}
-                        </div>
-                        <div className="hidden md:block">
-                            <div className="flex flex-col items-center">
-                                <ScrollFloat
-                                    containerClassName="my-0"
-                                    textClassName="text-[48px] md:text-5xl lg:text-6xl font-semibold leading-[1.4] tracking-tight text-foreground whitespace-nowrap"
-                                    animationDuration={1}
-                                    ease="back.inOut(2)"
-                                    scrollStart="center bottom+=50%"
-                                    scrollEnd="bottom bottom-=40%"
-                                    stagger={0.03}
-                                >
-                                    {"実は…多くのブランドやメーカーが"}
-                                </ScrollFloat>
-                                <div className="relative inline-block pt-2">
-                                    <div className="flex items-baseline whitespace-nowrap">
-                                        <ScrollFloat
-                                            as="span"
-                                            containerClassName="my-0 inline-flex relative"
-                                            textClassName="text-[48px] md:text-5xl lg:text-6xl font-semibold leading-[1.4] tracking-tight text-foreground"
-                                            animationDuration={1}
-                                            ease="back.inOut(2)"
-                                            scrollStart="center bottom+=50%"
-                                            scrollEnd="bottom bottom-=40%"
-                                            stagger={0.03}
-                                        >
-                                            {"同じところで"}
-                                        </ScrollFloat>
-                                        <div className="relative inline-flex">
+                                ))}
+                            </div>
+                            <div className="hidden md:block">
+                                <div className="flex flex-col items-center">
+                                    <ScrollFloat
+                                        containerClassName="my-0"
+                                        textClassName="text-[48px] md:text-5xl lg:text-6xl font-semibold leading-[1.4] tracking-tight text-foreground whitespace-nowrap"
+                                        animationDuration={1}
+                                        ease="back.inOut(2)"
+                                        scrollStart="center bottom+=50%"
+                                        scrollEnd="bottom bottom-=40%"
+                                        stagger={0.03}
+                                    >
+                                        {"実は…多くのブランドやメーカーが"}
+                                    </ScrollFloat>
+                                    <div className="relative inline-block pt-2">
+                                        <div className="flex items-baseline whitespace-nowrap">
                                             <ScrollFloat
                                                 as="span"
                                                 containerClassName="my-0 inline-flex relative"
@@ -187,15 +175,29 @@ export function CommonRecognitionSection() {
                                                 scrollEnd="bottom bottom-=40%"
                                                 stagger={0.03}
                                             >
-                                                {"つまずいています"}
+                                                {"同じところで"}
                                             </ScrollFloat>
+                                            <div className="relative inline-flex">
+                                                <ScrollFloat
+                                                    as="span"
+                                                    containerClassName="my-0 inline-flex relative"
+                                                    textClassName="text-[48px] md:text-5xl lg:text-6xl font-semibold leading-[1.4] tracking-tight text-foreground"
+                                                    animationDuration={1}
+                                                    ease="back.inOut(2)"
+                                                    scrollStart="center bottom+=50%"
+                                                    scrollEnd="bottom bottom-=40%"
+                                                    stagger={0.03}
+                                                >
+                                                    {"つまずいています"}
+                                                </ScrollFloat>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                </ScrollReveal>
+                    </ScrollReveal>
+                </div>
             </div>
         </section>
     );

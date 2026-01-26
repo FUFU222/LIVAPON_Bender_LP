@@ -172,7 +172,7 @@ export function LandingContent() {
                                     animate={{ y: 0, opacity: 1 }}
                                     exit={{ y: "-120%", opacity: 0 }}
                                     staggerDuration={0.02}
-                                    rotationInterval={3000}
+                                    rotationInterval={2200}
                                     animatePresenceMode="popLayout"
                                     transition={{ type: "spring", damping: 20, stiffness: 100 }}
                                 />
@@ -189,9 +189,29 @@ export function LandingContent() {
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                         {liveHighlights.map((item, index) => (
                             <ScrollReveal key={item.title} delay={0.2 + index * 0.08} y={24}>
-                                <div className="rounded-3xl border border-gray-light/60 p-7 bg-white shadow-[0_20px_70px_rgba(0,0,0,0.14)]">
-                                    <h3 className="text-xl font-semibold mb-3">{item.title}</h3>
-                                    <p className="text-gray-dark leading-relaxed">{item.description}</p>
+                                <div className="rounded-3xl border border-gray-light/60 p-6 bg-white shadow-[0_20px_70px_rgba(0,0,0,0.14)]">
+                                    <div className="relative aspect-[4/3] w-full overflow-hidden rounded-2xl bg-gray-light/30">
+                                        {item.image ? (
+                                            <Image
+                                                src={item.image}
+                                                alt={item.title}
+                                                fill
+                                                sizes="(max-width: 1024px) 100vw, 33vw"
+                                                className="object-cover"
+                                            />
+                                        ) : (
+                                            <div className="absolute inset-0 bg-[linear-gradient(135deg,rgba(15,23,42,0.08),rgba(193,39,45,0.08))]">
+                                                <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,_rgba(255,255,255,0.6),_transparent_55%)]" />
+                                                <div className="absolute bottom-4 right-4 text-[10px] font-semibold tracking-[0.3em] text-gray-dark/70">
+                                                    IMAGE
+                                                </div>
+                                            </div>
+                                        )}
+                                    </div>
+                                    <h3 className="mt-5 text-lg md:text-xl font-semibold">{item.title}</h3>
+                                    <p className="mt-2 text-sm md:text-base text-gray-dark leading-relaxed">
+                                        {item.description}
+                                    </p>
                                 </div>
                             </ScrollReveal>
                         ))}

@@ -88,16 +88,19 @@ export const officialSponsor = {
 
 export const liveHighlights = [
     {
-        title: "LIVEで語る",
-        description: "ストーリーが、言語を超えて伝わる。",
+        title: "世界のライブコマース事例 01",
+        description: "タイトル・概要は後日差し替え",
+        image: "",
     },
     {
-        title: "現地KOLとの共創",
-        description: "信頼のある語り手が、熱量を運ぶ。",
+        title: "世界のライブコマース事例 02",
+        description: "タイトル・概要は後日差し替え",
+        image: "",
     },
     {
-        title: "即時購買の熱",
-        description: "見て、感じて、すぐに動ける体験へ。",
+        title: "世界のライブコマース事例 03",
+        description: "タイトル・概要は後日差し替え",
+        image: "",
     },
 ];
 

@@ -2,7 +2,7 @@
 
 import type { ReactNode } from "react";
 import { useEffect, useRef } from "react";
-import { motion, useScroll, useTransform } from "framer-motion";
+import { motion, useInView, useScroll, useTransform } from "framer-motion";
 import Image from "next/image";
 
 type DividerSectionProps = {
@@ -13,9 +13,10 @@ type DividerSectionProps = {
 export function DividerSection({ children, className = "" }: DividerSectionProps) {
     // 説明会を長めに固定表示させるためスクロール領域を拡張
     const containerRef = useRef<HTMLDivElement>(null);
+    const isInView = useInView(containerRef, { margin: "-35% 0px -35% 0px" });
     const { scrollYProgress } = useScroll({
         target: containerRef,
-        offset: ["start start", "end end"],
+        offset: ["start end", "end start"],
     });
 
     useEffect(() => {
@@ -69,11 +70,9 @@ export function DividerSection({ children, className = "" }: DividerSectionProps
         };
     }, [scrollYProgress]);
 
-    // 0.8倍からスタートし、急拡大する前にフェードアウトさせて荒さを隠す
-    const scale = useTransform(scrollYProgress, [0, 0.4, 0.8, 1], [1.05, 1.8, 4.5, 6]);
-
-    // 透明度調整：ロゴは後半まで維持、説明会は中盤から長めに表示
-    const opacity = useTransform(scrollYProgress, [0, 0.7, 0.9, 1], [1, 1, 0.3, 0]);
+    // ロゴは早めに出し、終盤でフェードアウトしてズームの粗さを隠す
+    const scale = useTransform(scrollYProgress, [0.16, 0.46, 0.82, 1], [1.02, 1.85, 4.6, 6]);
+    const opacity = useTransform(scrollYProgress, [0, 0.28, 0.8, 0.94, 1], [0, 1, 1, 0, 0]);
     const contentOpacity = useTransform(scrollYProgress, [0.35, 0.55, 1], [0, 1, 1]);
     const contentScale = useTransform(scrollYProgress, [0.35, 0.55, 1], [0.98, 1, 1]);
 
@@ -83,17 +82,24 @@ export function DividerSection({ children, className = "" }: DividerSectionProps
             className={`relative bg-white ${className}`.trim()}
             style={{ height: "260vh" }}
         >
-            <div className="sticky top-0 h-screen flex items-center justify-center overflow-hidden">
-                <motion.div style={{ scale, opacity }} className="relative z-10 w-[80vw] max-w-[820px]">
-                    <Image
-                        src="/livapon_logo.png"
-                        alt="LIVAPON"
-                        width={600}
-                        height={600}
-                        className="w-full h-auto object-contain"
-                        priority
-                    />
-                </motion.div>
+            <div className="sticky top-0 h-screen relative overflow-hidden">
+                {isInView ? (
+                    <motion.div
+                        style={{ opacity }}
+                        className="fixed inset-0 z-10 flex items-center justify-center pointer-events-none"
+                    >
+                        <motion.div style={{ scale }} className="w-[80vw] max-w-[820px] origin-center">
+                            <Image
+                                src="/livapon_logo.png"
+                                alt="LIVAPON"
+                                width={600}
+                                height={600}
+                                className="w-full h-auto object-contain"
+                                priority
+                            />
+                        </motion.div>
+                    </motion.div>
+                ) : null}
                 {children ? (
                     <motion.div
                         style={{ opacity: contentOpacity, scale: contentScale }}
