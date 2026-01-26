@@ -90,6 +90,7 @@ const ScrollFloat: React.FC<ScrollFloatProps> = ({
                 },
             }
         );
+
     }, [scrollContainerRef, animationDuration, ease, scrollStart, scrollEnd, stagger]);
 
     return (

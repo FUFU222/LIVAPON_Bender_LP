@@ -18,7 +18,7 @@ type SupportNotes = {
     fact: string;
     note: {
         emphasis: string;
-        detail: string;
+        detail?: string;
     }[];
 };
 
@@ -90,6 +90,32 @@ const renderSupportDescription = (description: string) => {
     return description;
 };
 
+const renderBadgeEmphasis = (text: string) => {
+    const highlightOk = (line: string) => {
+        const parts = line.split("OK");
+        if (parts.length === 1) return line;
+        return (
+            <>
+                {parts[0]}
+                <span className="inline-block translate-y-[2px] px-0.5 text-xl md:text-2xl font-black leading-none align-baseline bg-gradient-to-r from-accent via-rose-400 to-amber-400 bg-clip-text text-transparent">
+                    OK
+                </span>
+                {parts.slice(1).join("OK")}
+            </>
+        );
+    };
+
+    return (
+        <>
+            {text.split("\n").map((line, index) => (
+                <span key={`${line}-${index}`} className="block">
+                    {highlightOk(line)}
+                </span>
+            ))}
+        </>
+    );
+};
+
 export function SupportSection({ features, notes }: SupportSectionProps) {
     return (
         <section className="relative py-24 md:py-32 bg-gradient-to-b from-white via-white to-[#fbf2f2]">
@@ -111,7 +137,7 @@ export function SupportSection({ features, notes }: SupportSectionProps) {
 
                 <div className="mt-12 space-y-6">
                     {features.map((item, index) => (
-                        <div key={item.title} className="relative lg:w-screen lg:left-1/2 lg:-translate-x-1/2">
+                        <div key={item.title} className="relative w-full lg:max-w-[1400px] lg:mx-auto">
                             <div className="relative overflow-hidden border border-gray-light/60 bg-white h-[360px] md:h-[520px] lg:h-[600px]">
                                 <Image
                                     src={supportImages[index % supportImages.length]}
@@ -199,12 +225,14 @@ export function SupportSection({ features, notes }: SupportSectionProps) {
                                         <div className="absolute inset-4 rounded-full border border-dashed border-amber-300/60" />
                                         <div className="relative z-10 flex h-full w-full items-center justify-center px-5 text-center">
                                             <div className="flex flex-col items-center gap-1">
-                                                <span className="text-sm md:text-base font-semibold text-gray-900 leading-tight tracking-[0.08em]">
-                                                    {item.emphasis}
+                                                <span className="text-sm md:text-base font-semibold text-gray-900 leading-tight tracking-[0.04em]">
+                                                    {renderBadgeEmphasis(item.emphasis)}
                                                 </span>
-                                                <span className="text-[11px] md:text-xs font-medium text-gray-dark leading-snug">
-                                                    {item.detail}
-                                                </span>
+                                                {item.detail && (
+                                                    <span className="text-[11px] md:text-xs font-medium text-gray-dark leading-snug">
+                                                        {item.detail}
+                                                    </span>
+                                                )}
                                             </div>
                                         </div>
                                     </div>

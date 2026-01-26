@@ -11,14 +11,9 @@ LIVAPON が **Japan Festival CANADA の公式スポンサー** であること�
 
 ## 掲載文言（現行）
 
-- **バッジ**: `OFFICIAL SPONSOR`
+- **バッジ**: `OFFICIAL E-COMMERCE SPONSOR`
 - **見出し**: `Japan Festival CANADA`
 - **リード**: `世界の熱量が集まる場所から、日本の価値を届ける。`
-- **箇条書き**
-  - `現地の熱量とリアルにつながる`
-  - `ライブ×越境でブランドを語る`
-  - `オンラインだけに頼らない販売導線`
-- **CTA**: `Japan Festival CANADA 参加について相談する`
 - **ロゴキャプション**: `Japan Festival CANADA 公式ロゴ`
 
 ## レイアウト

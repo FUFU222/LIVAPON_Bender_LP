@@ -70,8 +70,7 @@ export const supportNotes = {
     fact: "LIVAPONの公式Instagramには、日本に関心を持つ海外ユーザーが集まっています。",
     note: [
         {
-            emphasis: "越境EC掲載",
-            detail: "ライト導入も歓迎",
+            emphasis: "EC掲載のみ\nでもOK！",
         },
         {
             emphasis: "禁制品チェック",
@@ -81,15 +80,9 @@ export const supportNotes = {
 };
 
 export const officialSponsor = {
-    badge: "OFFICIAL SPONSOR",
+    badge: "OFFICIAL E-COMMERCE SPONSOR",
     title: "Japan Festival CANADA",
-    lead: "世界の熱量が集まる場所から、日本の価値を届ける。",
-    bullets: [
-        "現地の熱量とリアルにつながる",
-        "ライブ×越境でブランドを語る",
-        "オンラインだけに頼らない販売導線",
-    ],
-    cta: "Japan Festival CANADA 参加について相談する",
+    lead: "あなたのブランドを\"世界\"と接続する",
     logoCaption: "Japan Festival CANADA 公式ロゴ",
 };
 

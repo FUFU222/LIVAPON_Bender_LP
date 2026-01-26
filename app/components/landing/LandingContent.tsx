@@ -152,7 +152,7 @@ export function LandingContent() {
                 </div>
             </section>
 
-            <OfficialSponsorSection sponsor={officialSponsor} onContactClick={handleContactClick} />
+            <OfficialSponsorSection sponsor={officialSponsor} />
 
             <section className="relative py-24 md:py-32 bg-white overflow-hidden">
                 <div className="max-w-6xl mx-auto px-6">

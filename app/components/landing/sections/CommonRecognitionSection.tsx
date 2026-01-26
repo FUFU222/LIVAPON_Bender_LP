@@ -1,6 +1,13 @@
 "use client";
+import { useEffect, useRef } from "react";
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 import ScrollFloat from "../../ui/ScrollFloat";
 import { ScrollReveal } from "../../ui/ScrollReveal";
+
+if (typeof window !== "undefined") {
+    gsap.registerPlugin(ScrollTrigger);
+}
 
 const introMobileLines = [
     [
@@ -26,13 +33,85 @@ const introMobileLines = [
 ];
 
 export function CommonRecognitionSection() {
+    const sectionRef = useRef<HTMLElement>(null);
+    const orbRef = useRef<HTMLDivElement>(null);
+    const frameRef = useRef<HTMLDivElement>(null);
+    const lineRef = useRef<HTMLDivElement>(null);
+
+    useEffect(() => {
+        const section = sectionRef.current;
+        if (!section) return;
+
+        const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+        if (prefersReducedMotion) return;
+
+        const tweens: gsap.core.Tween[] = [];
+        const baseTrigger = {
+            trigger: section,
+            start: "top bottom",
+            end: "bottom top",
+            scrub: true,
+        };
+
+        if (orbRef.current) {
+            tweens.push(
+                gsap.to(orbRef.current, {
+                    y: 80,
+                    ease: "none",
+                    scrollTrigger: baseTrigger,
+                })
+            );
+        }
+
+        if (frameRef.current) {
+            tweens.push(
+                gsap.to(frameRef.current, {
+                    y: -60,
+                    x: 40,
+                    rotate: 2,
+                    ease: "none",
+                    scrollTrigger: baseTrigger,
+                })
+            );
+        }
+
+        if (lineRef.current) {
+            tweens.push(
+                gsap.to(lineRef.current, {
+                    x: -50,
+                    ease: "none",
+                    scrollTrigger: baseTrigger,
+                })
+            );
+        }
+
+        return () => {
+            tweens.forEach((tween) => tween.kill());
+        };
+    }, []);
+
     return (
-        <section className="relative min-h-[70vh] md:min-h-[140vh] bg-gradient-to-b from-white via-white to-[#fbf2f2] md:overflow-hidden flex items-center md:block">
+        <section
+            ref={sectionRef}
+            className="relative min-h-[70vh] md:min-h-[140vh] bg-gradient-to-b from-white via-white to-[#fbf2f2] md:overflow-hidden flex items-center md:block"
+        >
             <div className="absolute inset-0 pointer-events-none">
                 <div className="absolute -top-24 -right-24 h-64 w-64 rounded-full bg-accent/10 blur-[90px]" />
                 <div className="absolute -bottom-24 -left-24 h-64 w-64 rounded-full bg-[#f8e7e8] blur-[100px]" />
                 <div className="absolute inset-x-10 top-10 h-px bg-black/10" />
                 <div className="absolute inset-x-10 bottom-10 h-px bg-black/10" />
+                <div
+                    ref={orbRef}
+                    className="absolute left-1/2 top-1/3 h-72 w-72 -translate-x-1/2 rounded-full bg-[#f4d9d9]/70 blur-[80px]"
+                />
+                <div
+                    ref={frameRef}
+                    className="absolute right-10 top-20 h-44 w-44 rounded-3xl border border-accent/20 bg-white/40"
+                />
+                <div
+                    ref={lineRef}
+                    className="absolute left-12 bottom-20 h-px w-48 bg-black/10"
+                />
             </div>
             <div className="relative max-w-5xl mx-auto px-6 w-full py-0 md:py-0 md:sticky md:top-1/2 md:-translate-y-1/2 text-left md:text-center">
                 <ScrollReveal delay={0} y={16}>
@@ -54,7 +133,7 @@ export function CommonRecognitionSection() {
                                                         segment.emphasis
                                                             ? "text-[48px] font-semibold"
                                                             : "text-[40px] font-medium"
-                                                    } ${lineIndex === introMobileLines.length - 1 ? "marker" : ""} leading-[1] tracking-tight text-foreground`}
+                                                    } leading-[1] tracking-tight text-foreground`}
                                                     animationDuration={1}
                                                     ease="back.inOut(2)"
                                                     scrollStart="center bottom+=50%"
@@ -100,7 +179,7 @@ export function CommonRecognitionSection() {
                                             <ScrollFloat
                                                 as="span"
                                                 containerClassName="my-0 inline-flex relative"
-                                                textClassName="text-[48px] md:text-5xl lg:text-6xl font-semibold leading-[1.4] tracking-tight text-foreground marker"
+                                                textClassName="text-[48px] md:text-5xl lg:text-6xl font-semibold leading-[1.4] tracking-tight text-foreground"
                                                 animationDuration={1}
                                                 ease="back.inOut(2)"
                                                 scrollStart="center bottom+=50%"

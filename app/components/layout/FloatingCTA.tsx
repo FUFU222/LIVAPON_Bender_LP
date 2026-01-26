@@ -7,7 +7,7 @@ export function FloatingCTA() {
     return (
         <Link
             href="/#contact" // アンカーリンクまたは別ページ
-            className="fixed bottom-8 right-8 z-[9999] group cursor-pointer block"
+            className="fixed bottom-8 right-8 2xl:right-[max(2rem,calc((100vw-72rem)/2-11rem))] z-[9999] group cursor-pointer block"
             aria-label="エントリーはこちらから"
         >
             <div className="relative w-32 h-32 md:w-40 md:h-40 flex items-center justify-center">

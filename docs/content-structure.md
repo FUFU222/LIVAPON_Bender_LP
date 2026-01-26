@@ -48,7 +48,7 @@
 
 - セクションタイトル: Japan Festival CANADA
 - バッジ: OFFICIAL SPONSOR
-- リード＋箇条書き＋CTA（相談導線）
+- リードのみ
 - 背景: 会場写真 + 左側グラデーション / 右側白パネル
 - ロゴ: `public/japan-festival-canada-logo.png`
 - 詳細: `docs/official-sponsor.md`
