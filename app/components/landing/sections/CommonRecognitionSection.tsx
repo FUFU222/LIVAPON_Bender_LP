@@ -34,8 +34,8 @@ const introMobileLines = [
 
 export function CommonRecognitionSection() {
     const sectionRef = useRef<HTMLElement>(null);
+    const contentRef = useRef<HTMLDivElement>(null);
     const orbRef = useRef<HTMLDivElement>(null);
-    const frameRef = useRef<HTMLDivElement>(null);
     const lineRef = useRef<HTMLDivElement>(null);
 
     useEffect(() => {
@@ -46,6 +46,7 @@ export function CommonRecognitionSection() {
         if (prefersReducedMotion) return;
 
         const tweens: gsap.core.Tween[] = [];
+        const triggers: ScrollTrigger[] = [];
         const baseTrigger = {
             trigger: section,
             start: "top bottom",
@@ -53,22 +54,22 @@ export function CommonRecognitionSection() {
             scrub: true,
         };
 
+        if (contentRef.current) {
+            const pinTrigger = ScrollTrigger.create({
+                trigger: section,
+                start: "top top",
+                end: "+=80%",
+                pin: contentRef.current,
+                pinSpacing: true,
+                anticipatePin: 1,
+            });
+            triggers.push(pinTrigger);
+        }
+
         if (orbRef.current) {
             tweens.push(
                 gsap.to(orbRef.current, {
                     y: 80,
-                    ease: "none",
-                    scrollTrigger: baseTrigger,
-                })
-            );
-        }
-
-        if (frameRef.current) {
-            tweens.push(
-                gsap.to(frameRef.current, {
-                    y: -60,
-                    x: 40,
-                    rotate: 2,
                     ease: "none",
                     scrollTrigger: baseTrigger,
                 })
@@ -87,13 +88,14 @@ export function CommonRecognitionSection() {
 
         return () => {
             tweens.forEach((tween) => tween.kill());
+            triggers.forEach((trigger) => trigger.kill());
         };
     }, []);
 
     return (
         <section
             ref={sectionRef}
-            className="relative min-h-[70vh] md:min-h-[140vh] bg-gradient-to-b from-white via-white to-[#fbf2f2] md:overflow-hidden flex items-center md:block"
+            className="relative min-h-[70vh] md:min-h-[140vh] bg-gradient-to-b from-white via-white to-[#fbf2f2] md:overflow-hidden"
         >
             <div className="absolute inset-0 pointer-events-none">
                 <div className="absolute -top-24 -right-24 h-64 w-64 rounded-full bg-accent/10 blur-[90px]" />
@@ -105,15 +107,14 @@ export function CommonRecognitionSection() {
                     className="absolute left-1/2 top-1/3 h-72 w-72 -translate-x-1/2 rounded-full bg-[#f4d9d9]/70 blur-[80px]"
                 />
                 <div
-                    ref={frameRef}
-                    className="absolute right-10 top-20 h-44 w-44 rounded-3xl border border-accent/20 bg-white/40"
-                />
-                <div
                     ref={lineRef}
                     className="absolute left-12 bottom-20 h-px w-48 bg-black/10"
                 />
             </div>
-            <div className="relative max-w-5xl mx-auto px-6 w-full py-0 md:py-0 md:sticky md:top-1/2 md:-translate-y-1/2 text-left md:text-center">
+            <div
+                ref={contentRef}
+                className="relative max-w-5xl mx-auto px-6 w-full py-0 text-left md:text-center"
+            >
                 <ScrollReveal delay={0} y={16}>
                     <div className="mt-4 md:mt-8">
                         <div className="md:hidden space-y-0 text-left">

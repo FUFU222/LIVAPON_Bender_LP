@@ -73,8 +73,8 @@ export const supportNotes = {
             emphasis: "EC掲載のみ\nでもOK！",
         },
         {
-            emphasis: "禁制品チェック",
-            detail: "国別基準で事前判定",
+            emphasis: "出品NGチェック",
+            detail: "国別で事前判定",
         },
     ],
 };

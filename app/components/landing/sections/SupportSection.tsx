@@ -108,7 +108,7 @@ const renderBadgeEmphasis = (text: string) => {
     return (
         <>
             {text.split("\n").map((line, index) => (
-                <span key={`${line}-${index}`} className="block">
+                <span key={`${line}-${index}`} className="block whitespace-nowrap">
                     {highlightOk(line)}
                 </span>
             ))}
@@ -198,17 +198,26 @@ export function SupportSection({ features, notes }: SupportSectionProps) {
 
                 <div className="mt-10 grid grid-cols-1 md:grid-cols-[1.15fr_0.85fr] gap-6 items-start">
                     <ScrollReveal delay={0.1} y={20}>
-                        <div className="rounded-3xl border border-gray-light/60 bg-white p-7 md:p-8 shadow-[0_18px_50px_rgba(0,0,0,0.1)]">
-                            <div className="flex items-center justify-between mb-4">
-                                <p className="text-xs tracking-[0.3em] uppercase text-gray-dark">
-                                    FACT
-                                </p>
-                                <span className="text-[10px] font-semibold tracking-[0.25em] text-accent">
+                        <div className="relative overflow-hidden rounded-3xl border border-gray-light/60 bg-white p-7 md:p-8 shadow-[0_18px_50px_rgba(0,0,0,0.1)]">
+                            <div className="pointer-events-none absolute -top-16 -right-10 h-40 w-40 rounded-full bg-accent/10 blur-[60px]" />
+                            <div className="pointer-events-none absolute left-0 top-0 h-full w-1 bg-accent/70" />
+                            <div className="flex items-center gap-3 mb-5">
+                                <span className="inline-flex items-center gap-2 rounded-full bg-accent/10 px-3 py-1 text-[10px] font-semibold tracking-[0.25em] text-accent">
                                     LIVAPON INSIGHT
                                 </span>
                             </div>
-                            <p className="text-lg md:text-xl text-foreground leading-relaxed">
-                                {notes.fact}
+                            <p className="text-lg md:text-xl font-medium text-foreground leading-relaxed">
+                                {notes.fact.split("日本に関心を持つ海外ユーザーが集まっています。").map((part, index, arr) => (
+                                    <span key={`${part}-${index}`}>
+                                        {part}
+                                        {index < arr.length - 1 ? (
+                                            <>
+                                                <span className="hidden md:inline"><br /></span>
+                                                日本に関心を持つ海外ユーザーが集まっています。
+                                            </>
+                                        ) : null}
+                                    </span>
+                                ))}
                             </p>
                         </div>
                     </ScrollReveal>
@@ -225,11 +234,11 @@ export function SupportSection({ features, notes }: SupportSectionProps) {
                                         <div className="absolute inset-4 rounded-full border border-dashed border-amber-300/60" />
                                         <div className="relative z-10 flex h-full w-full items-center justify-center px-5 text-center">
                                             <div className="flex flex-col items-center gap-1">
-                                                <span className="text-sm md:text-base font-semibold text-gray-900 leading-tight tracking-[0.04em]">
+                                                <span className="text-sm md:text-base font-semibold text-gray-900 leading-tight tracking-[0.02em]">
                                                     {renderBadgeEmphasis(item.emphasis)}
                                                 </span>
                                                 {item.detail && (
-                                                    <span className="text-[11px] md:text-xs font-medium text-gray-dark leading-snug">
+                                                    <span className="text-xs md:text-sm font-semibold text-gray-dark leading-snug underline decoration-amber-300 decoration-2 underline-offset-4">
                                                         {item.detail}
                                                     </span>
                                                 )}
