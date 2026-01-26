@@ -58,7 +58,7 @@ export function CommonRecognitionSection() {
             const pinTrigger = ScrollTrigger.create({
                 trigger: section,
                 start: "top top",
-                end: "+=120%",
+                end: "+=180%",
                 pin: contentRef.current,
                 pinSpacing: true,
                 anticipatePin: 1,
