@@ -31,7 +31,7 @@ export function checkRateLimit(request: NextRequest): boolean {
     // 開発環境ではスキップ（任意）
     if (process.env.NODE_ENV === 'development') return true;
 
-    const ip = request.ip || request.headers.get('x-forwarded-for') || 'unknown';
+    const ip = getClientIp(request);
     const now = Date.now();
     const windowData = rateLimitMap.get(ip);
 
@@ -46,6 +46,18 @@ export function checkRateLimit(request: NextRequest): boolean {
 
     windowData.count += 1;
     return true;
+}
+
+function getClientIp(request: NextRequest): string {
+    const forwardedFor = request.headers.get('x-forwarded-for');
+    if (forwardedFor) {
+        return forwardedFor.split(',')[0]?.trim() || 'unknown';
+    }
+    const realIp = request.headers.get('x-real-ip');
+    if (realIp) return realIp;
+    const cfIp = request.headers.get('cf-connecting-ip');
+    if (cfIp) return cfIp;
+    return 'unknown';
 }
 
 /**

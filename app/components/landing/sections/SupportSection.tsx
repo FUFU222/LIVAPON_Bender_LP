@@ -91,6 +91,37 @@ const renderSupportDescription = (description: string) => {
     return description;
 };
 
+const renderFactText = (text: string) => {
+    const parts = text.split("Instagram");
+    if (parts.length === 1) return text;
+    return (
+        <>
+            {parts.map((part, index) => (
+                <span key={`${part}-${index}`}>
+                    {part}
+                    {index < parts.length - 1 ? (
+                        <a
+                            href="https://www.instagram.com/livapon_japan/"
+                            target="_blank"
+                            rel="noreferrer"
+                            className="inline-flex items-center gap-1.5 font-semibold text-accent underline decoration-accent/40 decoration-2 underline-offset-4 hover:opacity-80 transition-opacity"
+                        >
+                            <Image
+                                src="/insta-logo.png"
+                                alt="Instagram"
+                                width={16}
+                                height={16}
+                                className="h-4 w-4"
+                            />
+                            Instagram
+                        </a>
+                    ) : null}
+                </span>
+            ))}
+        </>
+    );
+};
+
 const renderBadgeEmphasis = (text: string) => {
     const highlightOk = (line: string) => {
         const parts = line.split("OK");
@@ -130,7 +161,7 @@ export function SupportSection({ features, notes }: SupportSectionProps) {
                         <h2 className="text-3xl md:text-5xl font-bold mb-4">
                             {notes.heading}
                         </h2>
-                        <p className="text-lg text-gray-dark leading-relaxed">
+                        <p className="text-xl md:text-2xl text-gray-dark leading-relaxed">
                             {renderSupportLead(notes.description)}
                         </p>
                     </div>
@@ -203,15 +234,11 @@ export function SupportSection({ features, notes }: SupportSectionProps) {
                         <div className="relative overflow-hidden rounded-3xl border border-gray-light/60 bg-white p-7 md:p-8 shadow-[0_18px_50px_rgba(0,0,0,0.1)]">
                             <div className="pointer-events-none absolute -top-16 -right-10 h-40 w-40 rounded-full bg-accent/10 blur-[60px]" />
                             <div className="pointer-events-none absolute left-0 top-0 h-full w-1 bg-accent/70" />
-                            <div className="flex items-center gap-3 mb-5">
-                                <span className="inline-flex items-center gap-2 rounded-full bg-accent/10 px-3 py-1 text-[10px] font-semibold tracking-[0.25em] text-accent">
-                                    LIVAPON INSIGHT
-                                </span>
-                            </div>
+                            <div className="mb-5" />
                             <p className="text-lg md:text-xl font-medium text-foreground leading-relaxed">
                                 {notes.fact.split("日本に関心を持つ海外ユーザーが集まっています。").map((part, index, arr) => (
                                     <span key={`${part}-${index}`}>
-                                        {part}
+                                        {renderFactText(part)}
                                         {index < arr.length - 1 ? (
                                             <>
                                                 <span className="hidden md:inline"><br /></span>

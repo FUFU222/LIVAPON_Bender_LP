@@ -32,7 +32,7 @@ export function IntroProblemsSection({ items }: IntroProblemsSectionProps) {
                             <br />
                             5つの理由
                         </h2>
-                        <p className="mt-4 text-lg text-gray-dark max-w-xl">
+                        <p className="mt-4 text-xl md:text-2xl text-gray-dark max-w-xl">
                             こんなお悩みありませんか？
                         </p>
                     </div>
