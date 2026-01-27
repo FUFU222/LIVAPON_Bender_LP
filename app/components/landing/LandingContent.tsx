@@ -156,13 +156,31 @@ export function LandingContent() {
 
             <section className="relative py-[20vh] bg-white">
                 <Container size="5xl" className="text-center">
-                    <BlurText
-                        text="すでに舞台は用意されています"
-                        delay={40}
-                        animateBy="letters"
-                        direction="top"
-                        className="text-3xl md:text-5xl lg:text-6xl font-semibold tracking-tight text-foreground text-center justify-center w-full"
-                    />
+                    <div className="flex flex-col items-center gap-2 md:hidden">
+                        <BlurText
+                            text="すでに舞台は"
+                            delay={40}
+                            animateBy="letters"
+                            direction="top"
+                            className="text-3xl font-semibold tracking-tight text-foreground text-center justify-center w-full"
+                        />
+                        <BlurText
+                            text="用意されています"
+                            delay={40}
+                            animateBy="letters"
+                            direction="top"
+                            className="text-3xl font-semibold tracking-tight text-foreground text-center justify-center w-full"
+                        />
+                    </div>
+                    <div className="hidden md:block">
+                        <BlurText
+                            text="すでに舞台は用意されています"
+                            delay={40}
+                            animateBy="letters"
+                            direction="top"
+                            className="text-3xl md:text-5xl lg:text-6xl font-semibold tracking-tight text-foreground text-center justify-center w-full"
+                        />
+                    </div>
                 </Container>
             </section>
 

@@ -52,14 +52,16 @@ export function OfficialSponsorSection({ sponsor }: OfficialSponsorSectionProps)
                         </ScrollReveal>
                         <ScrollReveal delay={0.1} y={20}>
                             <div className="flex flex-col items-center">
-                                <div className="relative h-[220px] w-[220px] md:h-[320px] md:w-[320px] lg:h-[400px] lg:w-[400px]">
-                                    <Image
-                                        src="/japan-festival-canada-logo.png"
-                                        alt="Japan Festival CANADA 公式ロゴ"
-                                        fill
-                                        sizes="(max-width: 1024px) 80vw, 45vw"
-                                        className="object-contain mix-blend-multiply scale-[1.0] md:scale-[1.08] lg:scale-[1.12] origin-center"
-                                    />
+                                <div className="rounded-3xl bg-white/95 border border-white/70 shadow-[0_18px_50px_rgba(0,0,0,0.12)] p-6 sm:p-8 md:p-10">
+                                    <div className="relative h-[220px] w-[220px] md:h-[320px] md:w-[320px] lg:h-[400px] lg:w-[400px]">
+                                        <Image
+                                            src="/japan-festival-canada-logo.png"
+                                            alt="Japan Festival CANADA 公式ロゴ"
+                                            fill
+                                            sizes="(max-width: 1024px) 80vw, 45vw"
+                                            className="object-contain mix-blend-multiply scale-[1.0] md:scale-[1.08] lg:scale-[1.12] origin-center"
+                                        />
+                                    </div>
                                 </div>
                             </div>
                         </ScrollReveal>

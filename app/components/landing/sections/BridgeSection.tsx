@@ -12,15 +12,24 @@ export function BridgeSection() {
                 <div className="absolute -bottom-20 left-6 h-56 w-56 rounded-full bg-gray-light/70 blur-[110px]" />
             </div>
             <Container size="5xl" className="relative">
-                <div className="grid grid-cols-1 lg:grid-cols-[1.1fr_0.9fr] items-center gap-10">
+                <div className="relative grid grid-cols-1 lg:grid-cols-[1.1fr_0.9fr] items-center gap-10">
                     <ScrollReveal delay={0} y={16}>
-                        <div className="max-w-xl text-center lg:text-left">
-                            <p className="text-lg md:text-xl text-gray-dark leading-relaxed">
-                                <span className="block text-2xl md:text-3xl font-semibold text-gray-900">
-                                    「いつか自分も…」と思った方へ。
-                                </span>
-                            </p>
-                            <p className="mt-6 text-lg md:text-xl text-gray-dark leading-relaxed">
+                        <div className="relative z-10 max-w-xl text-center lg:text-left">
+                            <div className="flex justify-center lg:justify-end">
+                                <div className="flex flex-row-reverse items-start gap-8 md:gap-12">
+                                    <span className="relative inline-block align-top px-2 md:px-3 text-4xl sm:text-5xl md:text-6xl lg:text-6xl font-bold tracking-[0.08em] text-white [writing-mode:vertical-rl] [text-orientation:mixed]">
+                                        <span className="relative z-10">いつか自分も</span>
+                                        <span
+                                            aria-hidden="true"
+                                            className="pointer-events-none absolute inset-0 bg-accent -z-[1]"
+                                        />
+                                    </span>
+                                    <span className="mt-20 text-4xl sm:text-5xl md:text-6xl lg:text-6xl font-bold text-gray-900 leading-none tracking-[0.08em] [writing-mode:vertical-rl] [text-orientation:mixed]">
+                                        と思った方へ
+                                    </span>
+                                </div>
+                            </div>
+                            <p className="mt-6 text-lg md:text-xl text-gray-dark leading-relaxed font-semibold">
                                 LIVAPONでは、
                                 <br />
                                 海外販売やライブコマースについて
@@ -29,20 +38,21 @@ export function BridgeSection() {
                             </p>
                         </div>
                     </ScrollReveal>
-                    <ScrollReveal delay={0.1} y={16}>
-                        <div className="mx-auto w-full max-w-sm">
-                            <div className="relative aspect-[4/5] w-full overflow-hidden rounded-3xl border border-gray-light/60 bg-gradient-to-b from-white via-white to-gray-light/40 p-6 shadow-[0_18px_50px_rgba(0,0,0,0.08)]">
+                    <ScrollReveal
+                        delay={0.1}
+                        y={16}
+                        className="absolute inset-0 z-0 flex items-center justify-center pointer-events-none lg:static lg:pointer-events-auto"
+                    >
+                        <div className="mx-auto w-[78vw] max-w-[360px] sm:max-w-[420px] md:w-[56vw] md:max-w-[460px] lg:w-full lg:max-w-md opacity-25 sm:opacity-35 md:opacity-45 lg:opacity-100">
+                            <div className="relative aspect-[4/5] w-full">
                                 <Image
                                     src="/bridge-image.png"
                                     alt="考える人物のイメージ"
                                     fill
                                     sizes="(max-width: 1024px) 90vw, 360px"
-                                    className="object-cover"
+                                    className="object-contain"
                                     priority
                                 />
-                                <div className="absolute inset-0 bg-gradient-to-b from-white/10 via-transparent to-white/40" />
-                                <div className="absolute -top-6 right-6 h-12 w-12 rounded-full border border-accent/30 bg-white/70 shadow-[0_8px_20px_rgba(188,0,45,0.15)]" />
-                                <div className="absolute bottom-6 left-6 h-10 w-10 rounded-full border border-gray-light/60 bg-white/80 shadow-[0_6px_16px_rgba(0,0,0,0.08)]" />
                             </div>
                         </div>
                     </ScrollReveal>
