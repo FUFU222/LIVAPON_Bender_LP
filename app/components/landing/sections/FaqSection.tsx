@@ -20,6 +20,19 @@ const defaultItems = Array.from({ length: 7 }, (_, index) => ({
     answer: "",
 }));
 
+const renderAnswer = (text: string) => {
+    const parts = text.split("**");
+    return parts.map((part, index) =>
+        index % 2 === 1 ? (
+            <strong key={`${part}-${index}`} className="font-semibold text-foreground">
+                {part}
+            </strong>
+        ) : (
+            <span key={`${part}-${index}`}>{part}</span>
+        )
+    );
+};
+
 const FaqItem = ({
     item,
     isOpen,
@@ -50,10 +63,10 @@ const FaqItem = ({
                 onClick={onToggle}
             >
                 <div className="flex items-center gap-4 min-h-[28px]">
-                    <span className="text-sm font-semibold tracking-[0.3em] text-gray-dark">
+                    <span className="text-base md:text-lg font-semibold tracking-[0.3em] text-gray-dark">
                         Q
                     </span>
-                    <span className="text-base text-foreground">
+                    <span className="text-lg md:text-xl text-foreground">
                         {item.question}
                     </span>
                 </div>
@@ -78,11 +91,13 @@ const FaqItem = ({
                 }}
             >
                 <div ref={contentRef} className="px-6 pt-4 pb-5">
-                    <span className="text-sm font-semibold tracking-[0.3em] text-accent">
-                        A
-                    </span>
-                    <div className="mt-2 text-sm text-gray-dark min-h-[28px]">
-                        {item.answer}
+                    <div className="flex items-start gap-4 min-h-[28px]">
+                        <span className="text-base md:text-lg font-semibold tracking-[0.3em] text-accent">
+                            A
+                        </span>
+                        <div className="text-base md:text-lg text-gray-dark leading-relaxed">
+                            {renderAnswer(item.answer)}
+                        </div>
                     </div>
                 </div>
             </div>

@@ -22,6 +22,7 @@ import {
     officialSponsor,
     liveHighlights,
     entryNotes,
+    faqItems,
 } from "./content";
 
 export function LandingContent() {
@@ -273,7 +274,7 @@ export function LandingContent() {
                 </Container>
             </section>
 
-            <FaqSection />
+            <FaqSection items={faqItems} />
 
             <section id="contact" className="relative py-24 md:py-32 bg-white overflow-hidden">
                 <div className="absolute inset-0 pointer-events-auto">

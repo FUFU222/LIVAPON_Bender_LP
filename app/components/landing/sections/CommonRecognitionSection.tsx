@@ -35,7 +35,6 @@ const introMobileLines = [
 
 export function CommonRecognitionSection() {
     const sectionRef = useRef<HTMLElement>(null);
-    const contentRef = useRef<HTMLDivElement>(null);
     const orbRef = useRef<HTMLDivElement>(null);
     const lineRef = useRef<HTMLDivElement>(null);
 
@@ -47,25 +46,12 @@ export function CommonRecognitionSection() {
         if (prefersReducedMotion) return;
 
         const tweens: gsap.core.Tween[] = [];
-        const triggers: ScrollTrigger[] = [];
         const baseTrigger = {
             trigger: section,
             start: "top bottom",
             end: "bottom top",
             scrub: true,
         };
-
-        if (contentRef.current) {
-            const pinTrigger = ScrollTrigger.create({
-                trigger: section,
-                start: "top top",
-                end: "+=180%",
-                pin: contentRef.current,
-                pinSpacing: true,
-                anticipatePin: 1,
-            });
-            triggers.push(pinTrigger);
-        }
 
         if (orbRef.current) {
             tweens.push(
@@ -89,7 +75,6 @@ export function CommonRecognitionSection() {
 
         return () => {
             tweens.forEach((tween) => tween.kill());
-            triggers.forEach((trigger) => trigger.kill());
         };
     }, []);
 
@@ -112,10 +97,7 @@ export function CommonRecognitionSection() {
                     className="absolute left-12 bottom-20 h-px w-48 bg-black/10"
                 />
             </div>
-            <div
-                ref={contentRef}
-                className="relative w-full min-h-screen flex items-center"
-            >
+            <div className="relative w-full min-h-screen flex items-center">
                 <Container size="5xl" className="w-full py-0 text-left md:text-center">
                     <ScrollReveal delay={0} y={16}>
                         <div>
