@@ -6,7 +6,7 @@ LIVAPON LPで実施したセキュリティ強化・アニメーション改善�
 ## 1. 実施内容（概要）
 
 ### セキュリティ
-- 管理者APIのAPIキー認証、入力バリデーション、HTMLエスケープ、レートリミット、エラーハンドリングを実装。
+- 入力バリデーション、HTMLエスケープ、レートリミット、エラーハンドリングを実装。
 - 詳細は `docs/security.md` に統合。
 
 ### アニメーション/表現
@@ -25,17 +25,9 @@ LIVAPON LPで実施したセキュリティ強化・アニメーション改善�
 - `lib/security.ts`
 - `lib/schemas.ts`
 - `app/api/inquiry/route.ts`
-- `app/api/bookings/route.ts`
-- `app/api/bookings/[id]/approve/route.ts`
-- `app/api/bookings/[id]/reject/route.ts`
-- `lib/notifications.ts`
 - `app/components/sections/DividerSection.tsx`
 - `app/components/canvas/Threads.tsx`
 
 ## 3. 今後の推奨事項
 
-- [ ] データベース導入による永続化（SupabaseやPostgreSQL等）
-- [ ] 管理画面の認証/認可設計（セッション/NextAuth等）
 - [ ] 本番監視（レートリミット・メール送信状況）の可視化
-
-> **重要**: `.env.local` に `ADMIN_API_KEY` を設定しない場合、管理APIは拒否されます。

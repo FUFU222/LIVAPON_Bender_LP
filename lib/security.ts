@@ -14,23 +14,14 @@ export function escapeHtml(str: string): string {
 }
 
 /**
- * 2. 管理者認証 (API Keyチェック)
+ * 1.5. ヘッダー用のサニタイズ（CRLFインジェクション対策）
  */
-export function verifyAdminAuth(request: NextRequest) {
-    const apiKey = request.headers.get('x-api-key');
-    const validApiKey = process.env.ADMIN_API_KEY;
-
-    if (!validApiKey) {
-        // 設定されていない場合はエラーを出す（セキュリティのためデフォルトは拒絶）
-        console.error('ADMIN_API_KEY is not set in environment variables');
-        return false;
-    }
-
-    return apiKey === validApiKey;
+export function sanitizeHeaderValue(str: string): string {
+    return str.replace(/[\r\n]+/g, ' ').trim();
 }
 
 /**
- * 3. 簡易インメモリ・レートリミット
+ * 2. 簡易インメモリ・レートリミット
  */
 const rateLimitMap = new Map<string, { count: number; lastReset: number }>();
 const WINDOW_SIZE = 60 * 60 * 1000; // 1時間
@@ -58,15 +49,8 @@ export function checkRateLimit(request: NextRequest): boolean {
 }
 
 /**
- * 4. セキュリティレスポンスユーティリティ
+ * 3. セキュリティレスポンスユーティリティ
  */
-export function unauthorizedResponse() {
-    return NextResponse.json(
-        { error: 'Unauthorized: Access denied', success: false },
-        { status: 401 }
-    );
-}
-
 export function rateLimitResponse() {
     return NextResponse.json(
         { error: 'Too many requests: Please try again later', success: false },

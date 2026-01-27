@@ -18,6 +18,11 @@
 
 ## 実績ログ
 
+### 2026-01-27: 予約機能の撤去と問い合わせに集約
+- 目的: 予約機能を廃止し、問い合わせ導線に集約するため関連ロジックとドキュメントを整理。
+- 実装内容: 予約/カレンダーAPI・管理画面・関連ユーティリティを削除し、問い合わせフォームのみを残す構成に更新。`docs/README.md`/`docs/security.md`/`docs/env-template.md`/`docs/walkthrough.md` を最新化。
+- 追加資料: `app/api/inquiry/route.ts`, `lib/schemas.ts`, `docs/README.md`, `docs/security.md`, `docs/env-template.md`, `docs/walkthrough.md`。
+
 ### 2026-01-23: Landing構成の参照統一
 - 目的: Landing ディレクトリ移行後の参照切れを解消し、ドキュメントの整合性を回復。
 - 実装内容: `LandingPage` に `LandingContent` を接続、`landing/sections` の `ui` 参照を更新。`design-overview.md`/`content-structure.md`/`official-sponsor.md`/`README.md` を Landing 構成に合わせて修正。

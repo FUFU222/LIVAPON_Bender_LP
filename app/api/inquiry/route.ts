@@ -3,6 +3,7 @@ import nodemailer from 'nodemailer';
 import { inquirySchema } from '@/lib/schemas';
 import {
   escapeHtml,
+  sanitizeHeaderValue,
   checkRateLimit,
   rateLimitResponse,
   badRequestResponse,
@@ -57,6 +58,9 @@ export async function POST(request: NextRequest) {
     const safeEmail = escapeHtml(data.email);
     const safeCategory = escapeHtml(data.category);
     const safeMessage = escapeHtml(data.message);
+    const safeCompanyHeader = sanitizeHeaderValue(data.company);
+    const safeNameHeader = sanitizeHeaderValue(data.name);
+    const safeEmailHeader = sanitizeHeaderValue(data.email);
 
     // SMTPが設定されている場合はメール送信
     if (process.env.SMTP_HOST && process.env.SMTP_USER) {
@@ -65,8 +69,8 @@ export async function POST(request: NextRequest) {
       await transporter.sendMail({
         from: `"LIVAPON LP" <${process.env.SMTP_USER}>`,
         to: adminEmail,
-        replyTo: data.email,
-        subject: `【お問い合わせ】${data.company} - ${data.name}様`,
+        replyTo: safeEmailHeader,
+        subject: `【お問い合わせ】${safeCompanyHeader} - ${safeNameHeader}様`,
         html: `
           <div style="font-family: sans-serif; max-width: 600px; margin: 0 auto;">
             <h2 style="color: #333; border-bottom: 2px solid #D63031; padding-bottom: 10px;">

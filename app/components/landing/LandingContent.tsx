@@ -29,6 +29,17 @@ import {
 export function LandingContent() {
     const freeBadgeVariant: "premium" | "stamp" | "chip" = "stamp";
 
+    const renderEmphasis = (text: string) =>
+        text.split(/\*\*(.+?)\*\*/g).map((part, index) =>
+            index % 2 === 1 ? (
+                <strong key={index} className="font-semibold text-current">
+                    {part}
+                </strong>
+            ) : (
+                part
+            )
+        );
+
     const renderFreeBadge = (variant: "premium" | "stamp" | "chip") => {
         switch (variant) {
             case "stamp":
@@ -236,7 +247,7 @@ export function LandingContent() {
                                             {item.title}
                                         </h3>
                                         <p className="mt-2 text-sm md:text-base text-gray-dark leading-relaxed transition-colors duration-300 group-hover:text-white/70">
-                                            {item.description}
+                                            {renderEmphasis(item.description)}
                                         </p>
                                     </div>
                                 </SpotlightCard>
@@ -288,14 +299,22 @@ export function LandingContent() {
                             <span className="text-gray-500 font-medium">開催日時：</span>
                             毎週水曜日 17:00〜18:00
                         </div>
-                        <a
-                            href="https://peatix.com/group/16512658/events"
-                            target="_blank"
-                            rel="noreferrer"
-                            className="mt-8 inline-flex w-full items-center justify-center rounded-full bg-accent px-6 py-3 text-sm font-semibold text-white shadow-[0_18px_40px_rgba(0,0,0,0.25)] transition-transform hover:-translate-y-0.5"
-                        >
-                            詳細・申し込みはこちら
-                        </a>
+                        <div className="mt-6 flex flex-col items-center">
+                            <p className="text-xs md:text-sm text-gray-dark/90 font-medium inline-flex items-center justify-center gap-1">
+                                <span className="h-px w-6 bg-gray-dark/60 rotate-[60deg]" aria-hidden="true" />
+                                1分程度で申込完了します
+                                <span className="h-px w-6 bg-gray-dark/60 -rotate-[60deg]" aria-hidden="true" />
+                            </p>
+                            <a
+                                href="https://peatix.com/group/16512658/events"
+                                target="_blank"
+                                rel="noreferrer"
+                                className="group relative mt-3 inline-flex items-center justify-center rounded-full bg-accent px-8 py-4 text-base font-semibold text-white shadow-[0_18px_40px_rgba(0,0,0,0.35)] transition-all duration-300 overflow-hidden hover:shadow-[0_22px_50px_rgba(0,0,0,0.45)] motion-safe:animate-[cta-float_3.6s_ease-in-out_infinite]"
+                            >
+                                <span className="absolute inset-0 bg-black scale-x-0 origin-left transition-transform duration-[350ms] ease-[cubic-bezier(0.85,0,0.15,1)] group-hover:scale-x-100" />
+                                <span className="relative z-10">詳細・申し込みはこちら</span>
+                            </a>
+                        </div>
                     </div>
                 </Container>
             </section>

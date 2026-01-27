@@ -104,28 +104,53 @@ export function CTAForm() {
                             </div>
                             <div>
                                 <label htmlFor="i-category" className="block text-sm font-medium mb-2">お問い合わせ種別 <span className="text-accent">*</span></label>
-                                <select
-                                    id="i-category"
-                                    required
-                                    value={inquiryData.category}
-                                    onChange={e => setInquiryData(prev => ({ ...prev, category: e.target.value }))}
-                                    className="w-full px-4 py-3 bg-white border border-gray-light rounded-lg focus:outline-none focus:ring-2 focus:ring-accent/30 focus:border-accent transition-colors"
-                                >
-                                    <option value="" disabled>選択してください</option>
-                                    {inquiryCategories.map((category) => (
-                                        <option key={category} value={category}>
-                                            {category}
-                                        </option>
-                                    ))}
-                                </select>
+                                <div className="relative">
+                                    <select
+                                        id="i-category"
+                                        required
+                                        value={inquiryData.category}
+                                        onChange={e => setInquiryData(prev => ({ ...prev, category: e.target.value }))}
+                                        className="w-full appearance-none px-4 py-3 pr-10 bg-white border border-gray-light rounded-lg focus:outline-none focus:ring-2 focus:ring-accent/30 focus:border-accent transition-colors"
+                                    >
+                                        <option value="" disabled>選択してください</option>
+                                        {inquiryCategories.map((category) => (
+                                            <option key={category} value={category}>
+                                                {category}
+                                            </option>
+                                        ))}
+                                    </select>
+                                    <span className="pointer-events-none absolute right-3 top-1/2 -translate-y-1/2 text-gray-dark/70">
+                                        <svg viewBox="0 0 24 24" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="2">
+                                            <path d="M6 9l6 6 6-6" />
+                                        </svg>
+                                    </span>
+                                </div>
                             </div>
                             <div>
                                 <label htmlFor="i-message" className="block text-sm font-medium mb-2">お問い合わせ内容 <span className="text-accent">*</span></label>
                                 <textarea id="i-message" required rows={5} placeholder="貴社の製品概要や課題をご記入ください。" value={inquiryData.message} onChange={e => setInquiryData(prev => ({ ...prev, message: e.target.value }))} className="w-full px-4 py-3 bg-white border border-gray-light rounded-lg focus:outline-none focus:ring-2 focus:ring-accent/30 focus:border-accent transition-colors resize-none" />
                             </div>
                             {submitError && <div className="p-4 bg-red-50 border border-red-200 rounded-lg text-red-700 text-sm">{submitError}</div>}
-                            <motion.button type="submit" disabled={isSubmitting} whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }} className="w-full py-4 px-8 bg-accent text-white font-bold text-lg rounded-lg hover:bg-accent/90 transition-colors disabled:opacity-70 disabled:cursor-not-allowed">
-                                {isSubmitting ? <span className="flex items-center justify-center gap-2"><svg className="animate-spin w-5 h-5" fill="none" viewBox="0 0 24 24"><circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" /><path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z" /></svg>送信中...</span> : "導入について相談する（無料）"}
+                            <motion.button
+                                type="submit"
+                                disabled={isSubmitting}
+                                whileTap={{ scale: 0.98 }}
+                                className="group relative inline-flex w-full items-center justify-center rounded-full bg-accent px-8 py-4 text-lg font-bold text-white shadow-[0_18px_40px_rgba(0,0,0,0.35)] transition-all duration-300 overflow-hidden hover:shadow-[0_22px_50px_rgba(0,0,0,0.45)] disabled:opacity-70 disabled:cursor-not-allowed"
+                            >
+                                <span className="absolute inset-0 bg-black scale-x-0 origin-left transition-transform duration-[350ms] ease-[cubic-bezier(0.85,0,0.15,1)] group-hover:scale-x-100" />
+                                <span className="relative z-10 flex items-center justify-center gap-2">
+                                    {isSubmitting ? (
+                                        <>
+                                            <svg className="animate-spin w-5 h-5" fill="none" viewBox="0 0 24 24">
+                                                <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
+                                                <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z" />
+                                            </svg>
+                                            送信中...
+                                        </>
+                                    ) : (
+                                        "導入について相談する（無料）"
+                                    )}
+                                </span>
                             </motion.button>
                         </motion.form>
                     )}
