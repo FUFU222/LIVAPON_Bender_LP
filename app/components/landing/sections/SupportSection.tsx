@@ -5,7 +5,6 @@ import { useRef } from "react";
 import Image from "next/image";
 import { motion, useInView } from "framer-motion";
 import { ScrollReveal } from "../../ui/ScrollReveal";
-import { CountUp } from "../../ui/CountUp";
 import { Container } from "../../ui/Container";
 
 type SupportFeature = {
@@ -91,63 +90,6 @@ const renderSupportDescription = (description: string) => {
     return description;
 };
 
-const renderFactText = (text: string) => {
-    const parts = text.split("Instagram");
-    if (parts.length === 1) return text;
-    return (
-        <>
-            {parts.map((part, index) => (
-                <span key={`${part}-${index}`}>
-                    {part}
-                    {index < parts.length - 1 ? (
-                        <a
-                            href="https://www.instagram.com/livapon_japan/"
-                            target="_blank"
-                            rel="noreferrer"
-                            className="inline-flex items-center gap-1.5 font-semibold text-accent underline decoration-accent/40 decoration-2 underline-offset-4 hover:opacity-80 transition-opacity"
-                        >
-                            <Image
-                                src="/insta-logo.png"
-                                alt="Instagram"
-                                width={16}
-                                height={16}
-                                className="h-4 w-4"
-                            />
-                            Instagram
-                        </a>
-                    ) : null}
-                </span>
-            ))}
-        </>
-    );
-};
-
-const renderBadgeEmphasis = (text: string) => {
-    const highlightOk = (line: string) => {
-        const parts = line.split("OK");
-        if (parts.length === 1) return line;
-        return (
-            <>
-                {parts[0]}
-                <span className="inline-block translate-y-[2px] px-0.5 text-xl md:text-2xl font-black leading-none align-baseline bg-gradient-to-r from-accent via-rose-400 to-amber-400 bg-clip-text text-transparent">
-                    OK
-                </span>
-                {parts.slice(1).join("OK")}
-            </>
-        );
-    };
-
-    return (
-        <>
-            {text.split("\n").map((line, index) => (
-                <span key={`${line}-${index}`} className="block whitespace-nowrap">
-                    {highlightOk(line)}
-                </span>
-            ))}
-        </>
-    );
-};
-
 export function SupportSection({ features, notes }: SupportSectionProps) {
     return (
         <section className="relative z-10 py-24 md:py-32 bg-gradient-to-b from-white via-white to-[#fbf2f2] md:-mt-[35vh]">
@@ -215,70 +157,121 @@ export function SupportSection({ features, notes }: SupportSectionProps) {
                 </div>
 
                 <ScrollReveal delay={0.05} y={20}>
-                    <div className="mt-12 text-center">
-                        <CountUp
-                            from={0}
-                            to={228}
-                            duration={0.5}
-                            separator=","
-                            className="text-[110px] md:text-[170px] lg:text-[220px] font-black text-accent block leading-none"
-                        />
-                        <p className="mt-2 text-lg md:text-2xl font-medium text-foreground">
-                            の国と地域へ配送可能
-                        </p>
-                    </div>
-                </ScrollReveal>
-
-                <div className="mt-10 grid grid-cols-1 md:grid-cols-[1.15fr_0.85fr] gap-6 items-start">
-                    <ScrollReveal delay={0.1} y={20}>
-                        <div className="relative overflow-hidden rounded-3xl border border-gray-light/60 bg-white p-7 md:p-8 shadow-[0_18px_50px_rgba(0,0,0,0.1)]">
-                            <div className="pointer-events-none absolute -top-16 -right-10 h-40 w-40 rounded-full bg-accent/10 blur-[60px]" />
-                            <div className="pointer-events-none absolute left-0 top-0 h-full w-1 bg-accent/70" />
-                            <div className="mb-5" />
-                            <p className="text-lg md:text-xl font-medium text-foreground leading-relaxed">
-                                {notes.fact.split("日本に関心を持つ海外ユーザーが集まっています。").map((part, index, arr) => (
-                                    <span key={`${part}-${index}`}>
-                                        {renderFactText(part)}
-                                        {index < arr.length - 1 ? (
-                                            <>
-                                                <span className="hidden md:inline"><br /></span>
-                                                日本に関心を持つ海外ユーザーが集まっています。
-                                            </>
-                                        ) : null}
-                                    </span>
-                                ))}
-                            </p>
-                        </div>
-                    </ScrollReveal>
-                    <ScrollReveal delay={0.2} y={20}>
-                        <div className="rounded-3xl border border-gray-light/60 bg-gray-light/20 p-7 md:p-8">
-                            <div className="flex flex-wrap gap-4 justify-center md:justify-start">
-                                {notes.note.map((item) => (
-                                    <div
-                                        key={item.emphasis}
-                                        className="relative h-36 w-36 md:h-40 md:w-40 rounded-full border border-amber-200/70 bg-gradient-to-br from-amber-50 via-white to-rose-100 shadow-[0_22px_50px_rgba(0,0,0,0.14)]"
-                                    >
-                                        <div className="absolute inset-0 rounded-full bg-[radial-gradient(circle_at_35%_35%,_rgba(255,255,255,0.95),_rgba(255,255,255,0.2)_60%,_rgba(193,39,45,0.08)_100%)]" />
-                                        <div className="absolute inset-3 rounded-full border border-amber-300/60 bg-white/85" />
-                                        <div className="absolute inset-4 rounded-full border border-dashed border-amber-300/60" />
-                                        <div className="relative z-10 flex h-full w-full items-center justify-center px-5 text-center">
-                                            <div className="flex flex-col items-center gap-1">
-                                                <span className="text-sm md:text-base font-semibold text-gray-900 leading-tight tracking-[0.02em]">
-                                                    {renderBadgeEmphasis(item.emphasis)}
-                                                </span>
-                                                {item.detail && (
-                                                    <span className="text-xs md:text-sm font-semibold text-gray-dark leading-snug underline decoration-amber-300 decoration-2 underline-offset-4">
-                                                        {item.detail}
-                                                    </span>
-                                                )}
-                                            </div>
-                                        </div>
-                                    </div>
-                                ))}
+                    <div className="mt-14 grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-6 auto-rows-[140px] md:auto-rows-[160px] gap-4 md:gap-5">
+                        <div className="col-span-2 sm:col-span-4 lg:col-span-3 row-span-2 rounded-3xl border border-gray-light/60 bg-white p-6 md:p-7 shadow-[0_18px_50px_rgba(0,0,0,0.1)] flex flex-col justify-between">
+                            <div className="text-xs font-semibold tracking-[0.3em] text-gray-dark/60">core</div>
+                            <div>
+                                <h3 className="text-xl md:text-2xl font-semibold text-foreground">
+                                    国内配送の感覚で扱える
+                                </h3>
+                                <p className="mt-3 text-sm md:text-base text-gray-dark leading-relaxed">
+                                    越境可能商品であれば、国内配送と同じ業務感覚で扱えます。
+                                    海外向けでも判断軸やフローは増やしません。
+                                </p>
                             </div>
                         </div>
-                    </ScrollReveal>
-                </div>
+
+                        <div className="col-span-2 sm:col-span-2 lg:col-span-2 row-span-2 rounded-3xl border border-gray-light/60 bg-white/90 p-6 shadow-[0_18px_50px_rgba(0,0,0,0.08)] flex items-center justify-center">
+                            <div className="text-xs font-semibold tracking-[0.4em] text-gray-dark/60">icon</div>
+                        </div>
+
+                        <div className="col-span-1 sm:col-span-2 lg:col-span-1 rounded-2xl border border-gray-light/60 bg-white p-4 md:p-5 shadow-[0_14px_40px_rgba(0,0,0,0.08)]">
+                            <div className="mb-3 h-8 w-8 rounded-full border border-gray-light/60 text-[10px] text-gray-dark/60 flex items-center justify-center">
+                                icon
+                            </div>
+                            <h4 className="text-sm md:text-base font-semibold text-foreground">発送フロー構築不要</h4>
+                            <p className="mt-2 text-xs md:text-sm text-gray-dark">
+                                越境ECの発送設計は不要。
+                            </p>
+                        </div>
+
+                        <div className="col-span-1 sm:col-span-2 lg:col-span-1 rounded-2xl border border-gray-light/60 bg-white p-4 md:p-5 shadow-[0_14px_40px_rgba(0,0,0,0.08)]">
+                            <div className="mb-3 h-8 w-8 rounded-full border border-gray-light/60 text-[10px] text-gray-dark/60 flex items-center justify-center">
+                                icon
+                            </div>
+                            <h4 className="text-sm md:text-base font-semibold text-foreground">国別の出品可否を事前確認</h4>
+                            <p className="mt-2 text-xs md:text-sm text-gray-dark">
+                                販売後のストップを回避。
+                            </p>
+                        </div>
+
+                        <div className="col-span-2 sm:col-span-2 lg:col-span-2 rounded-3xl border border-gray-light/60 bg-white p-5 md:p-6 shadow-[0_16px_45px_rgba(0,0,0,0.08)] flex flex-col justify-between">
+                            <div className="text-xs font-semibold tracking-[0.25em] text-gray-dark/60">start</div>
+                            <div>
+                                <h4 className="text-base md:text-lg font-semibold text-foreground">登録だけで海外販売開始</h4>
+                                <p className="mt-2 text-sm text-gray-dark">
+                                    商品登録のみで海外販売がスタート。
+                                </p>
+                            </div>
+                        </div>
+
+                        <div className="col-span-1 rounded-2xl border border-gray-light/60 bg-white p-4 shadow-[0_12px_36px_rgba(0,0,0,0.08)]">
+                            <h4 className="text-sm font-semibold text-foreground">初期費用なし</h4>
+                            <p className="mt-2 text-xs text-gray-dark">コストゼロで試せる</p>
+                        </div>
+
+                        <div className="col-span-1 rounded-2xl border border-gray-light/60 bg-white p-4 shadow-[0_12px_36px_rgba(0,0,0,0.08)]">
+                            <h4 className="text-sm font-semibold text-foreground">ライブ不要</h4>
+                            <p className="mt-2 text-xs text-gray-dark">EC掲載のみでOK</p>
+                        </div>
+
+                        <div className="col-span-1 rounded-2xl border border-gray-light/60 bg-white p-4 shadow-[0_12px_36px_rgba(0,0,0,0.08)]">
+                            <h4 className="text-sm font-semibold text-foreground">専門知識不要</h4>
+                            <p className="mt-2 text-xs text-gray-dark">越境ECの知識不要</p>
+                        </div>
+
+                        <div className="col-span-1 rounded-2xl border border-gray-light/60 bg-white p-4 shadow-[0_12px_36px_rgba(0,0,0,0.08)]">
+                            <div className="mb-3 h-8 w-8 rounded-full border border-gray-light/60 text-[10px] text-gray-dark/60 flex items-center justify-center">
+                                icon
+                            </div>
+                            <h4 className="text-sm font-semibold text-foreground">禁制品・規制品チェック</h4>
+                        </div>
+
+                        <div className="col-span-1 rounded-2xl border border-gray-light/60 bg-white p-4 shadow-[0_12px_36px_rgba(0,0,0,0.08)] flex flex-col justify-between">
+                            <div className="mb-2 h-8 w-8 rounded-full border border-gray-light/60 text-[10px] text-gray-dark/60 flex items-center justify-center">
+                                icon
+                            </div>
+                            <div>
+                                <div className="text-2xl font-bold text-accent leading-none">228</div>
+                                <p className="mt-1 text-xs text-gray-dark">の国と地域へ配送</p>
+                            </div>
+                        </div>
+
+                        <div className="col-span-2 sm:col-span-2 lg:col-span-2 rounded-3xl border border-gray-light/60 bg-white p-5 md:p-6 shadow-[0_16px_45px_rgba(0,0,0,0.08)]">
+                            <h4 className="text-base md:text-lg font-semibold text-foreground">本格展開前に反応確認</h4>
+                            <p className="mt-2 text-sm text-gray-dark">
+                                いきなり海外展開を背負わずに検証できます。
+                            </p>
+                        </div>
+
+                        <div className="col-span-2 sm:col-span-2 lg:col-span-2 rounded-3xl border border-gray-light/60 bg-white p-5 md:p-6 shadow-[0_16px_45px_rgba(0,0,0,0.08)]">
+                            <h4 className="text-base md:text-lg font-semibold text-foreground">少量からテスト可能</h4>
+                            <p className="mt-2 text-sm text-gray-dark">
+                                在庫・ブランドのリスクを抑えられます。
+                            </p>
+                        </div>
+
+                        <div className="col-span-2 sm:col-span-2 lg:col-span-2 rounded-3xl border border-gray-light/60 bg-white p-5 md:p-6 shadow-[0_16px_45px_rgba(0,0,0,0.08)]">
+                            <div className="mb-3 h-8 w-8 rounded-full border border-gray-light/60 text-[10px] text-gray-dark/60 flex items-center justify-center">
+                                icon
+                            </div>
+                            <h4 className="text-base md:text-lg font-semibold text-foreground">
+                                日本に関心のある海外ユーザーが既に存在
+                            </h4>
+                            <p className="mt-2 text-sm text-gray-dark">
+                                集客をゼロから設計する必要はありません。
+                            </p>
+                            <a
+                                href="https://www.instagram.com/livapon_japan/"
+                                target="_blank"
+                                rel="noreferrer"
+                                className="mt-3 inline-flex items-center text-sm font-semibold text-accent underline decoration-accent/40 decoration-2 underline-offset-4 hover:opacity-80 transition-opacity"
+                            >
+                                instagram
+                            </a>
+                        </div>
+                    </div>
+                </ScrollReveal>
             </Container>
         </section>
     );

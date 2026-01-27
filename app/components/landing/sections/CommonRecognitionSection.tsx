@@ -1,10 +1,11 @@
 "use client";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import ScrollFloat from "../../ui/ScrollFloat";
 import { ScrollReveal } from "../../ui/ScrollReveal";
 import { Container } from "../../ui/Container";
+import MetaBalls from "../../ui/MetaBalls";
 
 if (typeof window !== "undefined") {
     gsap.registerPlugin(ScrollTrigger);
@@ -37,6 +38,17 @@ export function CommonRecognitionSection() {
     const sectionRef = useRef<HTMLElement>(null);
     const orbRef = useRef<HTMLDivElement>(null);
     const lineRef = useRef<HTMLDivElement>(null);
+    const [isMobile, setIsMobile] = useState(false);
+
+    useEffect(() => {
+        const mediaQuery = window.matchMedia("(max-width: 767px)");
+        const updateIsMobile = () => setIsMobile(mediaQuery.matches);
+        updateIsMobile();
+        mediaQuery.addEventListener("change", updateIsMobile);
+        return () => {
+            mediaQuery.removeEventListener("change", updateIsMobile);
+        };
+    }, []);
 
     useEffect(() => {
         const section = sectionRef.current;
@@ -83,6 +95,22 @@ export function CommonRecognitionSection() {
             ref={sectionRef}
             className="relative min-h-[70vh] md:min-h-[140vh] bg-gradient-to-b from-white via-white to-[#fbf2f2] md:overflow-hidden"
         >
+            <div className="absolute inset-0 z-0">
+                <MetaBalls
+                    className="absolute inset-0 opacity-35"
+                    color="#d7d9de"
+                    cursorBallColor="#f3f4f6"
+                    cursorBallSize={2}
+                    ballCount={14}
+                    animationSize={42}
+                    enableMouseInteraction={false}
+                    enableTransparency
+                    hoverSmoothness={0.12}
+                    clumpFactor={0.65}
+                    speed={0.28}
+                    centerOffsetY={isMobile ? 0.0 : 0.16}
+                />
+            </div>
             <div className="absolute inset-0 pointer-events-none">
                 <div className="absolute -top-24 -right-24 h-64 w-64 rounded-full bg-accent/10 blur-[90px]" />
                 <div className="absolute -bottom-24 -left-24 h-64 w-64 rounded-full bg-[#f8e7e8] blur-[100px]" />
@@ -97,7 +125,7 @@ export function CommonRecognitionSection() {
                     className="absolute left-12 bottom-20 h-px w-48 bg-black/10"
                 />
             </div>
-            <div className="relative w-full min-h-screen flex items-center">
+            <div className="relative z-10 w-full min-h-screen flex items-center">
                 <Container size="5xl" className="w-full py-0 text-left md:text-center">
                     <ScrollReveal delay={0} y={16}>
                         <div>
