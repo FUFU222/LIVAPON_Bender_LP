@@ -148,7 +148,7 @@ export function CTAForm() {
                                             送信中...
                                         </>
                                     ) : (
-                                        "導入について相談する（無料）"
+                                        "送信して相談する"
                                     )}
                                 </span>
                             </motion.button>

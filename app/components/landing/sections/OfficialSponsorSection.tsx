@@ -7,7 +7,6 @@ type OfficialSponsor = {
     badge: string;
     title: string;
     lead: string;
-    logoCaption: string;
 };
 
 interface OfficialSponsorSectionProps {
@@ -62,9 +61,6 @@ export function OfficialSponsorSection({ sponsor }: OfficialSponsorSectionProps)
                                         className="object-contain mix-blend-multiply scale-[1.0] md:scale-[1.08] lg:scale-[1.12] origin-center"
                                     />
                                 </div>
-                                <p className="mt-3 text-xs md:text-sm tracking-[0.2em] text-gray-dark">
-                                    {sponsor.logoCaption}
-                                </p>
                             </div>
                         </ScrollReveal>
                     </div>
