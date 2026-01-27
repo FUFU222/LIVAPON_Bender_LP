@@ -8,6 +8,7 @@ import { ShinyText } from "../ui/ShinyText";
 import RotatingText from "../ui/RotatingText";
 import BlurText from "../ui/BlurText";
 import { Container } from "../ui/Container";
+import SpotlightCard from "../ui/SpotlightCard";
 import { CTAForm } from "../forms/CTAForm";
 import { CommonRecognitionSection } from "./sections/CommonRecognitionSection";
 import { IntroProblemsSection } from "./sections/IntroProblemsSection";
@@ -182,38 +183,60 @@ export function LandingContent() {
                     </ScrollReveal>
 
                     <ScrollReveal delay={0.3} y={20}>
-                        <p className="text-lg md:text-xl text-gray-dark max-w-3xl mx-auto text-center leading-relaxed mb-12">
-                            ライブの熱量だけが、静かな世界を動かす。
+                        <p className="text-xl md:text-2xl text-gray-dark max-w-3xl mx-auto text-center leading-relaxed font-semibold mb-12">
+                            世界ではすでに、<br className="md:hidden" />
+                            ライブが「売れる場所」になっています。
                         </p>
                     </ScrollReveal>
 
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                         {liveHighlights.map((item, index) => (
                             <ScrollReveal key={item.title} delay={0.2 + index * 0.08} y={24}>
-                                <div className="rounded-3xl border border-gray-light/60 p-6 bg-white shadow-[0_20px_70px_rgba(0,0,0,0.14)]">
-                                    <div className="relative aspect-[4/3] w-full overflow-hidden rounded-2xl bg-gray-light/30">
-                                        {item.image ? (
-                                            <Image
-                                                src={item.image}
-                                                alt={item.title}
-                                                fill
-                                                sizes="(max-width: 1024px) 100vw, 33vw"
-                                                className="object-cover"
-                                            />
-                                        ) : (
-                                            <div className="absolute inset-0 bg-[linear-gradient(135deg,rgba(15,23,42,0.08),rgba(193,39,45,0.08))]">
-                                                <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,_rgba(255,255,255,0.6),_transparent_55%)]" />
-                                                <div className="absolute bottom-4 right-4 text-[10px] font-semibold tracking-[0.3em] text-gray-dark/70">
-                                                    IMAGE
+                                <SpotlightCard className="group rounded-3xl border border-gray-light/60 p-6 pt-16 bg-white text-foreground shadow-[0_20px_70px_rgba(0,0,0,0.14)] transition-all duration-300 hover:-translate-y-1 hover:scale-[1.01] hover:border-white/20 hover:shadow-[0_35px_90px_rgba(129,26,34,0.45)]">
+                                    <div
+                                        className="pointer-events-none absolute inset-0 z-0 rounded-3xl opacity-0 transition-opacity duration-500 ease-out group-hover:opacity-100"
+                                        style={{
+                                            background:
+                                                "linear-gradient(135deg, #8f1d26 0%, #b42330 60%, #8f1d26 100%)",
+                                        }}
+                                    />
+                                    <div className="relative z-20">
+                                        <div className="absolute left-6 top-5 text-4xl md:text-5xl font-black tracking-tight text-accent/90 drop-shadow-sm transition-colors duration-300 group-hover:text-white/90">
+                                            {String(index + 1).padStart(2, "0")}
+                                        </div>
+                                        <div className="mt-2 flex flex-wrap justify-end gap-2 text-xs font-semibold text-gray-dark transition-colors duration-300 group-hover:text-white/80">
+                                            {item.tags?.map((tag) => (
+                                                <span
+                                                    key={tag}
+                                                    className="rounded-full border border-gray-light/70 bg-gray-light/70 px-2.5 py-1 tracking-wide text-gray-dark transition-colors duration-300 group-hover:border-white/20 group-hover:bg-white/10 group-hover:text-white/85"
+                                                >
+                                                    #{tag}
+                                                </span>
+                                            ))}
+                                        </div>
+                                        <div className="relative mt-4 aspect-[4/3] w-full overflow-hidden rounded-2xl bg-gray-light/30 transition-colors duration-300 group-hover:bg-white/5">
+                                            {item.image ? (
+                                                <Image
+                                                    src={item.image}
+                                                    alt={item.title}
+                                                    fill
+                                                    sizes="(max-width: 1024px) 100vw, 33vw"
+                                                    className="object-cover"
+                                                />
+                                            ) : (
+                                                <div className="absolute inset-0 bg-[linear-gradient(135deg,rgba(15,23,42,0.08),rgba(193,39,45,0.08))] transition-colors duration-300 group-hover:bg-[linear-gradient(135deg,rgba(255,255,255,0.08),rgba(255,255,255,0.02))]">
+                                                    <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,_rgba(255,255,255,0.6),_transparent_55%)] transition-colors duration-300 group-hover:bg-[radial-gradient(circle_at_top,_rgba(255,255,255,0.4),_transparent_60%)]" />
+                                                    <div className="absolute bottom-4 right-4 text-[10px] font-semibold tracking-[0.3em] text-gray-dark/70 transition-colors duration-300 group-hover:text-white/50">
+                                                        IMAGE
+                                                    </div>
                                                 </div>
-                                            </div>
-                                        )}
+                                            )}
+                                        </div>
+                                        <p className="mt-2 text-sm md:text-base text-gray-dark leading-relaxed transition-colors duration-300 group-hover:text-white/70">
+                                            {item.description}
+                                        </p>
                                     </div>
-                                    <h3 className="mt-5 text-lg md:text-xl font-semibold">{item.title}</h3>
-                                    <p className="mt-2 text-sm md:text-base text-gray-dark leading-relaxed">
-                                        {item.description}
-                                    </p>
-                                </div>
+                                </SpotlightCard>
                             </ScrollReveal>
                         ))}
                     </div>
