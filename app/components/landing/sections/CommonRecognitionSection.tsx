@@ -4,6 +4,7 @@ import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import ScrollFloat from "../../ui/ScrollFloat";
 import { ScrollReveal } from "../../ui/ScrollReveal";
+import { Container } from "../../ui/Container";
 
 if (typeof window !== "undefined") {
     gsap.registerPlugin(ScrollTrigger);
@@ -115,7 +116,7 @@ export function CommonRecognitionSection() {
                 ref={contentRef}
                 className="relative w-full min-h-screen flex items-center"
             >
-                <div className="max-w-5xl mx-auto px-6 w-full py-0 text-left md:text-center">
+                <Container size="5xl" className="w-full py-0 text-left md:text-center">
                     <ScrollReveal delay={0} y={16}>
                         <div>
                             <div className="md:hidden space-y-0 text-left">
@@ -197,7 +198,7 @@ export function CommonRecognitionSection() {
                             </div>
                         </div>
                     </ScrollReveal>
-                </div>
+                </Container>
             </div>
         </section>
     );

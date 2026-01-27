@@ -71,8 +71,12 @@ export function DividerSection({ children, className = "" }: DividerSectionProps
     }, [scrollYProgress]);
 
     // ロゴは早めに出し、終盤でフェードアウトしてズームの粗さを隠す
-    const scale = useTransform(scrollYProgress, [0.16, 0.46, 0.82, 1], [1.02, 1.85, 4.6, 6]);
-    const opacity = useTransform(scrollYProgress, [0, 0.28, 0.8, 0.94, 1], [0, 1, 1, 0, 0]);
+    const scale = useTransform(scrollYProgress, [0.16, 0.3, 0.44, 0.55], [1.02, 1.85, 4.6, 6]);
+    const opacity = useTransform(
+        scrollYProgress,
+        [0, 0.08, 0.22, 0.4, 0.58, 0.7, 1],
+        [0, 0.05, 0.25, 1, 1, 0, 0]
+    );
     const contentOpacity = useTransform(scrollYProgress, [0.35, 0.55, 1], [0, 1, 1]);
     const contentScale = useTransform(scrollYProgress, [0.35, 0.55, 1], [0.98, 1, 1]);
 

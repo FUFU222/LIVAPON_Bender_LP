@@ -6,6 +6,7 @@ import Image from "next/image";
 import { motion, useInView } from "framer-motion";
 import { ScrollReveal } from "../../ui/ScrollReveal";
 import { CountUp } from "../../ui/CountUp";
+import { Container } from "../../ui/Container";
 
 type SupportFeature = {
     title: string;
@@ -123,7 +124,7 @@ export function SupportSection({ features, notes }: SupportSectionProps) {
                 <div className="absolute -top-20 right-8 h-52 w-52 rounded-full bg-accent/10 blur-[90px]" />
                 <div className="absolute left-10 bottom-10 h-px w-[70%] bg-black/10" />
             </div>
-            <div className="relative max-w-6xl mx-auto px-6">
+            <Container size="6xl" className="relative">
                 <ScrollReveal delay={0} y={20}>
                     <div className="max-w-3xl">
                         <h2 className="text-3xl md:text-5xl font-bold mb-4">
@@ -157,8 +158,9 @@ export function SupportSection({ features, notes }: SupportSectionProps) {
                                     }`}
                                 />
                                 <div className="absolute inset-0">
-                                    <div
-                                        className={`h-full max-w-6xl mx-auto px-6 flex items-center ${
+                                    <Container
+                                        size="6xl"
+                                        className={`h-full flex items-center ${
                                             index % 2 === 1 ? "justify-end" : "justify-start"
                                         } lg:pt-[250px]`}
                                     >
@@ -174,7 +176,7 @@ export function SupportSection({ features, notes }: SupportSectionProps) {
                                                 </p>
                                             </CurtainReveal>
                                         </div>
-                                    </div>
+                                    </Container>
                                 </div>
                             </div>
                         </div>
@@ -250,7 +252,7 @@ export function SupportSection({ features, notes }: SupportSectionProps) {
                         </div>
                     </ScrollReveal>
                 </div>
-            </div>
+            </Container>
         </section>
     );
 }

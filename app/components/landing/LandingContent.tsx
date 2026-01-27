@@ -7,8 +7,8 @@ import { SplitText } from "../ui/SplitText";
 import { ShinyText } from "../ui/ShinyText";
 import RotatingText from "../ui/RotatingText";
 import BlurText from "../ui/BlurText";
+import { Container } from "../ui/Container";
 import { CTAForm } from "../forms/CTAForm";
-import { DividerSection } from "../sections/DividerSection";
 import { CommonRecognitionSection } from "./sections/CommonRecognitionSection";
 import { IntroProblemsSection } from "./sections/IntroProblemsSection";
 import { SupportSection } from "./sections/SupportSection";
@@ -141,7 +141,7 @@ export function LandingContent() {
             <SupportSection features={supportFeatures} notes={supportNotes} />
 
             <section className="relative py-[20vh] bg-white">
-                <div className="max-w-5xl mx-auto px-6 text-center">
+                <Container size="5xl" className="text-center">
                     <BlurText
                         text="すでに舞台は用意されています"
                         delay={40}
@@ -149,13 +149,13 @@ export function LandingContent() {
                         direction="top"
                         className="text-3xl md:text-5xl lg:text-6xl font-semibold tracking-tight text-foreground text-center justify-center w-full"
                     />
-                </div>
+                </Container>
             </section>
 
             <OfficialSponsorSection sponsor={officialSponsor} />
 
             <section className="relative py-24 md:py-32 bg-white overflow-hidden">
-                <div className="max-w-6xl mx-auto px-6">
+                <Container size="6xl">
                     <ScrollReveal delay={0} y={24}>
                         <div className="grid grid-cols-1 md:grid-cols-[45%_55%] items-center gap-6 mb-12">
                             <div className="text-center md:text-right">
@@ -216,15 +216,27 @@ export function LandingContent() {
                             </ScrollReveal>
                         ))}
                     </div>
-                </div>
+                </Container>
             </section>
 
-            <DividerSection className="bg-gradient-to-b from-white via-white to-gray-light/50">
+            <section className="relative py-16 md:py-20 bg-white">
+                <Container size="4xl" className="flex items-center justify-center">
+                    <Image
+                        src="/livapon_logo.png"
+                        alt="LIVAPON"
+                        width={320}
+                        height={320}
+                        className="h-auto w-48 md:w-64"
+                    />
+                </Container>
+            </section>
+
+            <section className="relative py-24 md:py-32 bg-gradient-to-b from-white via-white to-gray-light/50">
                 <div className="absolute inset-0 pointer-events-none">
                     <div className="absolute -top-16 right-6 h-56 w-56 rounded-full bg-accent/10 blur-[90px]" />
                     <div className="absolute -bottom-16 -left-10 h-64 w-64 rounded-full bg-[#f6dede] blur-[110px]" />
                 </div>
-                <div className="relative max-w-6xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                <Container size="6xl" className="relative grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
                     <div className="relative aspect-[4/3] w-full overflow-hidden rounded-3xl bg-transparent">
                         <Image
                             src="/livapon-webinar.png"
@@ -258,8 +270,8 @@ export function LandingContent() {
                             詳細・申し込みはこちら
                         </a>
                     </div>
-                </div>
-            </DividerSection>
+                </Container>
+            </section>
 
             <FaqSection />
 
@@ -267,7 +279,7 @@ export function LandingContent() {
                 <div className="absolute inset-0 pointer-events-auto">
                     <WaterRipple baseOpacity={0.1} />
                 </div>
-                <div className="relative z-10 max-w-4xl mx-auto px-6">
+                <Container size="4xl" className="relative z-10">
                     <ScrollReveal delay={0} y={0} duration={1}>
                         <div className="text-center mb-10">
                             <h2 className="text-3xl md:text-5xl font-bold mb-5">
@@ -295,7 +307,7 @@ export function LandingContent() {
                         </div>
                     ) : null}
                     <CTAForm />
-                </div>
+                </Container>
             </section>
         </div>
     );

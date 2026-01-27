@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import { ScrollReveal } from "../../ui/ScrollReveal";
+import { Container } from "../../ui/Container";
 
 type IntroItem = {
     title: string;
@@ -23,7 +24,7 @@ export function IntroProblemsSection({ items }: IntroProblemsSectionProps) {
                 <div className="absolute left-8 top-8 h-2 w-2 rounded-full border border-black/20" />
                 <div className="absolute right-8 bottom-8 h-2 w-2 rounded-full border border-black/20" />
             </div>
-            <div className="max-w-6xl mx-auto px-6">
+            <Container size="6xl">
                 <ScrollReveal delay={0} y={20}>
                     <div className="mb-10">
                         <h2 className="text-3xl md:text-5xl font-bold">
@@ -87,7 +88,7 @@ export function IntroProblemsSection({ items }: IntroProblemsSectionProps) {
                         })}
                     </div>
                 </ScrollReveal>
-            </div>
+            </Container>
         </section>
     );
 }

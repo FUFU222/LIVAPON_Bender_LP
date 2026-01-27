@@ -1,6 +1,7 @@
 "use client";
 import Image from "next/image";
 import { ScrollReveal } from "../../ui/ScrollReveal";
+import { Container } from "../../ui/Container";
 
 type OfficialSponsor = {
     badge: string;
@@ -34,7 +35,7 @@ export function OfficialSponsorSection({ sponsor }: OfficialSponsorSectionProps)
                     <div className="absolute inset-x-10 top-10 h-px bg-black/10" />
                     <div className="absolute inset-x-10 bottom-10 h-px bg-black/10" />
                 </div>
-                <div className="relative max-w-6xl mx-auto px-6">
+                <Container size="6xl" className="relative">
                     <div className="grid grid-cols-1 lg:grid-cols-[1.1fr_0.9fr] gap-10 items-center">
                         <ScrollReveal delay={0} y={20}>
                             <div className="relative z-10 text-white">
@@ -67,7 +68,7 @@ export function OfficialSponsorSection({ sponsor }: OfficialSponsorSectionProps)
                             </div>
                         </ScrollReveal>
                     </div>
-                </div>
+                </Container>
             </div>
         </section>
     );
