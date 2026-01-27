@@ -7,6 +7,17 @@ export const inquirySchema = z.object({
     company: z.string().min(1, '会社名は必須です').max(100, '会社名が長すぎます'),
     name: z.string().min(1, 'お名前は必須です').max(50, 'お名前が長すぎます'),
     email: z.string().email('無効なメールアドレスです').max(100, 'メールアドレスが長すぎます'),
+    category: z.enum([
+        '導入相談',
+        '出店/掲載について',
+        'Japan Festival CANADA について',
+        '連携/協業',
+        'メディア/取材',
+        'その他',
+    ], {
+        required_error: 'お問い合わせ種別を選択してください',
+        invalid_type_error: 'お問い合わせ種別を選択してください',
+    }),
     message: z.string().min(1, 'お問い合わせ内容は必須です').max(2000, 'お問い合わせ内容は2000文字以内で入力してください'),
 });
 

@@ -216,13 +216,13 @@ export function LandingContent() {
                                         </div>
                                         <div className="relative mt-4 aspect-[4/3] w-full overflow-hidden rounded-2xl bg-gray-light/30 transition-colors duration-300 group-hover:bg-white/5">
                                             {item.image ? (
-                                                <Image
-                                                    src={item.image}
-                                                    alt={item.title}
-                                                    fill
-                                                    sizes="(max-width: 1024px) 100vw, 33vw"
-                                                    className="object-cover"
-                                                />
+                                            <Image
+                                                src={item.image}
+                                                alt={item.title}
+                                                fill
+                                                sizes="(max-width: 1024px) 100vw, 33vw"
+                                                className="object-cover"
+                                            />
                                             ) : (
                                                 <div className="absolute inset-0 bg-[linear-gradient(135deg,rgba(15,23,42,0.08),rgba(193,39,45,0.08))] transition-colors duration-300 group-hover:bg-[linear-gradient(135deg,rgba(255,255,255,0.08),rgba(255,255,255,0.02))]">
                                                     <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,_rgba(255,255,255,0.6),_transparent_55%)] transition-colors duration-300 group-hover:bg-[radial-gradient(circle_at_top,_rgba(255,255,255,0.4),_transparent_60%)]" />
@@ -232,6 +232,9 @@ export function LandingContent() {
                                                 </div>
                                             )}
                                         </div>
+                                        <h3 className="mt-8 text-lg md:text-xl font-semibold transition-colors duration-300 group-hover:text-white">
+                                            {item.title}
+                                        </h3>
                                         <p className="mt-2 text-sm md:text-base text-gray-dark leading-relaxed transition-colors duration-300 group-hover:text-white/70">
                                             {item.description}
                                         </p>
@@ -248,9 +251,9 @@ export function LandingContent() {
                     <Image
                         src="/livapon_logo.png"
                         alt="LIVAPON"
-                        width={320}
-                        height={320}
-                        className="h-auto w-48 md:w-64"
+                        width={720}
+                        height={720}
+                        className="h-auto w-72 md:w-[28rem] lg:w-[36rem]"
                     />
                 </Container>
             </section>

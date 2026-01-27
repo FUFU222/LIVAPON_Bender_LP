@@ -7,14 +7,25 @@ interface InquiryFormData {
     company: string;
     name: string;
     email: string;
+    category: string;
     message: string;
 }
+
+const inquiryCategories = [
+    "導入相談",
+    "出店/掲載について",
+    "Japan Festival CANADA について",
+    "連携/協業",
+    "メディア/取材",
+    "その他",
+];
 
 export function CTAForm() {
     const [inquiryData, setInquiryData] = useState<InquiryFormData>({
         company: "",
         name: "",
         email: "",
+        category: "",
         message: "",
     });
     const [isSubmitting, setIsSubmitting] = useState(false);
@@ -90,6 +101,23 @@ export function CTAForm() {
                             <div>
                                 <label htmlFor="i-email" className="block text-sm font-medium mb-2">メールアドレス <span className="text-accent">*</span></label>
                                 <input type="email" id="i-email" required value={inquiryData.email} onChange={e => setInquiryData(prev => ({ ...prev, email: e.target.value }))} className="w-full px-4 py-3 bg-white border border-gray-light rounded-lg focus:outline-none focus:ring-2 focus:ring-accent/30 focus:border-accent transition-colors" />
+                            </div>
+                            <div>
+                                <label htmlFor="i-category" className="block text-sm font-medium mb-2">お問い合わせ種別 <span className="text-accent">*</span></label>
+                                <select
+                                    id="i-category"
+                                    required
+                                    value={inquiryData.category}
+                                    onChange={e => setInquiryData(prev => ({ ...prev, category: e.target.value }))}
+                                    className="w-full px-4 py-3 bg-white border border-gray-light rounded-lg focus:outline-none focus:ring-2 focus:ring-accent/30 focus:border-accent transition-colors"
+                                >
+                                    <option value="" disabled>選択してください</option>
+                                    {inquiryCategories.map((category) => (
+                                        <option key={category} value={category}>
+                                            {category}
+                                        </option>
+                                    ))}
+                                </select>
                             </div>
                             <div>
                                 <label htmlFor="i-message" className="block text-sm font-medium mb-2">お問い合わせ内容 <span className="text-accent">*</span></label>

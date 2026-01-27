@@ -55,6 +55,7 @@ export async function POST(request: NextRequest) {
     const safeCompany = escapeHtml(data.company);
     const safeName = escapeHtml(data.name);
     const safeEmail = escapeHtml(data.email);
+    const safeCategory = escapeHtml(data.category);
     const safeMessage = escapeHtml(data.message);
 
     // SMTPが設定されている場合はメール送信
@@ -84,6 +85,10 @@ export async function POST(request: NextRequest) {
               <tr>
                 <td style="padding: 10px; background: #f5f5f5; font-weight: bold;">メールアドレス</td>
                 <td style="padding: 10px;"><a href="mailto:${safeEmail}">${safeEmail}</a></td>
+              </tr>
+              <tr>
+                <td style="padding: 10px; background: #f5f5f5; font-weight: bold;">お問い合わせ種別</td>
+                <td style="padding: 10px;">${safeCategory}</td>
               </tr>
             </table>
             
