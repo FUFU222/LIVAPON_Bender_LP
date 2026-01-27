@@ -5,6 +5,7 @@ import { useRef } from "react";
 import Image from "next/image";
 import { motion, useInView } from "framer-motion";
 import { ScrollReveal } from "../../ui/ScrollReveal";
+import { CountUp } from "../../ui/CountUp";
 import { Container } from "../../ui/Container";
 
 type SupportFeature = {
@@ -92,12 +93,21 @@ const renderSupportDescription = (description: string) => {
 
 export function SupportSection({ features, notes }: SupportSectionProps) {
     return (
-        <section className="relative z-10 py-24 md:py-32 bg-gradient-to-b from-white via-white to-[#fbf2f2] md:-mt-[35vh]">
+        <section className="relative z-10 py-20 md:py-28 bg-gradient-to-b from-white via-white to-[#fbf2f2] md:-mt-[35vh]">
             <div className="absolute inset-0 pointer-events-none">
                 <div className="absolute -top-20 right-8 h-52 w-52 rounded-full bg-accent/10 blur-[90px]" />
                 <div className="absolute left-10 bottom-10 h-px w-[70%] bg-black/10" />
             </div>
             <Container size="6xl" className="relative">
+                <div className="pointer-events-none absolute right-2 top-2 hidden md:block opacity-45">
+                    <Image
+                        src="/livapon_logo.png"
+                        alt="LIVAPON"
+                        width={56}
+                        height={56}
+                        className="h-12 w-12 object-contain"
+                    />
+                </div>
                 <ScrollReveal delay={0} y={20}>
                     <div className="max-w-3xl">
                         <h2 className="text-3xl md:text-5xl font-bold mb-4">
@@ -157,103 +167,97 @@ export function SupportSection({ features, notes }: SupportSectionProps) {
                 </div>
 
                 <ScrollReveal delay={0.05} y={20}>
-                    <div className="mt-14 grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-6 auto-rows-[140px] md:auto-rows-[160px] gap-4 md:gap-5">
-                        <div className="col-span-2 sm:col-span-4 lg:col-span-3 row-span-2 rounded-3xl border border-gray-light/60 bg-white p-6 md:p-7 shadow-[0_18px_50px_rgba(0,0,0,0.1)] flex flex-col justify-between">
-                            <div className="text-xs font-semibold tracking-[0.3em] text-gray-dark/60">core</div>
-                            <div>
-                                <h3 className="text-xl md:text-2xl font-semibold text-foreground">
-                                    国内配送の感覚で扱える
-                                </h3>
-                                <p className="mt-3 text-sm md:text-base text-gray-dark leading-relaxed">
-                                    越境可能商品であれば、国内配送と同じ業務感覚で扱えます。
-                                    海外向けでも判断軸やフローは増やしません。
-                                </p>
+                    <div className="mt-12 grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-6 auto-rows-[minmax(120px,auto)] md:auto-rows-[minmax(140px,auto)] gap-4 md:gap-5">
+                        <div className="col-span-2 sm:col-span-4 lg:col-span-3 lg:order-8 rounded-[28px] border border-gray-light/60 bg-white shadow-[0_22px_60px_rgba(0,0,0,0.12)] overflow-hidden relative min-h-[220px] md:min-h-[260px]">
+                            <Image
+                                src="/Bento-delivery.png"
+                                alt="国内配送の感覚で扱える"
+                                fill
+                                sizes="(max-width: 1024px) 100vw, 50vw"
+                                className="object-cover"
+                                priority
+                            />
+                            <div className="absolute inset-0 bg-gradient-to-b from-black/20 via-black/20 to-black/55" />
+                            <div className="relative z-10 h-full p-7 md:p-8 text-center">
+                                <div className="absolute inset-0 flex items-center justify-center">
+                                    <h3 className="text-4xl md:text-5xl font-bold text-white drop-shadow-[0_8px_20px_rgba(0,0,0,0.65)] tracking-[0.04em]">
+                                        国内配送感覚
+                                    </h3>
+                                </div>
+                                <div className="absolute bottom-6 md:bottom-8 left-1/2 -translate-x-1/2 w-full px-6">
+                                    <p className="text-xs md:text-sm font-light text-white/90 drop-shadow-[0_6px_18px_rgba(0,0,0,0.6)] max-w-md mx-auto">
+                                        越境可能商品であれば、国内配送と同じ業務感覚で扱えます。
+                                    </p>
+                                </div>
                             </div>
                         </div>
 
-                        <div className="col-span-2 sm:col-span-2 lg:col-span-2 row-span-2 rounded-3xl border border-gray-light/60 bg-white/90 p-6 shadow-[0_18px_50px_rgba(0,0,0,0.08)] flex items-center justify-center">
-                            <div className="text-xs font-semibold tracking-[0.4em] text-gray-dark/60">icon</div>
+                        <div className="col-span-2 sm:col-span-4 lg:col-span-3 lg:order-1 rounded-[28px] border border-accent/40 bg-[linear-gradient(160deg,rgba(188,0,45,0.08),rgba(255,255,255,0.96)_55%,rgba(255,255,255,0.9))] p-7 md:p-8 shadow-[0_28px_70px_rgba(188,0,45,0.18)] flex flex-col justify-between">
+                            <div className="flex flex-col items-center justify-center text-center gap-3">
+                                <div className="space-y-1 text-sm md:text-base text-gray-dark/80">
+                                    <p>初期費用</p>
+                                    <p>手数料</p>
+                                </div>
+                                <div className="text-6xl md:text-8xl lg:text-[120px] font-black tracking-tight text-accent leading-none">
+                                    0円
+                                </div>
+                            </div>
                         </div>
 
-                        <div className="col-span-1 sm:col-span-2 lg:col-span-1 rounded-2xl border border-gray-light/60 bg-white p-4 md:p-5 shadow-[0_14px_40px_rgba(0,0,0,0.08)]">
+                        <div className="col-span-2 sm:col-span-2 lg:col-span-3 lg:order-2 rounded-[24px] border border-gray-light/60 shadow-[0_16px_45px_rgba(0,0,0,0.08)] overflow-hidden relative min-h-[200px] md:min-h-[240px] flex flex-col justify-end p-5 md:p-6">
+                            <Image
+                                src="/Bento-228.png"
+                                alt="228の国と地域へ配送"
+                                fill
+                                sizes="(max-width: 1024px) 100vw, 50vw"
+                                className="object-cover"
+                            />
+                            <div className="absolute inset-0 bg-gradient-to-b from-black/10 via-black/25 to-black/60" />
+                            <div className="relative z-10 h-full">
+                                <div className="absolute inset-0 flex items-center justify-center">
+                                    <CountUp
+                                        from={0}
+                                        to={228}
+                                        duration={1.6}
+                                        className="text-[96px] md:text-[140px] font-black text-white leading-none tracking-tight drop-shadow-[0_10px_24px_rgba(0,0,0,0.6)]"
+                                    />
+                                </div>
+                                <div className="absolute bottom-3 md:bottom-4 left-1/2 -translate-x-1/2">
+                                    <p className="text-xs md:text-sm font-semibold text-white drop-shadow-[0_8px_18px_rgba(0,0,0,0.55)]">
+                                        の国と地域へ
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div className="col-span-2 sm:col-span-2 lg:col-span-2 lg:order-3 rounded-[24px] border border-gray-light/60 bg-white p-5 md:p-6 shadow-[0_16px_45px_rgba(0,0,0,0.08)]">
                             <div className="mb-3 h-8 w-8 rounded-full border border-gray-light/60 text-[10px] text-gray-dark/60 flex items-center justify-center">
                                 icon
                             </div>
-                            <h4 className="text-sm md:text-base font-semibold text-foreground">発送フロー構築不要</h4>
-                            <p className="mt-2 text-xs md:text-sm text-gray-dark">
-                                越境ECの発送設計は不要。
-                            </p>
+                            <h4 className="text-base md:text-lg font-semibold text-foreground">EC掲載だけじゃない</h4>
+                            <p className="mt-2 text-sm text-gray-dark">集客・販促まで見据えた設計</p>
                         </div>
 
-                        <div className="col-span-1 sm:col-span-2 lg:col-span-1 rounded-2xl border border-gray-light/60 bg-white p-4 md:p-5 shadow-[0_14px_40px_rgba(0,0,0,0.08)]">
+                        <div className="col-span-2 sm:col-span-2 lg:col-span-1 lg:order-4 rounded-[24px] border border-gray-light/60 bg-white p-5 md:p-6 shadow-[0_16px_45px_rgba(0,0,0,0.08)]">
                             <div className="mb-3 h-8 w-8 rounded-full border border-gray-light/60 text-[10px] text-gray-dark/60 flex items-center justify-center">
                                 icon
                             </div>
-                            <h4 className="text-sm md:text-base font-semibold text-foreground">国別の出品可否を事前確認</h4>
-                            <p className="mt-2 text-xs md:text-sm text-gray-dark">
-                                販売後のストップを回避。
-                            </p>
+                            <h4 className="text-base md:text-lg font-semibold text-foreground">国別の出品可否を事前確認</h4>
                         </div>
 
-                        <div className="col-span-2 sm:col-span-2 lg:col-span-2 rounded-3xl border border-gray-light/60 bg-white p-5 md:p-6 shadow-[0_16px_45px_rgba(0,0,0,0.08)] flex flex-col justify-between">
-                            <div className="text-xs font-semibold tracking-[0.25em] text-gray-dark/60">start</div>
-                            <div>
-                                <h4 className="text-base md:text-lg font-semibold text-foreground">登録だけで海外販売開始</h4>
-                                <p className="mt-2 text-sm text-gray-dark">
-                                    商品登録のみで海外販売がスタート。
-                                </p>
-                            </div>
+                        <div className="col-span-2 sm:col-span-2 lg:col-span-3 lg:order-7 rounded-[24px] border border-gray-light/60 bg-white p-5 md:p-6 shadow-[0_16px_45px_rgba(0,0,0,0.08)]">
+                            <h4 className="text-base md:text-lg font-semibold text-foreground">少数ロットから小さく始められる</h4>
                         </div>
 
-                        <div className="col-span-1 rounded-2xl border border-gray-light/60 bg-white p-4 shadow-[0_12px_36px_rgba(0,0,0,0.08)]">
-                            <h4 className="text-sm font-semibold text-foreground">初期費用なし</h4>
-                            <p className="mt-2 text-xs text-gray-dark">コストゼロで試せる</p>
-                        </div>
-
-                        <div className="col-span-1 rounded-2xl border border-gray-light/60 bg-white p-4 shadow-[0_12px_36px_rgba(0,0,0,0.08)]">
-                            <h4 className="text-sm font-semibold text-foreground">ライブ不要</h4>
-                            <p className="mt-2 text-xs text-gray-dark">EC掲載のみでOK</p>
-                        </div>
-
-                        <div className="col-span-1 rounded-2xl border border-gray-light/60 bg-white p-4 shadow-[0_12px_36px_rgba(0,0,0,0.08)]">
-                            <h4 className="text-sm font-semibold text-foreground">専門知識不要</h4>
-                            <p className="mt-2 text-xs text-gray-dark">越境ECの知識不要</p>
-                        </div>
-
-                        <div className="col-span-1 rounded-2xl border border-gray-light/60 bg-white p-4 shadow-[0_12px_36px_rgba(0,0,0,0.08)]">
-                            <div className="mb-3 h-8 w-8 rounded-full border border-gray-light/60 text-[10px] text-gray-dark/60 flex items-center justify-center">
-                                icon
-                            </div>
-                            <h4 className="text-sm font-semibold text-foreground">禁制品・規制品チェック</h4>
-                        </div>
-
-                        <div className="col-span-1 rounded-2xl border border-gray-light/60 bg-white p-4 shadow-[0_12px_36px_rgba(0,0,0,0.08)] flex flex-col justify-between">
-                            <div className="mb-2 h-8 w-8 rounded-full border border-gray-light/60 text-[10px] text-gray-dark/60 flex items-center justify-center">
-                                icon
-                            </div>
-                            <div>
-                                <div className="text-2xl font-bold text-accent leading-none">228</div>
-                                <p className="mt-1 text-xs text-gray-dark">の国と地域へ配送</p>
-                            </div>
-                        </div>
-
-                        <div className="col-span-2 sm:col-span-2 lg:col-span-2 rounded-3xl border border-gray-light/60 bg-white p-5 md:p-6 shadow-[0_16px_45px_rgba(0,0,0,0.08)]">
-                            <h4 className="text-base md:text-lg font-semibold text-foreground">本格展開前に反応確認</h4>
-                            <p className="mt-2 text-sm text-gray-dark">
-                                いきなり海外展開を背負わずに検証できます。
-                            </p>
-                        </div>
-
-                        <div className="col-span-2 sm:col-span-2 lg:col-span-2 rounded-3xl border border-gray-light/60 bg-white p-5 md:p-6 shadow-[0_16px_45px_rgba(0,0,0,0.08)]">
-                            <h4 className="text-base md:text-lg font-semibold text-foreground">少量からテスト可能</h4>
-                            <p className="mt-2 text-sm text-gray-dark">
-                                在庫・ブランドのリスクを抑えられます。
-                            </p>
-                        </div>
-
-                        <div className="col-span-2 sm:col-span-2 lg:col-span-2 rounded-3xl border border-gray-light/60 bg-white p-5 md:p-6 shadow-[0_16px_45px_rgba(0,0,0,0.08)]">
-                            <div className="mb-3 h-8 w-8 rounded-full border border-gray-light/60 text-[10px] text-gray-dark/60 flex items-center justify-center">
-                                icon
+                        <div className="col-span-2 sm:col-span-2 lg:col-span-2 lg:order-6 rounded-[24px] border border-gray-light/60 bg-white p-5 md:p-6 shadow-[0_16px_45px_rgba(0,0,0,0.08)]">
+                            <div className="mb-3 h-8 w-8 rounded-full border border-gray-light/60 flex items-center justify-center bg-white">
+                                <Image
+                                    src="/insta-logo.png"
+                                    alt="Instagram"
+                                    width={16}
+                                    height={16}
+                                    className="h-4 w-4"
+                                />
                             </div>
                             <h4 className="text-base md:text-lg font-semibold text-foreground">
                                 日本に関心のある海外ユーザーが既に存在
@@ -267,7 +271,7 @@ export function SupportSection({ features, notes }: SupportSectionProps) {
                                 rel="noreferrer"
                                 className="mt-3 inline-flex items-center text-sm font-semibold text-accent underline decoration-accent/40 decoration-2 underline-offset-4 hover:opacity-80 transition-opacity"
                             >
-                                instagram
+                                instagramを見る
                             </a>
                         </div>
                     </div>

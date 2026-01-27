@@ -285,7 +285,7 @@ export function LandingContent() {
                     <div className="absolute -bottom-16 -left-10 h-64 w-64 rounded-full bg-[#f6dede] blur-[110px]" />
                 </div>
                 <Container size="6xl" className="relative grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-                    <div className="relative aspect-[4/3] w-full overflow-hidden rounded-3xl bg-transparent">
+                    <div className="relative aspect-[4/3] w-full max-w-[380px] sm:max-w-[460px] md:max-w-[520px] lg:max-w-none mx-auto lg:mx-0 overflow-hidden rounded-3xl bg-transparent">
                         <Image
                             src="/livapon-webinar.png"
                             alt="オンライン合同説明会のイメージ"
@@ -300,7 +300,7 @@ export function LandingContent() {
                                 {renderFreeBadge(freeBadgeVariant)}
                                 <span className="whitespace-nowrap">越境EC「LIVAPON」</span>
                             </span>
-                            <span className="md:block">オンライン合同説明会</span>
+                            <span className="block lg:inline lg:pl-3">オンライン合同説明会</span>
                         </h2>
                         <p className="mt-6 text-lg text-gray-dark leading-relaxed">
                             Made in Japanを世界へ。海外販売の仕組みやライブコマース戦略を解説します。初心者の方も大歓迎です。
