@@ -4,7 +4,7 @@ export const heroCopy = {
     titleLine1: "世界進出を、",
     titleLine2: "もっとシンプルに。",
     subtitle: "「LIVEで語る」越境ECサービス",
-    cta: "まずは無料で相談する",
+    cta: "海外展開の相談をする",
 };
 
 export const introItems = [
@@ -83,7 +83,6 @@ export const officialSponsor = {
     badge: "OFFICIAL E-COMMERCE SPONSOR",
     title: "Japan Festival CANADA",
     lead: "あなたのブランドを\"世界\"と接続する",
-    logoCaption: "Japan Festival CANADA 公式ロゴ",
 };
 
 export const liveHighlights = [
@@ -92,21 +91,21 @@ export const liveHighlights = [
         tags: ["健康食品", "中国市場"],
         description:
             "**KOLの信頼**と**説明**が**越境購買**を生んだ事例。",
-        image: "",
+        image: "/live-image-01.png",
     },
     {
         title: "24時間ライブで売上4.4億円",
         tags: ["コスメ", "TikTok Shop"],
         description:
             "**創業者自らが出演**し、**ブランドストーリー**が**共感**を拡散。",
-        image: "",
+        image: "/live-image-02.png",
     },
     {
         title: "2時間でEC1か月分を販売",
         tags: ["老舗食品", "日本市場"],
         description:
             "**歴史と想い**を語ることで**地方ブランド**が一気に**売上化**。",
-        image: "",
+        image: "/live-image-03.png",
     },
 ];
 

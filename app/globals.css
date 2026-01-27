@@ -89,5 +89,36 @@ html.lenis body {
   }
 }
 
+.bridge-arrow {
+  animation: bridge-arrow 2.2s ease-in-out infinite;
+}
+
+.bridge-arrow--delay {
+  animation-delay: 0.35s;
+}
+
+@keyframes bridge-arrow {
+  0% {
+    transform: translateY(0);
+    opacity: 0;
+  }
+  20% {
+    opacity: 1;
+  }
+  60% {
+    transform: translateY(10px);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(20px);
+    opacity: 0;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
+  .bridge-arrow {
+    animation: none;
+    opacity: 0.7;
+    transform: none;
+  }
 }

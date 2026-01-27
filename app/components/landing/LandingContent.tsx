@@ -12,6 +12,7 @@ import SpotlightCard from "../ui/SpotlightCard";
 import { CTAForm } from "../forms/CTAForm";
 import { CommonRecognitionSection } from "./sections/CommonRecognitionSection";
 import { IntroProblemsSection } from "./sections/IntroProblemsSection";
+import { BridgeSection } from "./sections/BridgeSection";
 import { SupportSection } from "./sections/SupportSection";
 import { OfficialSponsorSection } from "./sections/OfficialSponsorSection";
 import { FaqSection } from "./sections/FaqSection";
@@ -203,7 +204,7 @@ export function LandingContent() {
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                         {liveHighlights.map((item, index) => (
                             <ScrollReveal key={item.title} delay={0.2 + index * 0.08} y={24}>
-                                <SpotlightCard className="group rounded-3xl border border-gray-light/60 p-6 pt-16 bg-white text-foreground shadow-[0_20px_70px_rgba(0,0,0,0.14)] transition-all duration-300 hover:-translate-y-1 hover:scale-[1.01] hover:border-white/20 hover:shadow-[0_35px_90px_rgba(129,26,34,0.45)]">
+                                <SpotlightCard className="group rounded-3xl border border-gray-light/60 p-6 pt-10 bg-white text-foreground shadow-[0_20px_70px_rgba(0,0,0,0.14)] transition-all duration-300 hover:-translate-y-1 hover:scale-[1.01] hover:border-white/20 hover:shadow-[0_35px_90px_rgba(129,26,34,0.45)]">
                                     <div
                                         className="pointer-events-none absolute inset-0 z-0 rounded-3xl opacity-0 transition-opacity duration-500 ease-out group-hover:opacity-100"
                                         style={{
@@ -212,18 +213,20 @@ export function LandingContent() {
                                         }}
                                     />
                                     <div className="relative z-20">
-                                        <div className="absolute left-6 top-5 text-4xl md:text-5xl font-black tracking-tight text-accent/90 drop-shadow-sm transition-colors duration-300 group-hover:text-white/90">
-                                            {String(index + 1).padStart(2, "0")}
-                                        </div>
-                                        <div className="mt-2 flex flex-wrap justify-end gap-2 text-xs font-semibold text-gray-dark transition-colors duration-300 group-hover:text-white/80">
-                                            {item.tags?.map((tag) => (
-                                                <span
-                                                    key={tag}
-                                                    className="rounded-full border border-gray-light/70 bg-gray-light/70 px-2.5 py-1 tracking-wide text-gray-dark transition-colors duration-300 group-hover:border-white/20 group-hover:bg-white/10 group-hover:text-white/85"
-                                                >
-                                                    #{tag}
-                                                </span>
-                                            ))}
+                                        <div className="flex items-end justify-between gap-3">
+                                            <div className="text-4xl md:text-5xl font-black leading-none tracking-tight text-accent/90 drop-shadow-sm transition-colors duration-300 group-hover:text-white/90">
+                                                {String(index + 1).padStart(2, "0")}
+                                            </div>
+                                            <div className="flex flex-wrap justify-end gap-2 text-xs font-semibold text-gray-dark transition-colors duration-300 group-hover:text-white/80 self-end">
+                                                {item.tags?.map((tag) => (
+                                                    <span
+                                                        key={tag}
+                                                        className="rounded-full border border-gray-light/70 bg-gray-light/70 px-2.5 py-1 tracking-wide text-gray-dark transition-colors duration-300 group-hover:border-white/20 group-hover:bg-white/10 group-hover:text-white/85"
+                                                    >
+                                                        #{tag}
+                                                    </span>
+                                                ))}
+                                            </div>
                                         </div>
                                         <div className="relative mt-4 aspect-[4/3] w-full overflow-hidden rounded-2xl bg-gray-light/30 transition-colors duration-300 group-hover:bg-white/5">
                                             {item.image ? (
@@ -257,17 +260,7 @@ export function LandingContent() {
                 </Container>
             </section>
 
-            <section className="relative py-16 md:py-20 bg-white">
-                <Container size="4xl" className="flex items-center justify-center">
-                    <Image
-                        src="/livapon_logo.png"
-                        alt="LIVAPON"
-                        width={720}
-                        height={720}
-                        className="h-auto w-72 md:w-[28rem] lg:w-[36rem]"
-                    />
-                </Container>
-            </section>
+            <BridgeSection />
 
             <section className="relative py-24 md:py-32 bg-gradient-to-b from-white via-white to-gray-light/50">
                 <div className="absolute inset-0 pointer-events-none">
