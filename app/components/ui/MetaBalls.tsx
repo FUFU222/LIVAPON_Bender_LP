@@ -155,7 +155,7 @@ export default function MetaBalls({
             dpr: Math.min(window.devicePixelRatio, 1.5),
             alpha: true,
             premultipliedAlpha: false,
-            webgl2: true,
+            webgl: 2,
         });
         const gl = renderer.gl;
         gl.clearColor(0, 0, 0, enableTransparency ? 0 : 1);
