@@ -89,17 +89,20 @@ export const officialSponsor = {
 export const liveHighlights = [
     {
         title: "世界のライブコマース事例 01",
-        description: "タイトル・概要は後日差し替え",
+        description:
+            "健康食品 × 中国市場。10時間超のライブ配信で売上4.8億円を記録。KOLの信頼とリアルタイム説明が国境を越えた購買を生んだ事例。",
         image: "",
     },
     {
         title: "世界のライブコマース事例 02",
-        description: "タイトル・概要は後日差し替え",
+        description:
+            "コスメ × TikTok Shop。24時間で売上4.4億円を達成。創業者自らが出演し、ブランドストーリーが共感を拡散。",
         image: "",
     },
     {
         title: "世界のライブコマース事例 03",
-        description: "タイトル・概要は後日差し替え",
+        description:
+            "老舗食品 × 日本市場。2時間の配信でEC1か月分を販売。歴史と想いを語ることで地方ブランドが一気に売上化。",
         image: "",
     },
 ];
