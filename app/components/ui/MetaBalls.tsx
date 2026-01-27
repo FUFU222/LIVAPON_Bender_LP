@@ -223,6 +223,7 @@ export default function MetaBalls({
         let pointerY = 0;
 
         function resize() {
+            if (!container) return;
             const width = container.clientWidth;
             const height = container.clientHeight;
             renderer.setSize(width, height);
@@ -234,6 +235,7 @@ export default function MetaBalls({
         resize();
 
         function onPointerMove(e: PointerEvent) {
+            if (!container) return;
             if (!enableMouseInteraction) return;
             const rect = container.getBoundingClientRect();
             const px = e.clientX - rect.left;
