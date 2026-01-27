@@ -95,7 +95,6 @@ export function LandingContent() {
                         loop
                         playsInline
                         preload="metadata"
-                        poster="/livapon_symbol_new.png"
                     >
                         <source src="/FV_bg_movie.mp4" type="video/mp4" />
                     </video>
