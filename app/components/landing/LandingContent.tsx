@@ -27,7 +27,12 @@ import {
     faqItems,
 } from "./content";
 
-export function LandingContent() {
+type LandingContentProps = {
+    onHeroReady: () => void;
+    isHeroReady: boolean;
+};
+
+export function LandingContent({ onHeroReady, isHeroReady }: LandingContentProps) {
     const freeBadgeVariant: "premium" | "stamp" | "chip" = "stamp";
 
     const renderEmphasis = (text: string) =>
@@ -87,7 +92,11 @@ export function LandingContent() {
     return (
         <div className="bg-white text-foreground">
             <section className="relative min-h-screen flex items-center justify-center overflow-hidden text-white">
-                <div className="absolute inset-0">
+                <div
+                    className={`hero-video-mask absolute inset-0 ${
+                        isHeroReady ? "hero-video-mask--ready" : ""
+                    }`}
+                >
                     <video
                         className="h-full w-full object-cover brightness-50"
                         autoPlay
@@ -95,6 +104,8 @@ export function LandingContent() {
                         loop
                         playsInline
                         preload="metadata"
+                        onLoadedData={onHeroReady}
+                        onCanPlay={onHeroReady}
                     >
                         <source src="/FV_bg_movie.mp4" type="video/mp4" />
                     </video>
@@ -214,14 +225,14 @@ export function LandingContent() {
                     <ScrollReveal delay={0.3} y={20}>
                         <p className="text-xl md:text-2xl text-gray-dark max-w-3xl mx-auto text-center leading-relaxed font-semibold mb-12">
                             世界ではすでに、<br className="md:hidden" />
-                            ライブが「売れる場所」になっています。
+                            ライブが「売れる場所」に。
                         </p>
                     </ScrollReveal>
 
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                         {liveHighlights.map((item, index) => (
                             <ScrollReveal key={item.title} delay={0.2 + index * 0.08} y={24}>
-                                <SpotlightCard className="group rounded-3xl border border-gray-light/60 p-6 pt-10 bg-white text-foreground shadow-[0_20px_70px_rgba(0,0,0,0.14)] transition-all duration-300 hover:-translate-y-1 hover:scale-[1.01] hover:border-white/20 hover:shadow-[0_35px_90px_rgba(129,26,34,0.45)]">
+                                <SpotlightCard className="group rounded-3xl border border-gray-light/60 p-6 pt-8 bg-white text-foreground shadow-[0_20px_70px_rgba(0,0,0,0.14)] transition-all duration-300 hover:-translate-y-1 hover:scale-[1.01] hover:border-white/20 hover:shadow-[0_35px_90px_rgba(129,26,34,0.45)]">
                                     <div
                                         className="pointer-events-none absolute inset-0 z-0 rounded-3xl opacity-0 transition-opacity duration-500 ease-out group-hover:opacity-100"
                                         style={{
@@ -231,8 +242,13 @@ export function LandingContent() {
                                     />
                                     <div className="relative z-20">
                                         <div className="flex items-end justify-between gap-3">
-                                            <div className="text-4xl md:text-5xl font-black leading-none tracking-tight text-accent/90 drop-shadow-sm transition-colors duration-300 group-hover:text-white/90">
-                                                {String(index + 1).padStart(2, "0")}
+                                            <div className="flex flex-col items-start leading-none">
+                                                <span className="pl-1 text-[10px] md:text-xs font-semibold tracking-[0.3em] text-accent/60 transition-colors duration-300 group-hover:text-white/60">
+                                                    CASE
+                                                </span>
+                                                <span className="text-4xl md:text-5xl font-black tracking-tight text-accent/90 drop-shadow-sm transition-colors duration-300 group-hover:text-white/90">
+                                                    {String(index + 1).padStart(2, "0")}
+                                                </span>
                                             </div>
                                             <div className="flex flex-wrap justify-end gap-2 text-xs font-semibold text-gray-dark transition-colors duration-300 group-hover:text-white/80 self-end">
                                                 {item.tags?.map((tag) => (
@@ -285,7 +301,7 @@ export function LandingContent() {
                     <div className="absolute -bottom-16 -left-10 h-64 w-64 rounded-full bg-[#f6dede] blur-[110px]" />
                 </div>
                 <Container size="6xl" className="relative grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-                    <div className="relative aspect-[4/3] w-full max-w-[380px] sm:max-w-[460px] md:max-w-[520px] lg:max-w-none mx-auto lg:mx-0 overflow-hidden rounded-3xl bg-transparent">
+                    <div className="relative aspect-[4/3] w-full max-w-[256px] sm:max-w-[256px] md:max-w-[360px] lg:max-w-none mx-auto lg:mx-0 overflow-hidden rounded-3xl bg-transparent">
                         <Image
                             src="/livapon-webinar.png"
                             alt="オンライン合同説明会のイメージ"
@@ -295,15 +311,17 @@ export function LandingContent() {
                         />
                     </div>
                     <div>
-                        <h2 className="text-3xl md:text-5xl font-bold leading-tight">
+                        <h2 className="text-3xl md:text-[44px] font-bold leading-tight">
                             <span className="inline-flex items-center gap-3">
                                 {renderFreeBadge(freeBadgeVariant)}
                                 <span className="whitespace-nowrap">越境EC「LIVAPON」</span>
                             </span>
                             <span className="block lg:inline lg:pl-3">オンライン合同説明会</span>
                         </h2>
-                        <p className="mt-6 text-lg text-gray-dark leading-relaxed">
-                            Made in Japanを世界へ。海外販売の仕組みやライブコマース戦略を解説します。初心者の方も大歓迎です。
+                        <p className="mt-6 text-sm md:text-lg text-gray-dark leading-relaxed">
+                            Made in Japanを世界へ。海外販売の仕組みやライブコマース戦略を解説します。
+                            <br className="hidden md:block lg:hidden" />
+                            初心者の方も大歓迎です。
                         </p>
                         <div className="mt-8 text-base md:text-lg font-semibold text-gray-900">
                             <span className="text-gray-500 font-medium">開催日時：</span>

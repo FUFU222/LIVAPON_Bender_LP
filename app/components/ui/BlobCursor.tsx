@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useRef, useEffect, useCallback } from "react";
+import React, { useRef, useEffect, useCallback, useState } from "react";
 import gsap from "gsap";
 
 export interface BlobCursorProps {
@@ -51,8 +51,21 @@ export default function BlobCursor({
   zIndex = 100,
   hideCursor = true,
 }: BlobCursorProps) {
+  const [isDesktop, setIsDesktop] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
   const blobsRef = useRef<(HTMLDivElement | null)[]>([]);
+
+  useEffect(() => {
+    const mediaQuery = window.matchMedia(
+      "(min-width: 1024px) and (hover: hover) and (pointer: fine)"
+    );
+    const update = () => setIsDesktop(mediaQuery.matches);
+    update();
+    mediaQuery.addEventListener("change", update);
+    return () => {
+      mediaQuery.removeEventListener("change", update);
+    };
+  }, []);
 
   const updateOffset = useCallback(() => {
     if (!containerRef.current) return { left: 0, top: 0 };
@@ -82,6 +95,7 @@ export default function BlobCursor({
   );
 
   useEffect(() => {
+    if (!isDesktop) return;
     const previousCursor = document.body.style.cursor;
     if (hideCursor) {
       document.body.style.cursor = "none";
@@ -101,7 +115,9 @@ export default function BlobCursor({
         document.body.style.cursor = previousCursor;
       }
     };
-  }, [handleMove, updateOffset, hideCursor]);
+  }, [handleMove, updateOffset, hideCursor, isDesktop]);
+
+  if (!isDesktop) return null;
 
   return (
     <div

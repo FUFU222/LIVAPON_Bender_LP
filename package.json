@@ -10,6 +10,7 @@
     "commit:auto": "bash scripts/auto-commit.sh"
   },
   "dependencies": {
+    "@deemlol/next-icons": "^0.1.9",
     "date-fns": "^4.1.0",
     "framer-motion": "^12.24.10",
     "googleapis": "^170.0.0",

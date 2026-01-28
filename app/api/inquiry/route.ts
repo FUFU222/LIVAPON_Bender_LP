@@ -62,8 +62,21 @@ export async function POST(request: NextRequest) {
     const safeNameHeader = sanitizeHeaderValue(data.name);
     const safeEmailHeader = sanitizeHeaderValue(data.email);
 
+    const smtpHost = process.env.SMTP_HOST;
+    const smtpUser = process.env.SMTP_USER;
+    const smtpPass = process.env.SMTP_PASS;
+
+    if (!smtpHost || !smtpUser || !smtpPass) {
+      console.error('SMTP is not configured');
+      if (process.env.NODE_ENV === 'development') {
+        console.log('Development mode: Inquiry received', data);
+        return NextResponse.json({ success: true });
+      }
+      return internalErrorResponse();
+    }
+
     // SMTPが設定されている場合はメール送信
-    if (process.env.SMTP_HOST && process.env.SMTP_USER) {
+    {
       const transporter = getTransporter();
 
       await transporter.sendMail({
@@ -107,8 +120,6 @@ export async function POST(request: NextRequest) {
           </div>
         `,
       });
-    } else {
-      console.log('Inquiry received (SMTP not configured):', data);
     }
 
     return NextResponse.json({ success: true });

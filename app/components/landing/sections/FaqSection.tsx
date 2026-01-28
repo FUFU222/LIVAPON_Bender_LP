@@ -66,7 +66,7 @@ const FaqItem = ({
                     <span className="text-base md:text-lg font-semibold tracking-[0.3em] text-gray-dark">
                         Q
                     </span>
-                    <span className="text-lg md:text-xl text-foreground">
+                    <span className="text-md md:text-xl text-foreground">
                         {item.question}
                     </span>
                 </div>
@@ -95,7 +95,7 @@ const FaqItem = ({
                         <span className="text-base md:text-lg font-semibold tracking-[0.3em] text-accent">
                             A
                         </span>
-                        <div className="text-base md:text-lg text-gray-dark leading-relaxed">
+                        <div className="text-xs md:text-lg text-gray-dark leading-relaxed">
                             {renderAnswer(item.answer)}
                         </div>
                     </div>

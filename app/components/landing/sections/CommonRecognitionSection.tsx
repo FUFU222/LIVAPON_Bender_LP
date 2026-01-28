@@ -144,8 +144,8 @@ export function CommonRecognitionSection() {
                                                         containerClassName="my-0 inline-flex relative"
                                                         textClassName={`${
                                                             segment.emphasis
-                                                                ? "text-[48px] font-semibold"
-                                                                : "text-[40px] font-medium"
+                                                                ? "text-[36px] font-semibold"
+                                                                : "text-[28px] font-medium"
                                                         } leading-[1] tracking-tight text-foreground`}
                                                         animationDuration={1}
                                                         ease="back.inOut(2)"

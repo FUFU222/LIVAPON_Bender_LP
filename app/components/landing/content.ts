@@ -65,7 +65,7 @@ export const supportFeatures = [
 ];
 
 export const supportNotes = {
-    heading: "LIVAPONが叶える海外進出",
+    heading: "LIVAPONが叶える\n海外進出",
     description: "“売る”より先に、“伝わる”体験を",
     fact: "LIVAPONの公式Instagramには、日本に関心を持つ海外ユーザーが集まっています。",
     note: [

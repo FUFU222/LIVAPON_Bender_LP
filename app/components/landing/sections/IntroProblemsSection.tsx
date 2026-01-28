@@ -72,10 +72,10 @@ export function IntroProblemsSection({ items }: IntroProblemsSectionProps) {
                                                         {String(index + 1).padStart(2, "0")}
                                                     </p>
                                                     <div className="pt-8 flex flex-col items-start gap-2">
-                                                        <h3 className="text-[28px] md:text-[28px] font-semibold text-white bg-black/75 px-3 py-2 rounded-[8px] box-decoration-clone inline">
+                                                        <h3 className="text-[24px] md:text-[28px] font-semibold text-white bg-black/75 px-3 py-2 rounded-[8px] box-decoration-clone inline">
                                                             {item.title}
                                                         </h3>
-                                                        <p className="text-[22px] md:text-[24px] lg:text-[16px] font-semibold text-black/90 leading-relaxed bg-white/90 px-2 py-1 rounded-[8px] box-decoration-clone inline">
+                                                        <p className="text-[14px] md:text-[24px] lg:text-[16px] font-semibold text-black/90 leading-relaxed bg-white/90 px-2 py-1 rounded-[8px] box-decoration-clone inline">
                                                             {item.description}
                                                         </p>
                                                     </div>

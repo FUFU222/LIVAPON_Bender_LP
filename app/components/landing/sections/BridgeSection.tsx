@@ -15,7 +15,7 @@ export function BridgeSection() {
                 <div className="relative grid grid-cols-1 lg:grid-cols-[1.1fr_0.9fr] items-center gap-10">
                     <ScrollReveal delay={0} y={16}>
                         <div className="relative z-10 max-w-xl text-center lg:text-left">
-                            <div className="flex justify-center lg:justify-end">
+                            <div className="flex justify-center lg:justify-end translate-x-[-14px] sm:translate-x-[-18px] md:translate-x-[-24px] lg:translate-x-0">
                                 <div className="flex flex-row-reverse items-start gap-8 md:gap-12">
                                     <span className="relative inline-block align-top px-2 md:px-3 text-4xl sm:text-5xl md:text-6xl lg:text-6xl font-bold tracking-[0.08em] text-white [writing-mode:vertical-rl] [text-orientation:mixed]">
                                         <span className="relative z-10">いつか自分も</span>
@@ -29,9 +29,9 @@ export function BridgeSection() {
                                     </span>
                                 </div>
                             </div>
-                            <p className="mt-6 text-lg md:text-xl text-gray-dark leading-relaxed font-semibold">
+                            <p className="mt-10 md:mt-12 text-lg md:text-xl text-gray-dark leading-relaxed font-semibold">
                                 LIVAPONでは、
-                                <br />
+                                <br className="sm:hidden" />
                                 海外販売やライブコマースについて
                                 <br />
                                 基礎から整理できる説明会を行っています。
@@ -43,7 +43,7 @@ export function BridgeSection() {
                         y={16}
                         className="absolute inset-0 z-0 flex items-center justify-center pointer-events-none lg:static lg:pointer-events-auto"
                     >
-                        <div className="mx-auto w-[78vw] max-w-[360px] sm:max-w-[420px] md:w-[56vw] md:max-w-[460px] lg:w-full lg:max-w-md opacity-25 sm:opacity-35 md:opacity-45 lg:opacity-100">
+                        <div className="mx-auto w-[78vw] max-w-[360px] sm:max-w-[420px] md:w-[56vw] md:max-w-[460px] lg:w-full lg:max-w-md opacity-25 sm:opacity-35 md:opacity-45 lg:opacity-100 translate-x-[14px] sm:translate-x-[18px] md:translate-x-[26px] lg:translate-x-0">
                             <div className="relative aspect-[4/5] w-full">
                                 <Image
                                     src="/bridge-image.png"

@@ -20,7 +20,7 @@ export function Footer() {
 
                 {/* Legal Links */}
                 <div className="flex flex-wrap justify-center gap-4 md:gap-8 mb-8 text-xs text-gray-light/70">
-                    <Link href="/legal" className="hover:text-white transition-colors">
+                    <Link href="/company" className="hover:text-white transition-colors">
                         会社情報
                     </Link>
                     <Link href="/privacy" className="hover:text-white transition-colors">
@@ -28,9 +28,6 @@ export function Footer() {
                     </Link>
                     <Link href="/terms" className="hover:text-white transition-colors">
                         利用規約
-                    </Link>
-                    <Link href="/legal" className="hover:text-white transition-colors">
-                        特定商取引法に基づく表記
                     </Link>
                 </div>
 

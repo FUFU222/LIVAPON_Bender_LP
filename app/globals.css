@@ -122,3 +122,228 @@ html.lenis body {
     transform: none;
   }
 }
+
+.loading-overlay {
+  background: #f4f1ef;
+  opacity: 1;
+  transition: opacity 0.2s ease;
+}
+
+.loading-overlay--hide {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.loading-overlay--pulse-out .loading-pulse {
+  opacity: 0;
+  transform: translateY(8px) scale(0.98);
+}
+
+.loading-overlay--logo-out .loading-logo-wrap {
+  opacity: 0;
+  transform: translateY(6px) scale(0.98);
+}
+
+.loading-overlay--logo-out .loading-pulse,
+.loading-overlay--hide .loading-pulse {
+  opacity: 0;
+  transform: translateY(8px) scale(0.98);
+}
+
+.loading-overlay__content {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+}
+
+.loading-overlay__content--lower {
+  transform: translateY(10px);
+}
+
+.loading-logo-stack {
+  position: relative;
+  width: 220px;
+  height: 220px;
+  display: grid;
+  place-items: center;
+  overflow: visible;
+}
+
+.loading-typing {
+  position: absolute;
+  bottom: 2.25rem;
+  left: 50%;
+  transform: translateX(-50%);
+  animation: loading-breathe 2.4s ease-in-out infinite;
+}
+
+.loading-logo-wrap {
+  opacity: 0;
+  animation: loading-logo-fade 0.8s ease forwards;
+  transition: opacity 0.12s ease, transform 0.12s ease;
+}
+
+.loading-logo {
+  width: 150px;
+  height: 150px;
+  object-fit: contain;
+  animation: loading-heartbeat 1.1s infinite;
+  transform-origin: center;
+}
+
+.loading-pulse {
+  position: absolute;
+  inset: 0;
+  transition: opacity 0.1s ease, transform 0.1s ease;
+}
+
+.loading-pulse__ring {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 46px;
+  height: 46px;
+  border-radius: 9999px;
+  border: 1px solid rgba(160, 160, 160, 0);
+  opacity: 0;
+  transform: translate(-50%, -50%);
+  box-shadow: 0 0 10px rgba(130, 130, 130, 0.25);
+  animation: loading-pulse 1.25s linear infinite;
+  animation-fill-mode: both;
+  will-change: transform, opacity;
+  animation-delay: 0.45s;
+}
+
+.loading-pulse__ring--delay {
+  animation-delay: 0.6s;
+}
+
+.loading-pulse__ring--delay-2 {
+  animation-delay: 0.75s;
+}
+
+@keyframes loading-logo-fade {
+  0% {
+    opacity: 0;
+    transform: translateY(10px) scale(0.98);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes loading-breathe {
+  0% {
+    opacity: 0.4;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0.4;
+  }
+}
+
+.texttype__cursor {
+  display: inline-block;
+  margin-left: 2px;
+  animation: texttype-blink var(--cursor-blink-duration, 0.8s) step-end infinite;
+}
+
+@keyframes texttype-blink {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes loading-heartbeat {
+  0% {
+    transform: scale(1);
+  }
+  15% {
+    transform: scale(1.3); 
+  }
+  30% {
+    transform: scale(0.95);
+  }
+  45% {
+    transform: scale(1.02);
+  }
+  60% {
+    transform: scale(1);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+@keyframes loading-pulse {
+  0% {
+    opacity: 0.32;
+    border-color: rgba(160, 160, 160, 0.35);
+    transform: translate(-50%, -50%) scale(0.8);
+  }
+  60% {
+    opacity: 0.08;
+    border-color: rgba(160, 160, 160, 0.18);
+    transform: translate(-50%, -50%) scale(12);
+  }
+  100% {
+    opacity: 0;
+    border-color: rgba(160, 160, 160, 0.05);
+    transform: translate(-50%, -50%) scale(16);
+  }
+}
+
+.hero-video-mask {
+  clip-path: circle(0% at 50% 56%);
+  transition: clip-path 1.4s ease;
+  will-change: clip-path;
+}
+
+.hero-video-mask.hero-video-mask--ready {
+  clip-path: circle(150% at 50% 56%);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .loading-logo,
+  .loading-logo-wrap,
+  .loading-pulse__ring {
+    animation: none;
+  }
+
+  .hero-video {
+    transition: none;
+  }
+
+  .hero-video-mask {
+    transition: none;
+    clip-path: circle(150% at 50% 56%);
+  }
+}
+
+@media (min-width: 768px) {
+  .loading-logo-stack {
+    width: 320px;
+    height: 320px;
+  }
+
+  .loading-logo {
+    width: 240px;
+    height: 240px;
+  }
+
+  .loading-pulse__ring {
+    width: 72px;
+    height: 72px;
+  }
+}

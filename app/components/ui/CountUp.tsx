@@ -1,6 +1,6 @@
 "use client";
 
-import { useInView, useMotionValue, useSpring } from "framer-motion";
+import { animate, useInView, useMotionValue, useSpring } from "framer-motion";
 import { useCallback, useEffect, useRef } from "react";
 
 interface CountUpProps {
@@ -9,6 +9,8 @@ interface CountUpProps {
     direction?: "up" | "down";
     delay?: number;
     duration?: number;
+    animation?: "spring" | "tween";
+    ease?: "linear" | "easeIn" | "easeOut" | "easeInOut";
     className?: string;
     startWhen?: boolean;
     separator?: string;
@@ -22,6 +24,8 @@ export function CountUp({
     direction = "up",
     delay = 0,
     duration = 2,
+    animation = "spring",
+    ease = "easeOut",
     className = "",
     startWhen = true,
     separator = "",
@@ -29,6 +33,7 @@ export function CountUp({
     onEnd,
 }: CountUpProps) {
     const ref = useRef<HTMLSpanElement>(null);
+    const animationRef = useRef<ReturnType<typeof animate> | null>(null);
     const motionValue = useMotionValue(direction === "down" ? to : from);
 
     const damping = 20 + 40 * (1 / duration);
@@ -80,7 +85,15 @@ export function CountUp({
             if (typeof onStart === "function") onStart();
 
             const timeoutId = setTimeout(() => {
-                motionValue.set(direction === "down" ? from : to);
+                if (animation === "tween") {
+                    animationRef.current?.stop();
+                    animationRef.current = animate(motionValue, direction === "down" ? from : to, {
+                        duration,
+                        ease,
+                    });
+                } else {
+                    motionValue.set(direction === "down" ? from : to);
+                }
             }, delay * 1000);
 
             const durationTimeoutId = setTimeout(
@@ -93,19 +106,21 @@ export function CountUp({
             return () => {
                 clearTimeout(timeoutId);
                 clearTimeout(durationTimeoutId);
+                animationRef.current?.stop();
             };
         }
-    }, [isInView, startWhen, motionValue, direction, from, to, delay, onStart, onEnd, duration]);
+    }, [isInView, startWhen, motionValue, direction, from, to, delay, onStart, onEnd, duration, animation, ease]);
 
     useEffect(() => {
-        const unsubscribe = springValue.on("change", (latest) => {
+        const source = animation === "tween" ? motionValue : springValue;
+        const unsubscribe = source.on("change", (latest) => {
             if (ref.current) {
                 ref.current.textContent = formatValue(latest);
             }
         });
 
         return () => unsubscribe();
-    }, [springValue, formatValue]);
+    }, [springValue, motionValue, animation, formatValue]);
 
     return <span className={className} ref={ref} />;
 }

@@ -82,3 +82,22 @@
 - 目的: ドキュメントの命名揺れ/重複/実装との不整合を解消。
 - 実装内容: 設計資料を `design-overview.md` に統合し、Problem/Solution セクションを実装準拠で再記述。セキュリティ資料と改善レポートも現行実装に合わせて更新。
 - 追加資料: `docs/design-overview.md`, `docs/content-structure.md`, `docs/security.md`, `docs/walkthrough.md`。
+### 2026-01-27: FV読み込み向けローディング演出の簡易実装
+- 目的: FV動画の読み込み待ち時間を体験価値に変換し、初回表示の不安感を低減。
+- 実装内容: 「LIVE / NIPPON」を簡易モーフ風に往復させるローディングオーバーレイを追加し、FV動画の `onLoadedData/onCanPlay` でフェードアウト。フェイルセーフとしてタイムアウトで解除。
+- 追加資料: `app/components/landing/LoadingOverlay.tsx`, `app/components/landing/LandingContent.tsx`。
+
+### 2026-01-27: ローディング演出のロゴ・パルス版への更新
+- 目的: LIVAPONのロゴを主役にし、パルスから動画が広がる印象を作る。
+- 実装内容: 正方形ロゴ（`livapon_logo.png`）のフェードインとパルスを追加し、FV動画を円形マスクの拡大で露出させる演出に変更。
+- 追加資料: `app/components/landing/LoadingOverlay.tsx`, `app/components/landing/LandingContent.tsx`, `app/globals.css`。
+
+### 2026-01-27: ローディング終了の段階的フェードとバッファ追加
+- 目的: ロゴ→パルス→動画の体験を崩さず、動画再生のカクつきを避けるための余白を確保。
+- 実装内容: パルス→ロゴ→全体の順に非表示にする段階的フェードを追加し、動画読み込み完了後にバッファを設けてから開くシーケンスに変更。
+- 追加資料: `app/components/landing/LandingPage.tsx`, `app/components/landing/LoadingOverlay.tsx`, `app/globals.css`。
+
+### 2026-01-27: TextTypeによるLoading表示の追加
+- 目的: オープニング中の「稼働中」感を強め、ブランドの世界観に合わせた情報的演出を追加。
+- 実装内容: `TextType` コンポーネントを追加し、オープニング最下部にタイピング表示（LOADING/INITIALIZING）を配置。ブリージング（明滅）アニメーションを併用。
+- 追加資料: `app/components/ui/TextType.tsx`, `app/components/landing/LoadingOverlay.tsx`, `app/globals.css`。

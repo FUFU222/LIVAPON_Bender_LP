@@ -8,7 +8,6 @@ import {
 } from "next/font/google";
 import "./globals.css";
 import { SmoothScrollProvider } from "./components/SmoothScrollProvider";
-import { FloatingCTA } from "./components/layout/FloatingCTA";
 import BlobCursor from "./components/ui/BlobCursor";
 
 const notoSans = Noto_Sans_JP({
@@ -78,7 +77,6 @@ export default function RootLayout({
         className={`${notoSans.variable} ${notoSerif.variable} ${shipporiMincho.variable} ${zenKaku.variable} ${oswald.variable} antialiased overflow-x-hidden`}
       >
         <SmoothScrollProvider>{children}</SmoothScrollProvider>
-        <FloatingCTA />
         <BlobCursor
           blobType="circle"
           fillColor="var(--accent)"

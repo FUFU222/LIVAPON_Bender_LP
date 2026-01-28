@@ -24,7 +24,7 @@ export default function Legal() {
             {/* Main Content */}
             <main className="pt-24 md:pt-32 pb-24 px-4">
                 <article className="max-w-3xl mx-auto prose prose-gray">
-                    <h1 className="text-3xl md:text-4xl font-bold mb-8 md:mb-12">特定商取引法に基づく表記</h1>
+                    <h1 className="text-3xl md:text-4xl font-bold mb-8 md:mb-12">会社情報</h1>
 
                     <section className="mb-8 md:mb-12">
                         <div className="overflow-x-auto">
@@ -57,43 +57,6 @@ export default function Legal() {
                                         <th className="py-4 font-bold align-top">メールアドレス</th>
                                         <td className="py-4">
                                             information@chairman.jp
-                                        </td>
-                                    </tr>
-                                    <tr className="border-b border-gray-200">
-                                        <th className="py-4 font-bold align-top">販売価格</th>
-                                        <td className="py-4">
-                                            各サービスページに記載されている価格とします。
-                                        </td>
-                                    </tr>
-                                    <tr className="border-b border-gray-200">
-                                        <th className="py-4 font-bold align-top">商品代金以外の必要料金</th>
-                                        <td className="py-4">
-                                            消費税、銀行振込手数料（銀行振込の場合）
-                                        </td>
-                                    </tr>
-                                    <tr className="border-b border-gray-200">
-                                        <th className="py-4 font-bold align-top">支払方法および支払の時期</th>
-                                        <td className="py-4">
-                                            クレジットカード決済、銀行振込
-                                        </td>
-                                    </tr>
-                                    <tr className="border-b border-gray-200">
-                                        <th className="py-4 font-bold align-top">お支払時期</th>
-                                        <td className="py-4">
-                                            ・クレジットカード：各カード会社引き落とし日<br />
-                                            ・銀行振込：注文後7日以内
-                                        </td>
-                                    </tr>
-                                    <tr className="border-b border-gray-200">
-                                        <th className="py-4 font-bold align-top">引渡時期</th>
-                                        <td className="py-4">
-                                            決済確認後、即時（サービスによって異なります）
-                                        </td>
-                                    </tr>
-                                    <tr className="border-b border-gray-200">
-                                        <th className="py-4 font-bold align-top">返品・交換・キャンセルについて</th>
-                                        <td className="py-4">
-                                            サービスの性質上、返品・返金はお受けしておりません。解約については利用規約をご確認ください。
                                         </td>
                                     </tr>
                                 </tbody>
