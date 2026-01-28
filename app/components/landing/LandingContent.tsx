@@ -283,7 +283,7 @@ export function LandingContent({ onHeroReady, isHeroReady }: LandingContentProps
                                         <h3 className="mt-8 text-lg md:text-xl font-semibold transition-colors duration-300 group-hover:text-white">
                                             {item.title}
                                         </h3>
-                                        <p className="mt-2 text-sm md:text-base text-gray-dark leading-relaxed transition-colors duration-300 group-hover:text-white/70">
+                                        <p className="mt-2 text-sm md:text-[14px] text-gray-dark leading-relaxed transition-colors duration-300 group-hover:text-white/70">
                                             {renderEmphasis(item.description)}
                                         </p>
                                     </div>
@@ -302,7 +302,7 @@ export function LandingContent({ onHeroReady, isHeroReady }: LandingContentProps
                     <div className="absolute -bottom-16 -left-10 h-64 w-64 rounded-full bg-[#f6dede] blur-[110px]" />
                 </div>
                 <Container size="6xl" className="relative grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-                    <div className="relative aspect-[4/3] w-full max-w-[256px] sm:max-w-[256px] md:max-w-[360px] lg:max-w-none mx-auto lg:mx-0 overflow-hidden rounded-3xl bg-transparent">
+                    <div className="relative aspect-[4/3] w-full max-w-[256px] sm:max-w-[256px] md:max-w-[420px] lg:max-w-none mx-auto lg:mx-0 overflow-hidden rounded-3xl bg-transparent">
                         <Image
                             src="/livapon-webinar.png"
                             alt="オンライン合同説明会のイメージ"

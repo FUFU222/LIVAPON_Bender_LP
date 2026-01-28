@@ -159,8 +159,8 @@ export function SupportSection({ features, notes }: SupportSectionProps) {
                 </div>
 
                 <ScrollReveal delay={0.05} y={20}>
-                    <div className="mt-10 grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-12 auto-rows-[minmax(120px,auto)] md:auto-rows-[minmax(140px,auto)] lg:auto-rows-[minmax(80px,1fr)] gap-4 md:gap-5 lg:gap-4">
-                        <div className="col-span-2 sm:col-span-3 md:col-span-3 lg:col-span-6 lg:row-span-2 lg:col-start-4 lg:row-start-1 rounded-[28px] border border-gray-light/60 bg-white shadow-[0_22px_60px_rgba(0,0,0,0.12)] overflow-hidden relative min-h-[220px] md:min-h-[260px] lg:min-h-0">
+                    <div className="mt-10 grid grid-cols-2 sm:grid-cols-4 md:grid-cols-3 lg:grid-cols-12 auto-rows-[minmax(120px,auto)] md:auto-rows-[minmax(140px,auto)] lg:auto-rows-[minmax(80px,1fr)] gap-4 md:gap-5 lg:gap-4">
+                        <div className="col-span-2 sm:col-span-3 md:col-span-2 md:col-start-1 md:row-start-1 lg:col-span-6 lg:row-span-2 lg:col-start-4 lg:row-start-1 rounded-[28px] border border-gray-light/60 bg-white shadow-[0_22px_60px_rgba(0,0,0,0.12)] overflow-hidden relative min-h-[220px] md:min-h-[260px] lg:min-h-0">
                             <Image
                                 src="/Bento-delivery.png"
                                 alt="国内配送の感覚で扱える"
@@ -184,7 +184,7 @@ export function SupportSection({ features, notes }: SupportSectionProps) {
                             </div>
                         </div>
 
-                        <div className="col-span-2 sm:col-span-2 md:col-span-2 lg:col-span-3 lg:row-span-1 lg:col-start-1 lg:row-start-1 rounded-[28px] border border-gray-light/60 bg-white p-5 md:p-6 shadow-[0_20px_50px_rgba(0,0,0,0.1)] flex flex-col justify-center relative overflow-hidden lg:min-h-0">
+                        <div className="col-span-2 sm:col-span-2 md:col-span-1 md:col-start-1 md:row-start-2 lg:col-span-3 lg:row-span-1 lg:col-start-1 lg:row-start-1 rounded-[28px] border border-gray-light/60 bg-white p-5 md:p-6 shadow-[0_20px_50px_rgba(0,0,0,0.1)] flex flex-col justify-center relative overflow-hidden lg:min-h-0">
                             <div className="relative text-center">
                                 <div className="inline-flex flex-col items-center text-base md:text-lg font-semibold text-gray-dark">
                                     <p className="leading-none">初期費用＆手数料</p>
@@ -200,7 +200,7 @@ export function SupportSection({ features, notes }: SupportSectionProps) {
                             </div>
                         </div>
 
-                        <div className="col-span-2 sm:col-span-2 lg:col-span-3 lg:row-span-2 lg:col-start-10 lg:row-start-1 rounded-[24px] border border-gray-light/60 shadow-[0_16px_45px_rgba(0,0,0,0.08)] overflow-hidden relative min-h-[170px] md:min-h-[200px] lg:min-h-0 flex flex-col justify-end p-5 md:p-6">
+                        <div className="col-span-2 sm:col-span-2 md:col-span-2 md:col-start-2 md:row-start-2 lg:col-span-3 lg:row-span-2 lg:col-start-10 lg:row-start-1 rounded-[24px] border border-gray-light/60 shadow-[0_16px_45px_rgba(0,0,0,0.08)] overflow-hidden relative min-h-[170px] md:min-h-[200px] lg:min-h-0 flex flex-col justify-end p-5 md:p-6">
                             <Image
                                 src="/Bento-228.png"
                                 alt="228の国と地域へ配送"
@@ -220,7 +220,7 @@ export function SupportSection({ features, notes }: SupportSectionProps) {
                                         className="text-[96px] md:text-[140px] font-black text-white leading-none tracking-tight drop-shadow-[0_10px_24px_rgba(0,0,0,0.6)]"
                                     />
                                 </div>
-                                <div className="absolute bottom-[10px] md:bottom-[8px] left-1/2 -translate-x-1/2 translate-y-[2px]">
+                                <div className="absolute bottom-[10px] md:bottom-[-6px] left-1/2 -translate-x-1/2 translate-y-[2px]">
                                     <p className="text-xs md:text-sm font-semibold text-white drop-shadow-[0_8px_18px_rgba(0,0,0,0.55)]">
                                         の国と地域へ
                                     </p>
@@ -228,12 +228,9 @@ export function SupportSection({ features, notes }: SupportSectionProps) {
                             </div>
                         </div>
 
-                        <div className="col-span-2 sm:col-span-1 md:col-span-1 lg:col-span-3 lg:row-span-1 lg:col-start-1 lg:row-start-2 rounded-[24px] border border-gray-light/60 bg-white p-5 md:p-6 shadow-[0_16px_45px_rgba(0,0,0,0.08)] relative overflow-hidden flex items-center justify-center">
+                        <div className="col-span-2 sm:col-span-1 md:col-span-1 md:col-start-3 md:row-start-1 lg:col-span-3 lg:row-span-1 lg:col-start-1 lg:row-start-2 rounded-[24px] border border-gray-light/60 bg-white p-5 md:p-6 shadow-[0_16px_45px_rgba(0,0,0,0.08)] relative overflow-hidden flex items-center justify-center">
                             <div className="absolute inset-0 bg-[linear-gradient(135deg,rgba(15,23,42,0.04),rgba(193,39,45,0.08))]" />
                             <div className="absolute -right-8 -top-8 h-24 w-24 rounded-full bg-gray-100/80" />
-                            <div className="absolute left-5 top-4 text-[56px] md:text-[64px] font-black tracking-tight text-gray-200/80">
-                                EC
-                            </div>
                             <div className="relative z-10 w-full text-center flex flex-col items-center">
                                 <div className="mb-4 inline-flex w-[40%] max-w-[120px] min-w-[72px] aspect-square items-center justify-center rounded-full border border-gray-light/60 bg-white/90 shadow-[0_10px_20px_rgba(0,0,0,0.08)] mx-auto relative">
                                     <ShoppingCart className="h-[56%] w-[56%] text-accent/80" />
@@ -241,14 +238,14 @@ export function SupportSection({ features, notes }: SupportSectionProps) {
                                         <Check className="h-4 w-4" />
                                     </span>
                                 </div>
-                                <h4 className="text-base md:text-lg font-semibold text-foreground">EC掲載のみでも</h4>
+                                <h4 className="text-base md:text-base font-semibold text-foreground">EC掲載のみでも</h4>
                                 <p className="mt-1 text-[28px] md:text-[36px] font-black text-accent leading-none tracking-tight">
                                     OK！
                                 </p>
                             </div>
                         </div>
 
-                        <div className="col-span-2 sm:col-span-1 md:col-span-1 lg:col-span-3 lg:row-span-1 lg:col-start-1 lg:row-start-3 rounded-[24px] border border-gray-light/60 bg-white p-5 md:p-6 shadow-[0_16px_45px_rgba(0,0,0,0.08)] relative overflow-hidden flex items-center justify-center">
+                        <div className="col-span-2 sm:col-span-1 md:col-span-1 md:col-start-1 md:row-start-3 lg:col-span-3 lg:row-span-1 lg:col-start-1 lg:row-start-3 rounded-[24px] border border-gray-light/60 bg-white p-5 md:p-6 shadow-[0_16px_45px_rgba(0,0,0,0.08)] relative overflow-hidden flex items-center justify-center">
                             <Image
                                 src="/Bento-country-check.png"
                                 alt="国別の出品可否を事前確認"
@@ -258,7 +255,7 @@ export function SupportSection({ features, notes }: SupportSectionProps) {
                             />
                             <div className="absolute inset-0 bg-gradient-to-b from-black/15 via-black/25 to-black/45" />
                             <div className="relative z-10 w-full text-center flex flex-col items-center">
-                                <h4 className="text-base md:text-lg font-semibold text-white drop-shadow-[0_6px_16px_rgba(0,0,0,0.55)]">
+                                <h4 className="text-base md:text-xl font-semibold text-white drop-shadow-[0_6px_16px_rgba(0,0,0,0.55)]">
                                     国別の出品可否を
                                     <br />
                                     事前確認
@@ -266,7 +263,7 @@ export function SupportSection({ features, notes }: SupportSectionProps) {
                             </div>
                         </div>
 
-                        <div className="col-span-2 sm:col-span-3 md:col-span-3 lg:col-span-3 lg:row-span-1 lg:col-start-4 lg:row-start-3 rounded-[24px] border border-gray-light/60 bg-white p-5 md:p-6 shadow-[0_16px_45px_rgba(0,0,0,0.08)] relative overflow-hidden flex items-center justify-center">
+                        <div className="col-span-2 sm:col-span-3 md:col-span-1 md:col-start-2 md:row-start-3 lg:col-span-3 lg:row-span-1 lg:col-start-4 lg:row-start-3 rounded-[24px] border border-gray-light/60 bg-white p-5 md:p-6 shadow-[0_16px_45px_rgba(0,0,0,0.08)] relative overflow-hidden flex items-center justify-center">
                             <div className="absolute inset-0 bg-[linear-gradient(120deg,rgba(15,23,42,0.03),rgba(15,23,42,0.0))]" />
                             <div className="relative text-center w-full flex flex-col items-center">
                                 <div className="mb-4 inline-flex w-[40%] max-w-[120px] min-w-[72px] aspect-square items-center justify-center rounded-full border border-gray-light/60 bg-white/90 shadow-[0_10px_20px_rgba(0,0,0,0.08)] mx-auto">
@@ -280,7 +277,7 @@ export function SupportSection({ features, notes }: SupportSectionProps) {
                             </div>
                         </div>
 
-                        <div className="col-span-2 sm:col-span-2 lg:col-span-6 lg:row-span-1 lg:col-start-7 lg:row-start-3 rounded-[24px] border border-gray-light/60 bg-white p-5 md:p-6 shadow-[0_16px_45px_rgba(0,0,0,0.08)]">
+                        <div className="col-span-2 sm:col-span-2 md:col-span-1 md:col-start-3 md:row-start-3 lg:col-span-6 lg:row-span-1 lg:col-start-7 lg:row-start-3 rounded-[24px] border border-gray-light/60 bg-white p-5 md:p-6 shadow-[0_16px_45px_rgba(0,0,0,0.08)]">
                             <div className="mb-4 inline-flex w-[40%] max-w-[120px] min-w-[72px] aspect-square rounded-full border border-gray-light/60 items-center justify-center bg-white">
                                 <Image
                                     src="/insta-logo.png"
@@ -290,8 +287,8 @@ export function SupportSection({ features, notes }: SupportSectionProps) {
                                     className="h-[60%] w-[60%]"
                                 />
                             </div>
-                            <h4 className="text-base md:text-lg font-semibold text-foreground">
-                                日本に関心のある海外ユーザーが既に存在
+                            <h4 className="text-base md:text-base font-semibold text-foreground">
+                                日本に関心のあるユーザーが既に存在
                             </h4>
                             <a
                                 href="https://www.instagram.com/livapon_japan/"

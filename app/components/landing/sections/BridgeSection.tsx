@@ -14,7 +14,7 @@ export function BridgeSection() {
             <Container size="5xl" className="relative">
                 <div className="relative grid grid-cols-1 lg:grid-cols-[1.1fr_0.9fr] items-center gap-10">
                     <ScrollReveal delay={0} y={16}>
-                        <div className="relative z-10 max-w-xl text-center lg:text-left">
+                        <div className="relative z-10 max-w-xl text-center lg:text-left md:mx-auto lg:mx-0">
                             <div className="flex justify-center lg:justify-end translate-x-[-14px] sm:translate-x-[-18px] md:translate-x-[-24px] lg:translate-x-0">
                                 <div className="flex flex-row-reverse items-start gap-8 md:gap-12">
                                     <span className="relative inline-block align-top px-2 md:px-3 text-4xl sm:text-5xl md:text-6xl lg:text-6xl font-bold tracking-[0.08em] text-white [writing-mode:vertical-rl] [text-orientation:mixed]">
@@ -29,7 +29,7 @@ export function BridgeSection() {
                                     </span>
                                 </div>
                             </div>
-                            <p className="mt-10 md:mt-12 text-lg md:text-xl text-gray-dark leading-relaxed font-semibold">
+                            <p className="mt-10 md:mt-12 text-lg md:text-xl text-gray-dark leading-relaxed font-semibold md:text-center">
                                 LIVAPONでは、
                                 <br className="sm:hidden" />
                                 海外販売やライブコマースについて

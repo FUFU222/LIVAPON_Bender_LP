@@ -75,7 +75,7 @@ export function IntroProblemsSection({ items }: IntroProblemsSectionProps) {
                                                         <h3 className="text-[24px] md:text-[28px] font-semibold text-white bg-black/75 px-3 py-2 rounded-[8px] box-decoration-clone inline">
                                                             {item.title}
                                                         </h3>
-                                                        <p className="text-[14px] md:text-[24px] lg:text-[16px] font-semibold text-black/90 leading-relaxed bg-white/90 px-2 py-1 rounded-[8px] box-decoration-clone inline">
+                                                        <p className="text-[14px] md:text-[20px] lg:text-[16px] font-semibold text-black/90 leading-relaxed bg-white/90 px-2 py-1 rounded-[8px] box-decoration-clone inline">
                                                             {item.description}
                                                         </p>
                                                     </div>
