@@ -1,7 +1,7 @@
-# プロジェクト改善レポート
+# プロジェクト改善レポート（現行）
 
-LIVAPON LPで実施したセキュリティ強化・アニメーション改善を、現行実装に合わせて整理したメモです。
-詳細なセキュリティ状況は `docs/security.md` を参照してください。
+LIVAPON LPで実施した改善内容を、現行実装に合わせて整理したメモです。
+セキュリティの詳細は `docs/security.md` を参照してください。
 
 ## 1. 実施内容（概要）
 
@@ -10,11 +10,11 @@ LIVAPON LPで実施したセキュリティ強化・アニメーション改善�
 - 詳細は `docs/security.md` に統合。
 
 ### アニメーション/表現
-- **DividerSection のスクロール演出**
-  - `app/components/sections/DividerSection.tsx`
-  - `220vh` のスクロール領域 + `sticky` 固定
-  - `useScroll` + `useTransform` でスケール（0.9→10）と透明度（1→0）を制御
-
+- **オープニングのローディング演出**
+  - `app/components/landing/LoadingOverlay.tsx`
+  - ロゴ＋波動＋タイピングで起動感を演出
+- **SupportセクションのエディトリアルBento配置**
+  - `app/components/landing/sections/SupportSection.tsx`
 - **Threads の描画負荷最適化**
   - `app/components/canvas/Threads.tsx`
   - Intersection Observer で画面外描画を抑制
@@ -25,7 +25,8 @@ LIVAPON LPで実施したセキュリティ強化・アニメーション改善�
 - `lib/security.ts`
 - `lib/schemas.ts`
 - `app/api/inquiry/route.ts`
-- `app/components/sections/DividerSection.tsx`
+- `app/components/landing/LoadingOverlay.tsx`
+- `app/components/landing/sections/SupportSection.tsx`
 - `app/components/canvas/Threads.tsx`
 
 ## 3. 今後の推奨事項

@@ -18,18 +18,25 @@ type WaterRippleProps = {
     maxRadiusMultiplier?: number; // 波紋の最大サイズの係数
     baseOpacity?: number;      // 波紋の基本不透明度
     color?: string;            // 影の色（基本は黒/グレー）
+    stopDistance?: number;     // 停止時の波紋を出すまでの移動距離
+    stopDelay?: number;        // 停止判定までの時間(ms)
+    stopSizeScale?: number;    // 停止時の波紋サイズ係数
 };
 
 export function WaterRipple({
     className,
     rippleSpeed = 2.5,
-    maxRadiusMultiplier = 80,
-    baseOpacity = 0.05,
+    maxRadiusMultiplier = 160,
+    baseOpacity = 0.03,
     color = "#111111",
+    stopDistance = 80,
+    stopDelay = 30,
+    stopSizeScale = 2.0,
 }: WaterRippleProps) {
     const canvasRef = useRef<HTMLCanvasElement | null>(null);
     const ripplesRef = useRef<Ripple[]>([]);
     const lastPosRef = useRef<{ x: number; y: number } | null>(null);
+    const travelDistanceRef = useRef<number>(0);
     const isMovingRef = useRef<boolean>(false);
     const stopTimerRef = useRef<NodeJS.Timeout | null>(null);
 
@@ -69,7 +76,7 @@ export function WaterRipple({
             if (edgeLimit <= 8) return;
 
             // 停止時の波紋は大きく、ゆっくり消える
-            const sizeScale = isStopRipple ? 2.5 : 1.0;
+            const sizeScale = isStopRipple ? stopSizeScale : 1.0;
             const desiredMaxRadius = Math.random() * maxRadiusMultiplier * sizeScale + 50;
             const boundedMaxRadius = Math.min(desiredMaxRadius, edgeLimit);
 
@@ -78,9 +85,9 @@ export function WaterRipple({
                 y,
                 radius: 0,
                 maxRadius: boundedMaxRadius,
-                opacity: isStopRipple ? baseOpacity * 1.5 : baseOpacity,
-                speed: rippleSpeed * (isStopRipple ? 0.8 : 1.0 + Math.random() * 0.5),
-                width: isStopRipple ? 4 : 2,
+                opacity: isStopRipple ? baseOpacity * 1.1 : baseOpacity,
+                speed: rippleSpeed * (isStopRipple ? 0.85 : 1.0 + Math.random() * 0.5),
+                width: isStopRipple ? 3 : 2,
             });
 
             // 数が増えすぎないように制限
@@ -100,22 +107,20 @@ export function WaterRipple({
             if (stopTimerRef.current) clearTimeout(stopTimerRef.current);
             stopTimerRef.current = setTimeout(() => {
                 isMovingRef.current = false;
-                // マウスが止まった瞬間に大きな波紋を発生
-                addRipple(x, y, true);
+                // 一定距離以上動いた時のみ、停止時にほのかに波紋を発生
+                if (travelDistanceRef.current >= stopDistance) {
+                    addRipple(x, y, true);
+                }
                 lastPosRef.current = null;
-            }, 100); // 100ms停止したら「止まった」とみなす
+                travelDistanceRef.current = 0;
+            }, stopDelay); // 停止したら「止まった」とみなす
 
-            // 移動中の波紋生成（一定距離または一定時間ごと）
             if (lastPosRef.current) {
                 const dx = x - lastPosRef.current.x;
                 const dy = y - lastPosRef.current.y;
                 const dist = Math.hypot(dx, dy);
-
-                // 一定距離以上の移動があった場合のみ波紋を生成
-                if (dist > 100) {
-                    addRipple(x, y, false);
-                    lastPosRef.current = { x, y };
-                }
+                travelDistanceRef.current += dist;
+                lastPosRef.current = { x, y };
             } else {
                 lastPosRef.current = { x, y };
             }
@@ -175,6 +180,7 @@ export function WaterRipple({
         canvas.addEventListener("mouseleave", () => {
             if (stopTimerRef.current) clearTimeout(stopTimerRef.current);
             lastPosRef.current = null;
+            travelDistanceRef.current = 0;
         });
 
         return () => {
@@ -183,7 +189,7 @@ export function WaterRipple({
             cancelAnimationFrame(animationFrameId);
             if (stopTimerRef.current) clearTimeout(stopTimerRef.current);
         };
-    }, [rippleSpeed, maxRadiusMultiplier, baseOpacity, color]);
+    }, [rippleSpeed, maxRadiusMultiplier, baseOpacity, color, stopDistance, stopDelay, stopSizeScale]);
 
     return (
         <canvas

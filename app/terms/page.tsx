@@ -6,8 +6,8 @@ export default function TermsOfService() {
     return (
         <div className="min-h-screen bg-white">
             {/* Header */}
-            <header className="fixed top-0 left-0 right-0 z-50 bg-white/80 backdrop-blur-md border-b border-gray-100 h-16 md:h-20 flex items-center">
-                <div className="max-w-6xl mx-auto px-4 w-full">
+            <header className="fixed top-0 left-0 right-0 z-50 bg-white/80 backdrop-blur-md border-b border-gray-100 h-16 md:h-20 flex items-start pt-6">
+                <div className="w-full px-6">
                     <Link href="/" className="inline-block hover:opacity-80 transition-opacity">
                         <span className="sr-only">LIVAPON TOP</span>
                         <Image
@@ -15,7 +15,7 @@ export default function TermsOfService() {
                             alt="LIVAPON"
                             width={120}
                             height={32}
-                            className="h-6 md:h-8 w-auto"
+                            className="h-auto w-36 md:w-44"
                         />
                     </Link>
                 </div>

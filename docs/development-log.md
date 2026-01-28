@@ -18,25 +18,27 @@
 
 ## 実績ログ
 
+※ 過去ログには削除済み構成（VariantAや旧README）の記載が含まれます。現行の正準ドキュメントは `docs/AGENTS.md` を参照してください。
+
 ### 2026-01-27: 予約機能の撤去と問い合わせに集約
 - 目的: 予約機能を廃止し、問い合わせ導線に集約するため関連ロジックとドキュメントを整理。
-- 実装内容: 予約/カレンダーAPI・管理画面・関連ユーティリティを削除し、問い合わせフォームのみを残す構成に更新。`docs/README.md`/`docs/security.md`/`docs/env-template.md`/`docs/walkthrough.md` を最新化。
-- 追加資料: `app/api/inquiry/route.ts`, `lib/schemas.ts`, `docs/README.md`, `docs/security.md`, `docs/env-template.md`, `docs/walkthrough.md`。
+- 実装内容: 予約/カレンダーAPI・管理画面・関連ユーティリティを削除し、問い合わせフォームのみを残す構成に更新。`docs/AGENTS.md`/`docs/security.md`/`docs/env-template.md`/`docs/walkthrough.md` を最新化。
+- 追加資料: `app/api/inquiry/route.ts`, `lib/schemas.ts`, `docs/AGENTS.md`, `docs/security.md`, `docs/env-template.md`, `docs/walkthrough.md`。
 
 ### 2026-01-23: Landing構成の参照統一
 - 目的: Landing ディレクトリ移行後の参照切れを解消し、ドキュメントの整合性を回復。
-- 実装内容: `LandingPage` に `LandingContent` を接続、`landing/sections` の `ui` 参照を更新。`design-overview.md`/`content-structure.md`/`official-sponsor.md`/`README.md` を Landing 構成に合わせて修正。
-- 追加資料: `app/components/landing/LandingPage.tsx`, `app/components/landing/sections/CommonRecognitionSection.tsx`, `app/components/landing/sections/IntroProblemsSection.tsx`, `app/components/landing/sections/SupportSection.tsx`, `app/components/landing/sections/OfficialSponsorSection.tsx`, `app/components/landing/sections/FaqSection.tsx`, `docs/design-overview.md`, `docs/content-structure.md`, `docs/official-sponsor.md`, `docs/README.md`。
+- 実装内容: `LandingPage` に `LandingContent` を接続、`landing/sections` の `ui` 参照を更新。`design-overview.md`/`content-structure.md`/`official-sponsor.md`/`AGENTS.md` を Landing 構成に合わせて修正。
+- 追加資料: `app/components/landing/LandingPage.tsx`, `app/components/landing/sections/CommonRecognitionSection.tsx`, `app/components/landing/sections/IntroProblemsSection.tsx`, `app/components/landing/sections/SupportSection.tsx`, `app/components/landing/sections/OfficialSponsorSection.tsx`, `app/components/landing/sections/FaqSection.tsx`, `docs/design-overview.md`, `docs/content-structure.md`, `docs/official-sponsor.md`, `docs/AGENTS.md`。
 
 ### 2026-01-22: ドキュメント最新化（LP実装反映）
 - 目的: 直近のLP実装に合わせてドキュメントの矛盾・重複を解消。
-- 実装内容: `content-structure.md`/`design-overview.md` を現行構成に刷新、公式スポンサーセクションの仕様を `official-sponsor.md` に整理。旧バリアント資料を削除し、READMEの索引を更新。
-- 追加資料: `docs/content-structure.md`, `docs/design-overview.md`, `docs/official-sponsor.md`, `docs/README.md`。
+- 実装内容: `content-structure.md`/`design-overview.md` を現行構成に刷新、公式スポンサーセクションの仕様を `official-sponsor.md` に整理。旧バリアント資料を削除し、`AGENTS.md` の索引を更新。
+- 追加資料: `docs/content-structure.md`, `docs/design-overview.md`, `docs/official-sponsor.md`, `docs/AGENTS.md`。
 
 ### 2026-01-22: セッション運用ルールと自動コミット整備
 - 目的: セッション開始時の参照ルールと自動コミット方針を明文化。
-- 実装内容: `docs/development-guidelines.md` を新設し、日本語運用/肯定的プロンプトでの自動コミット/実行コマンドを整理。`docs/README.md` に索引追記、`scripts/auto-commit.sh` と `npm run commit:auto` を追加。
-- 追加資料: `docs/development-guidelines.md`, `docs/README.md`, `scripts/auto-commit.sh`, `package.json`。
+- 実装内容: `docs/development-guidelines.md` を新設し、日本語運用/肯定的プロンプトでの自動コミット/実行コマンドを整理。`docs/AGENTS.md` に索引追記、`scripts/auto-commit.sh` と `npm run commit:auto` を追加。
+- 追加資料: `docs/development-guidelines.md`, `docs/AGENTS.md`, `scripts/auto-commit.sh`, `package.json`。
 
 ### 2026-01-22: VariantAのセクション分割（導入〜共通知覚）
 - 目的: VariantAの保守性向上のため、セクション単位でコンポーネントを分割。
@@ -59,24 +61,24 @@
 - 追加資料: なし（操作履歴はGitログに記録）。
 
 ### 2026-01-09: ドキュメント日本語化 & Markdown整理
-- 目的: コミュニケーションを日本語に統一し、READMEやセキュリティ資料を国内メンバー向けに最適化。
-- 実装内容: README/security/env-template/walkthroughを日本語で書き直し、コミュニケーション方針を明文化。
-- 追加資料: `docs/README.md`, `docs/security.md`（旧: SECURITY_REINFORCEMENT.md）, `docs/env-template.md`, `docs/walkthrough.md`。
+- 目的: コミュニケーションを日本語に統一し、ドキュメントやセキュリティ資料を国内メンバー向けに最適化。
+- 実装内容: AGENTS/security/env-template/walkthroughを日本語で書き直し、コミュニケーション方針を明文化。
+- 追加資料: `docs/AGENTS.md`, `docs/security.md`（旧: SECURITY_REINFORCEMENT.md）, `docs/env-template.md`, `docs/walkthrough.md`。
 
 ### 2026-01-09: ドキュメント階層の統一
 - 目的: Markdownファイルを `docs/` に集約し、開発ログ運用をスタート。
-- 実装内容: 既存Markdownを `docs/` ディレクトリに移動し、`docs/development-log.md` を新設。READMEにはドキュメント運用ルールを追記。
-- 追加資料: 本ドキュメントおよび `docs/README.md` の「ドキュメント運用ルール」節。
+- 実装内容: 既存Markdownを `docs/` ディレクトリに移動し、`docs/development-log.md` を新設。`docs/AGENTS.md` にドキュメント運用ルールを追記。
+- 追加資料: 本ドキュメントおよび `docs/AGENTS.md` の「ドキュメント運用ルール」節。
 
 ### 2026-01-09: `docs/` 表記ルールへの統一
 - 目的: MDファイル参照時に大文字/小文字が混在しないようガイドラインを明示。
-- 実装内容: ドキュメント用ディレクトリと参照パスをすべて小文字の `docs/` に統一し、READMEの索引や開発ログを更新。
-- 追加資料: `docs/README.md`, 本ドキュメント。
+- 実装内容: ドキュメント用ディレクトリと参照パスをすべて小文字の `docs/` に統一し、`docs/AGENTS.md` の索引や開発ログを更新。
+- 追加資料: `docs/AGENTS.md`, 本ドキュメント。
 
 ### 2026-01-09: Google カレンダー連携のリファクタリング
 - 目的: サービスアカウント連携や空き枠生成ロジックの脆弱さを解消し、本番運用でも正しい候補提示/予約登録ができるようにする。
 - 実装内容: `lib/google-calendar.ts` を再構成し、環境変数の検証、タイムゾーン考慮、FreeBusy API の重複チェック、週末制御、スロット長の可変化、予約承認時の空き枠再検証を追加。`/api/calendar/available-slots` はクエリパラメータで日数/週末フラグを切り替えられるようにし、承認 API ではスロット競合を409で返すように変更。
-- 追加資料: `docs/env-template.md`（サービスアカウント手順を追記）、`docs/README.md`（カレンダー連携セットアップ手順）。
+- 追加資料: `docs/env-template.md`（サービスアカウント手順を追記）、`docs/AGENTS.md`（カレンダー連携セットアップ手順）。
 
 ### 2026-01-15: docs整理（命名統一・重複整理）
 - 目的: ドキュメントの命名揺れ/重複/実装との不整合を解消。
@@ -106,3 +108,13 @@
 - 目的: PC表示で主役カードの視線導線を強化し、エディトリアルな構成に刷新。
 - 実装内容: 12カラム×4段のグリッドに再配置し、0円/228/国内配送感覚を主役として中央の大きなカードと左右の大型カードに配置。補助カードは下段に整理。
 - 追加資料: `app/components/landing/sections/SupportSection.tsx`。
+
+### 2026-01-28: 未使用セクションの整理
+- 目的: 旧セクション群の混在による混乱を解消し、保守性を向上。
+- 実装内容: 未使用の `app/components/sections` を削除し、関連ドキュメントの参照を更新。
+- 追加資料: `docs/content-structure.md`, `docs/walkthrough.md`。
+
+### 2026-01-28: ドキュメントの現行実装反映
+- 目的: 現行LPの構成・文言・導線に合わせて仕様ドキュメントを再同期。
+- 実装内容: `content-structure.md`/`design-overview.md`/`official-sponsor.md`/`walkthrough.md` を現行実装に合わせて書き直し、`AGENTS.md`/`development-guidelines.md` の参照先を更新。
+- 追加資料: `docs/content-structure.md`, `docs/design-overview.md`, `docs/official-sponsor.md`, `docs/walkthrough.md`, `docs/AGENTS.md`, `docs/development-guidelines.md`。
