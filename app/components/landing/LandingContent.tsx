@@ -209,13 +209,14 @@ export function LandingContent({ onHeroReady, isHeroReady }: LandingContentProps
                                 <RotatingText
                                     texts={["LIVE", "NIPPON"]}
                                     mainClassName="text-6xl md:text-8xl font-black tracking-tighter text-accent overflow-hidden py-2 px-2"
+                                    stacked
                                     staggerFrom="last"
                                     initial={{ y: "100%", opacity: 0 }}
                                     animate={{ y: 0, opacity: 1 }}
                                     exit={{ y: "-120%", opacity: 0 }}
                                     staggerDuration={0.02}
                                     rotationInterval={2200}
-                                    animatePresenceMode="popLayout"
+                                    animatePresenceMode="wait"
                                     transition={{ type: "spring", damping: 20, stiffness: 100 }}
                                 />
                             </div>

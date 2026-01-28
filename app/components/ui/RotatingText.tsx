@@ -43,6 +43,7 @@ export interface RotatingTextProps
     mainClassName?: string;
     splitLevelClassName?: string;
     elementLevelClassName?: string;
+    stacked?: boolean;
 }
 
 const RotatingText = forwardRef<RotatingTextRef, RotatingTextProps>(
@@ -65,11 +66,17 @@ const RotatingText = forwardRef<RotatingTextRef, RotatingTextProps>(
             mainClassName,
             splitLevelClassName,
             elementLevelClassName,
+            stacked = false,
+            style,
             ...rest
         },
         ref
     ) => {
         const [currentTextIndex, setCurrentTextIndex] = useState<number>(0);
+        const maxTextLength = useMemo(
+            () => Math.max(...texts.map((text) => Array.from(text).length)),
+            [texts]
+        );
 
         const splitIntoCharacters = (text: string): string[] => {
             if (typeof Intl !== 'undefined' && Intl.Segmenter) {
@@ -182,17 +189,19 @@ const RotatingText = forwardRef<RotatingTextRef, RotatingTextProps>(
 
         return (
             <motion.span
-                className={cn('flex flex-wrap whitespace-pre-wrap relative', mainClassName)}
+                className={cn('inline-flex flex-nowrap whitespace-nowrap break-keep relative', mainClassName)}
                 {...rest}
-                layout
+                style={stacked ? { ...style, minWidth: `${maxTextLength}ch` } : style}
                 transition={transition}
             >
                 <span className="sr-only">{texts[currentTextIndex]}</span>
                 <AnimatePresence mode={animatePresenceMode} initial={animatePresenceInitial}>
                     <motion.span
                         key={currentTextIndex}
-                        className={cn(splitBy === 'lines' ? 'flex flex-col w-full' : 'flex flex-wrap whitespace-pre-wrap relative')}
-                        layout
+                        className={cn(
+                            splitBy === 'lines' ? 'flex flex-col w-full' : 'inline-flex flex-nowrap whitespace-nowrap break-keep relative',
+                            stacked ? 'absolute inset-0' : ''
+                        )}
                         aria-hidden="true"
                     >
                         {elements.map((wordObj, wordIndex, array) => {

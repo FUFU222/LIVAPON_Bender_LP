@@ -101,3 +101,8 @@
 - 目的: オープニング中の「稼働中」感を強め、ブランドの世界観に合わせた情報的演出を追加。
 - 実装内容: `TextType` コンポーネントを追加し、オープニング最下部にタイピング表示（LOADING/INITIALIZING）を配置。ブリージング（明滅）アニメーションを併用。
 - 追加資料: `app/components/ui/TextType.tsx`, `app/components/landing/LoadingOverlay.tsx`, `app/globals.css`。
+
+### 2026-01-27: BentoUIのPCグリッド再構成（エディトリアル）
+- 目的: PC表示で主役カードの視線導線を強化し、エディトリアルな構成に刷新。
+- 実装内容: 12カラム×4段のグリッドに再配置し、0円/228/国内配送感覚を主役として中央の大きなカードと左右の大型カードに配置。補助カードは下段に整理。
+- 追加資料: `app/components/landing/sections/SupportSection.tsx`。
