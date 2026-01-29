@@ -263,7 +263,7 @@ export function LandingContent() {
 
             <FaqSection items={faqItems} />
 
-            <section id="contact" className="relative py-24 md:py-32 bg-white overflow-hidden">
+            <section id="contact" className="relative pt-12 pb-24 md:py-32 bg-white overflow-hidden">
                 <div className="absolute inset-0 pointer-events-auto">
                     <WaterRipple baseOpacity={0.1} />
                 </div>
