@@ -30,8 +30,6 @@ export function BridgeSection() {
                                 </div>
                             </div>
                             <p className="mt-10 md:mt-12 text-lg md:text-xl text-gray-dark leading-relaxed font-semibold md:text-center">
-                                LIVAPONでは、
-                                <br className="sm:hidden" />
                                 海外販売やライブコマースに関する
                                 <br />
                                 サービスの説明会を行っています。
