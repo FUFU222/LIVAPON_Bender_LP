@@ -77,9 +77,7 @@ export function CTAForm() {
                             </div>
                             <h3 className="text-2xl font-bold mb-4">お問い合わせありがとうございます</h3>
                             <p className="text-gray-dark mb-6">担当者が確認の上、順次ご連絡差し上げます。</p>
-                            <div className="mt-8 pt-8 border-t border-gray-100">
-                                <p className="text-accent font-medium italic">「世界への第一歩を、これから一緒に踏み出しましょう。」</p>
-                            </div>
+
                         </motion.div>
                     ) : (
                         <motion.form
