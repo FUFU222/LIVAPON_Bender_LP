@@ -243,7 +243,7 @@ export function SupportSection({ features, notes }: SupportSectionProps) {
                             />
                             <div className="absolute inset-0 bg-gradient-to-b from-black/15 via-black/25 to-black/45" />
                             <div className="relative z-10 w-full text-center">
-                                <h4 className="text-[16px] md:text-xl font-semibold text-white drop-shadow-[0_6px_16px_rgba(0,0,0,0.55)] leading-tight">
+                                <h4 className="text-[14px] md:text-xl font-semibold text-white drop-shadow-[0_6px_16px_rgba(0,0,0,0.55)] leading-tight">
                                     国別の出品可否を
                                     <br />
                                     事前確認
