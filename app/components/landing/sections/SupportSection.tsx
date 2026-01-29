@@ -226,8 +226,8 @@ export function SupportSection({ features, notes }: SupportSectionProps) {
                                         <Check className="h-2.5 w-2.5 md:h-4 md:w-4" />
                                     </span>
                                 </div>
-                                <h4 className="text-[10px] md:text-sm font-semibold text-foreground whitespace-nowrap">EC掲載のみでも</h4>
-                                <p className="mt-0.5 text-[18px] md:text-[32px] font-black text-accent leading-none tracking-tight">
+                                <h4 className="text-[13px] md:text-base font-semibold text-foreground whitespace-nowrap">EC掲載のみでも</h4>
+                                <p className="mt-0.5 text-[38px] md:text-[36px] font-black text-accent leading-none tracking-tight">
                                     OK！
                                 </p>
                             </div>
