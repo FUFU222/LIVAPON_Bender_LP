@@ -50,16 +50,16 @@ export function IntroProblemsSection({ items }: IntroProblemsSectionProps) {
                                 <div key={item.title} className={`lg:col-span-2 ${placement}`}>
                                     <div className="group relative rounded-3xl border border-gray-light/60 bg-white shadow-[0_18px_50px_rgba(0,0,0,0.12)] transform-gpu will-change-transform transition-transform duration-700 ease-out hover:-translate-y-1">
                                         <span className="pointer-events-none absolute inset-0 rounded-3xl shadow-[0_26px_70px_rgba(0,0,0,0.18)] opacity-0 transition-opacity duration-700 ease-out group-hover:opacity-100" />
-                                        <div className="relative rounded-3xl overflow-hidden">
-                                            <span className="pointer-events-none absolute -bottom-2 left-10 h-4 w-4 rotate-45 bg-white border border-gray-light/60 shadow-sm" />
-                                            <div className="absolute inset-0 p-5 md:p-6">
-                                                <div className="relative h-full w-full transition-transform duration-700 ease-out will-change-transform group-hover:scale-[1.02]">
+                                        <div className="relative rounded-3xl overflow-hidden bg-white">
+                                            <span className="pointer-events-none absolute -bottom-2 left-10 h-4 w-4 rotate-45 bg-white border border-gray-light/60 shadow-sm z-20" />
+                                            <div className="absolute top-4 inset-x-0 h-[50%] px-8 md:px-10">
+                                                <div className="relative h-full w-full transition-transform duration-700 ease-out will-change-transform group-hover:scale-[1.05]">
                                                     <Image
                                                         src={`/problem-${index + 1}.png`}
                                                         alt={item.title}
                                                         fill
                                                         sizes="(max-width: 1024px) 100vw, 33vw"
-                                                        className="object-cover object-top"
+                                                        className="object-contain object-bottom"
                                                     />
                                                 </div>
                                             </div>
