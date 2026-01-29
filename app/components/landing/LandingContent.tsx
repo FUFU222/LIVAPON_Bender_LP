@@ -105,26 +105,33 @@ export function LandingContent() {
             <section className="relative py-24 md:py-32 bg-white overflow-hidden">
                 <Container size="6xl">
                     <ScrollReveal delay={0} y={24}>
-                        <div className="grid grid-cols-1 md:grid-cols-[45%_55%] items-center gap-6 mb-12">
-                            <div className="text-center md:text-right">
-                                <span className="text-5xl md:text-7xl font-light tracking-tighter text-gray-dark">
+                        <div className="flex items-baseline justify-center gap-2 md:gap-5 mb-12 flex-nowrap overflow-visible whitespace-nowrap">
+                            <div className="text-right">
+                                <span className="text-4xl md:text-7xl font-light tracking-tighter text-gray-dark">
                                     Deliver
                                 </span>
                             </div>
-                            <div className="text-center md:text-left flex justify-center md:justify-start">
-                                <RotatingText
-                                    texts={["LIVE", "NIPPON"]}
-                                    mainClassName="text-6xl md:text-8xl font-black tracking-tighter text-accent overflow-hidden py-2 px-2"
-                                    stacked
-                                    staggerFrom="last"
-                                    initial={{ y: "100%", opacity: 0 }}
-                                    animate={{ y: 0, opacity: 1 }}
-                                    exit={{ y: "-120%", opacity: 0 }}
-                                    staggerDuration={0.02}
-                                    rotationInterval={2200}
-                                    animatePresenceMode="wait"
-                                    transition={{ type: "spring", damping: 20, stiffness: 100 }}
-                                />
+                            <div className="relative flex items-baseline">
+                                {/* Width Anchor: Hidden placeholder to lock the width and prevent jitter */}
+                                <span className="text-5xl md:text-8xl font-black tracking-tighter opacity-0 select-none pointer-events-none px-1 invisible" aria-hidden="true">
+                                    NIPPON
+                                </span>
+                                {/* Nudge up slightly (-1px to -2px often sufficient for optical baseline alignment) */}
+                                <div className="absolute inset-x-0 bottom-0 top-0 flex items-baseline justify-center -translate-y-[2px] md:-translate-y-[4px]">
+                                    <RotatingText
+                                        texts={["LIVE", "NIPPON"]}
+                                        mainClassName="text-5xl md:text-8xl font-black tracking-tighter text-accent overflow-hidden py-1 px-1"
+                                        stacked
+                                        staggerFrom="last"
+                                        initial={{ y: "100%", opacity: 0 }}
+                                        animate={{ y: 0, opacity: 1 }}
+                                        exit={{ y: "-120%", opacity: 0 }}
+                                        staggerDuration={0.02}
+                                        rotationInterval={2200}
+                                        animatePresenceMode="wait"
+                                        transition={{ type: "spring", damping: 20, stiffness: 100 }}
+                                    />
+                                </div>
                             </div>
                         </div>
                     </ScrollReveal>
@@ -170,13 +177,13 @@ export function LandingContent() {
                                         </div>
                                         <div className="relative mt-4 aspect-[4/3] w-full overflow-hidden rounded-2xl bg-gray-light/30 transition-colors duration-300 group-hover:bg-white/5">
                                             {item.image ? (
-                                            <Image
-                                                src={item.image}
-                                                alt={item.title}
-                                                fill
-                                                sizes="(max-width: 1024px) 100vw, 33vw"
-                                                className="object-cover"
-                                            />
+                                                <Image
+                                                    src={item.image}
+                                                    alt={item.title}
+                                                    fill
+                                                    sizes="(max-width: 1024px) 100vw, 33vw"
+                                                    className="object-cover"
+                                                />
                                             ) : (
                                                 <div className="absolute inset-0 bg-[linear-gradient(135deg,rgba(15,23,42,0.08),rgba(193,39,45,0.08))] transition-colors duration-300 group-hover:bg-[linear-gradient(135deg,rgba(255,255,255,0.08),rgba(255,255,255,0.02))]">
                                                     <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,_rgba(255,255,255,0.6),_transparent_55%)] transition-colors duration-300 group-hover:bg-[radial-gradient(circle_at_top,_rgba(255,255,255,0.4),_transparent_60%)]" />
