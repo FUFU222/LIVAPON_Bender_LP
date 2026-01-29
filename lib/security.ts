@@ -65,7 +65,7 @@ function getClientIp(request: NextRequest): string {
  */
 export function rateLimitResponse() {
     return NextResponse.json(
-        { error: 'Too many requests: Please try again later', success: false },
+        { error: 'アクセスが集中しています。しばらく時間をおいてから再度お試しください。', success: false },
         { status: 429 }
     );
 }
@@ -78,9 +78,9 @@ export function badRequestResponse(message: string) {
 }
 
 export function internalErrorResponse() {
-    // 本番環境では詳細を隠す
+    // 本番環境では詳細を隠すが、丁寧な日本語を表示する
     return NextResponse.json(
-        { error: 'An unexpected error occurred', success: false },
+        { error: '予期せぬエラーが発生しました。時間を置いて再度お試しいただくか、お急ぎの場合は直接お問い合わせください。', success: false },
         { status: 500 }
     );
 }

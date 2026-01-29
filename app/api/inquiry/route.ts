@@ -127,7 +127,7 @@ export async function POST(request: NextRequest) {
 
     return NextResponse.json({ success: true });
   } catch (error) {
-    console.error('Error processing inquiry:', error);
+    console.error('[CRITICAL] Error processing inquiry submission:', error);
     return internalErrorResponse();
   }
 }
