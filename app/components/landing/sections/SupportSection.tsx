@@ -181,12 +181,12 @@ export function SupportSection({ features, notes }: SupportSectionProps) {
 
                         <div className="col-span-1 md:col-span-1 md:col-start-1 md:row-start-2 lg:col-span-3 lg:row-span-1 lg:col-start-1 lg:row-start-1 rounded-[28px] border border-gray-light/60 bg-white p-4 md:p-6 shadow-[0_20px_50px_rgba(0,0,0,0.1)] flex flex-col justify-center relative overflow-hidden lg:min-h-0">
                             <div className="relative text-center">
-                                <p className="text-[10px] md:text-base font-semibold text-gray-dark leading-none">初期費用＆手数料</p>
+                                <p className="text-[14px] md:text-base font-semibold text-gray-dark leading-none">初期費用＆手数料</p>
                                 <div className="mt-1 md:mt-2 inline-flex items-baseline gap-0.5 md:gap-1 text-accent leading-none">
-                                    <span className="text-[54px] md:text-[84px] lg:text-[100px] font-black tracking-tight">
+                                    <span className="text-[74px] md:text-[84px] lg:text-[100px] font-black tracking-tight">
                                         0
                                     </span>
-                                    <span className="text-[20px] md:text-[32px] lg:text-[38px] font-bold tracking-tight">
+                                    <span className="text-[28px] md:text-[32px] lg:text-[38px] font-bold tracking-tight">
                                         円
                                     </span>
                                 </div>
@@ -257,7 +257,7 @@ export function SupportSection({ features, notes }: SupportSectionProps) {
                                 <div className="mb-2 md:mb-4 inline-flex w-[45%] md:w-[40%] max-w-[120px] aspect-square items-center justify-center rounded-full border border-gray-light/60 bg-white/90 shadow-[0_10px_20px_rgba(0,0,0,0.08)] mx-auto">
                                     <Package className="h-[60%] w-[60%] text-accent/80" />
                                 </div>
-                                <h4 className="text-[10px] md:text-lg font-semibold text-foreground leading-snug">
+                                <h4 className="text-[13px] md:text-lg font-semibold text-foreground leading-snug">
                                     少量ロットから
                                     <br />
                                     小さく始められる
