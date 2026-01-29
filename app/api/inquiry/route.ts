@@ -36,8 +36,11 @@ export async function POST(request: NextRequest) {
     // 2. 厳格なバリデーション (Zod)
     const result = inquirySchema.safeParse(body);
     if (!result.success) {
-      const errorMessage = result.error.issues.map(e => e.message).join(', ');
-      return badRequestResponse(errorMessage);
+      if (process.env.NODE_ENV === 'development') {
+        const errorMessage = result.error.issues.map(e => e.message).join(', ');
+        return badRequestResponse(errorMessage);
+      }
+      return badRequestResponse('入力内容に誤りがあります');
     }
 
     const data = result.data;
