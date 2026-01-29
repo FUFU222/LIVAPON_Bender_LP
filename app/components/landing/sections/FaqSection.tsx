@@ -71,11 +71,10 @@ const FaqItem = ({
                     </span>
                 </div>
                 <span
-                    className={`flex h-8 w-8 items-center justify-center rounded-full border border-gray-light/60 text-gray-dark transition-transform duration-300 ${
-                        isOpen ? "rotate-180" : ""
-                    }`}
+                    className={`flex h-8 w-8 items-center justify-center rounded-full border border-gray-light/60 text-gray-dark transition-transform duration-300 ${isOpen ? "rotate-180" : ""
+                        }`}
                 >
-                    <svg viewBox="0 0 24 24" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="2">
+                    <svg viewBox="0 0 24 24" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true">
                         <path d="M6 9l6 6 6-6" />
                     </svg>
                 </span>

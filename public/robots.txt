@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://livapon-bender-lp.vercel.app/sitemap.xml
