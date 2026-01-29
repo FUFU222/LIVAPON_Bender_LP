@@ -172,7 +172,7 @@ export function SupportSection({ features, notes }: SupportSectionProps) {
                                     国内配送感覚
                                 </h3>
                                 <div className="mt-4 md:absolute md:bottom-8 md:left-1/2 md:-translate-x-1/2 w-full px-4 md:px-6">
-                                    <p className="text-[10px] md:text-sm font-light text-white/90 drop-shadow-[0_6px_18px_rgba(0,0,0,0.6)] max-w-md mx-auto">
+                                    <p className="text-[12px] md:text-sm font-light text-white/90 drop-shadow-[0_6px_18px_rgba(0,0,0,0.6)] max-w-md mx-auto">
                                         越境可能商品であれば、<br className="md:hidden" />国内配送と同じ感覚で扱えます。
                                     </p>
                                 </div>
