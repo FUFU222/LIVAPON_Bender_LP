@@ -107,7 +107,7 @@ void main() {
     }
     float m2 = getMetaBallValue(mouseW, iCursorBallSize, coord);
     float total = m1 + m2;
-    float f = smoothstep(-1.0, 1.0, (total - 1.3) / min(1.0, fwidth(total)));
+    float f = smoothstep(-1.0, 1.0, (total - 1.3) / max(0.0001, fwidth(total)));
     vec3 cFinal = vec3(0.0);
     if (total > 0.0) {
         float alpha1 = m1 / total;
@@ -154,11 +154,12 @@ export default function MetaBalls({
         const renderer = new Renderer({
             dpr: Math.min(window.devicePixelRatio, 1.5),
             alpha: true,
-            premultipliedAlpha: false,
+            premultipliedAlpha: true,
             webgl: 2,
         });
         const gl = renderer.gl;
-        gl.clearColor(0, 0, 0, enableTransparency ? 0 : 1);
+        gl.clearColor(0, 0, 0, 0);
+        gl.canvas.style.backgroundColor = "transparent";
         container.appendChild(gl.canvas);
 
         const camera = new Camera(gl, {
