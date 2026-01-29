@@ -35,6 +35,8 @@ export function CountUp({
     const ref = useRef<HTMLSpanElement>(null);
     const animationRef = useRef<ReturnType<typeof animate> | null>(null);
     const motionValue = useMotionValue(direction === "down" ? to : from);
+    const hasAnimatedRef = useRef(false);
+    const lastValueRef = useRef<number>(direction === "down" ? to : from);
 
     const damping = 20 + 40 * (1 / duration);
     const stiffness = 100 * (1 / duration);
@@ -75,26 +77,42 @@ export function CountUp({
     );
 
     useEffect(() => {
+        const startValue = direction === "down" ? to : from;
+        lastValueRef.current = startValue;
+        hasAnimatedRef.current = false;
         if (ref.current) {
-            ref.current.textContent = formatValue(direction === "down" ? to : from);
+            ref.current.textContent = formatValue(startValue);
         }
     }, [from, to, direction, formatValue]);
 
     useEffect(() => {
-        if (isInView && startWhen) {
+        if (isInView && startWhen && !hasAnimatedRef.current) {
             if (typeof onStart === "function") onStart();
+            hasAnimatedRef.current = true;
 
-            const timeoutId = setTimeout(() => {
+            const startValue = direction === "down" ? to : from;
+            const endValue = direction === "down" ? from : to;
+
+            const runAnimation = () => {
                 if (animation === "tween") {
                     animationRef.current?.stop();
-                    animationRef.current = animate(motionValue, direction === "down" ? from : to, {
+                    motionValue.set(startValue);
+                    animationRef.current = animate(motionValue, endValue, {
                         duration,
                         ease,
                     });
                 } else {
-                    motionValue.set(direction === "down" ? from : to);
+                    motionValue.set(endValue);
                 }
-            }, delay * 1000);
+            };
+
+            const timeoutId = setTimeout(runAnimation, delay * 1000);
+
+            const fallbackTimeoutId = setTimeout(() => {
+                if (Math.abs(lastValueRef.current - startValue) < 0.001) {
+                    runAnimation();
+                }
+            }, delay * 1000 + 160);
 
             const durationTimeoutId = setTimeout(
                 () => {
@@ -105,6 +123,7 @@ export function CountUp({
 
             return () => {
                 clearTimeout(timeoutId);
+                clearTimeout(fallbackTimeoutId);
                 clearTimeout(durationTimeoutId);
                 animationRef.current?.stop();
             };
@@ -114,6 +133,7 @@ export function CountUp({
     useEffect(() => {
         const source = animation === "tween" ? motionValue : springValue;
         const unsubscribe = source.on("change", (latest) => {
+            lastValueRef.current = latest;
             if (ref.current) {
                 ref.current.textContent = formatValue(latest);
             }
