@@ -168,7 +168,7 @@ export function SupportSection({ features, notes }: SupportSectionProps) {
                             />
                             <div className="absolute inset-0 bg-gradient-to-b from-black/20 via-black/20 to-black/55" />
                             <div className="relative z-10 h-full p-6 md:p-8 text-center flex flex-col justify-center">
-                                <h3 className="text-2xl md:text-[44px] font-bold text-white drop-shadow-[0_8px_20px_rgba(0,0,0,0.65)] tracking-[0.04em]">
+                                <h3 className="text-[32px] md:text-[44px] font-bold text-white drop-shadow-[0_8px_20px_rgba(0,0,0,0.65)] tracking-[0.04em]">
                                     国内配送感覚
                                 </h3>
                                 <div className="mt-4 md:absolute md:bottom-8 md:left-1/2 md:-translate-x-1/2 w-full px-4 md:px-6">
@@ -183,10 +183,10 @@ export function SupportSection({ features, notes }: SupportSectionProps) {
                             <div className="relative text-center">
                                 <p className="text-[10px] md:text-base font-semibold text-gray-dark leading-none">初期費用＆手数料</p>
                                 <div className="mt-1 md:mt-2 inline-flex items-baseline gap-0.5 md:gap-1 text-accent leading-none">
-                                    <span className="text-[40px] md:text-[84px] lg:text-[100px] font-black tracking-tight">
+                                    <span className="text-[54px] md:text-[84px] lg:text-[100px] font-black tracking-tight">
                                         0
                                     </span>
-                                    <span className="text-[14px] md:text-[32px] lg:text-[38px] font-bold tracking-tight">
+                                    <span className="text-[20px] md:text-[32px] lg:text-[38px] font-bold tracking-tight">
                                         円
                                     </span>
                                 </div>
@@ -209,7 +209,7 @@ export function SupportSection({ features, notes }: SupportSectionProps) {
                                     duration={1.6}
                                     animation="tween"
                                     ease="easeIn"
-                                    className="text-[44px] md:text-[136px] font-black text-white leading-none tracking-tight drop-shadow-[0_10px_24px_rgba(0,0,0,0.6)]"
+                                    className="text-[64px] md:text-[136px] font-black text-white leading-none tracking-tight drop-shadow-[0_10px_24px_rgba(0,0,0,0.6)]"
                                 />
                                 <p className="mt-1 text-[10px] md:text-sm font-semibold text-white drop-shadow-[0_8px_18px_rgba(0,0,0,0.55)]">
                                     の国と地域へ
@@ -243,7 +243,7 @@ export function SupportSection({ features, notes }: SupportSectionProps) {
                             />
                             <div className="absolute inset-0 bg-gradient-to-b from-black/15 via-black/25 to-black/45" />
                             <div className="relative z-10 w-full text-center">
-                                <h4 className="text-[11px] md:text-xl font-semibold text-white drop-shadow-[0_6px_16px_rgba(0,0,0,0.55)] leading-tight">
+                                <h4 className="text-[16px] md:text-xl font-semibold text-white drop-shadow-[0_6px_16px_rgba(0,0,0,0.55)] leading-tight">
                                     国別の出品可否を
                                     <br />
                                     事前確認
