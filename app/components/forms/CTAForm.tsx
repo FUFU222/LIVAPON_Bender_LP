@@ -68,15 +68,21 @@ export function CTAForm() {
                             initial={{ opacity: 0, scale: 0.9 }}
                             animate={{ opacity: 1, scale: 1 }}
                             exit={{ opacity: 0, scale: 0.9 }}
-                            className="text-center py-12"
+                            className="text-center py-10 md:py-12"
                         >
                             <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-6">
                                 <svg className="w-8 h-8 text-green-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
                                     <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                                 </svg>
                             </div>
-                            <h3 className="text-2xl font-bold mb-4">お問い合わせありがとうございます</h3>
-                            <p className="text-gray-dark mb-6">担当者が確認の上、順次ご連絡差し上げます。</p>
+                            <h3 className="text-xl md:text-2xl font-semibold leading-snug [text-wrap:balance] max-w-[20ch] mx-auto">
+                                <span className="inline-block">お問い合わせ</span>
+                                <span className="inline-block">ありがとうございます</span>
+                            </h3>
+                            <p className="mt-4 text-sm md:text-base text-gray-dark leading-relaxed [text-wrap:balance] max-w-[28ch] mx-auto">
+                                <span className="block sm:inline">担当者が内容確認の上、</span>
+                                <span className="block sm:inline">順次ご連絡差し上げます。</span>
+                            </p>
 
                         </motion.div>
                     ) : (
