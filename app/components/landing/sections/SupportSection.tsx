@@ -277,7 +277,7 @@ export function SupportSection({ features, notes }: SupportSectionProps) {
                                     />
                                 </div>
                                 <div className="flex-1">
-                                    <h4 className="text-[11px] md:text-base font-semibold text-foreground leading-tight">
+                                    <h4 className="text-[13px] md:text-base font-semibold text-foreground leading-tight">
                                         日本に関心のあるユーザーが既に存在
                                     </h4>
                                     <a
